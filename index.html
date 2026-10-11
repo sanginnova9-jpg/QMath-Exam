@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Đề kiểm tra 15 phút - Bài 5: Phương trình lượng giác | Toán 11</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -865,6 +868,8 @@
                 <span id="txtDisplayStu">Nguyễn Văn An</span>
                 <span style="color: #94a3b8;">|</span>
                 <span id="txtDisplayClass" style="color: #475569;">11A1</span>
+                <span style="color: #94a3b8;">|</span>
+                <span style="background: #e0e7ff; color: #3730a3; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;">🎲 Mã đề: <b id="txtDisplayExamCode">101</b></span>
             </div>
 
             <div class="status-indicators">
@@ -890,8 +895,8 @@
             <h2 class="result-title" id="txtResultTitle">HOÀN THÀNH BÀI THI</h2>
             <p class="result-evaluation" id="txtResultComment">Em đã hoàn thành tốt bài kiểm tra phương trình lượng giác!</p>
 
-            <!-- STATS 4 Ô -->
-            <div class="stats-grid">
+            <!-- STATS 5 Ô -->
+            <div class="stats-grid" style="grid-template-columns: repeat(5, 1fr);">
                 <div class="stat-card">
                     <div class="stat-val" id="txtCorrectCount" style="color: #16a34a;">8/10</div>
                     <div class="stat-label">Số câu đúng</div>
@@ -899,6 +904,10 @@
                 <div class="stat-card">
                     <div class="stat-val" id="txtWrongCount" style="color: #dc2626;">2/10</div>
                     <div class="stat-label">Số câu sai</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val" id="txtResultExamCode" style="color: #7c3aed;">101</div>
+                    <div class="stat-label">Mã đề thi</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-val" id="txtTimeSpent">08:45</div>
@@ -1141,35 +1150,55 @@ let leaveDebounceTimer = null; // Tránh nhiễu sự kiện blur micro-second
 
 // Danh sách câu hỏi phiên làm việc hiện tại (hỗ trợ đảo câu và đảo đáp án)
 let currentExamList = [];
+let currentExamCode = "101";
 
-// Hàm xáo trộn mảng Fisher-Yates
+// Hàm sinh mã đề ngẫu nhiên 3 chữ số (101 - 999)
+function generateExamCode() {
+    return Math.floor(100 + Math.random() * 900).toString();
+}
+
+// Hàm xáo trộn mảng Fisher-Yates đa vòng (3-pass)
 function shuffleArray(arr) {
     const res = [...arr];
-    for (let i = res.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [res[i], res[j]] = [res[j], res[i]];
+    for (let pass = 0; pass < 3; pass++) {
+        for (let i = res.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [res[i], res[j]] = [res[j], res[i]];
+        }
     }
     return res;
 }
 
 // Hàm chuẩn bị đề thi: Tự động đảo câu hỏi & đảo 4 đáp án A, B, C, D
-function prepareExamQuestions(shouldShuffle = false) {
+function prepareExamQuestions(shouldShuffle = true) {
+    currentExamCode = generateExamCode();
     let list = JSON.parse(JSON.stringify(examData));
 
     if (shouldShuffle) {
-        // 1. Đảo ngẫu nhiên thứ tự các câu hỏi
-        list = shuffleArray(list);
+        // 1. Đảo ngẫu nhiên thứ tự 10 câu hỏi (Đảm bảo không giữ nguyên vị trí cũ)
+        let tries = 0;
+        let shuffledList = shuffleArray(list);
+        while (tries < 5 && shuffledList.every((item, idx) => item.id === list[idx].id)) {
+            shuffledList = shuffleArray(list);
+            tries++;
+        }
+        list = shuffledList;
 
-        // 2. Đảo ngẫu nhiên 4 lựa chọn trong từng câu hỏi
+        // 2. Đảo ngẫu nhiên 4 lựa chọn A, B, C, D trong từng câu hỏi
         list.forEach((q) => {
             const originalCorrectOpt = q.options.find(o => o.key === q.correct);
             const originalCorrectText = originalCorrectOpt ? originalCorrectOpt.text : "";
 
             // Trộn ngẫu nhiên các phương án
-            const shuffledOptions = shuffleArray(q.options);
-            const standardKeys = ["A", "B", "C", "D"];
+            let shuffledOptions = shuffleArray(q.options);
+            let optTries = 0;
+            while (optTries < 5 && shuffledOptions.every((opt, i) => opt.text === q.options[i].text)) {
+                shuffledOptions = shuffleArray(q.options);
+                optTries++;
+            }
 
-            // Gán lại nhãn A, B, C, D theo thứ tự hiển thị từ trên xuống
+            const standardKeys = ["A", "B", "C", "D"];
+            // Gán lại nhãn A, B, C, D theo thứ tự mới
             q.options = shuffledOptions.map((opt, idx) => ({
                 key: standardKeys[idx],
                 text: opt.text
@@ -1178,13 +1207,12 @@ function prepareExamQuestions(shouldShuffle = false) {
             // Tìm lại nhãn mới của đáp án đúng theo nội dung
             const newCorrectOpt = q.options.find(o => o.text === originalCorrectText);
             if (newCorrectOpt) {
-                const oldCorrectKey = q.correct;
                 const newCorrectKey = newCorrectOpt.key;
                 q.correct = newCorrectKey;
 
-                // Cập nhật câu kết luận trong lời giải chi tiết
+                // Cập nhật câu kết luận trong lời giải chi tiết cho khớp nhãn mới
                 q.solution = q.solution.replace(
-                    new RegExp(`Đáp án đúng: ${oldCorrectKey}\\.`, 'g'),
+                    /Đáp án đúng:\s*(?:<b>)?[A-D](?:<\/b>)?\./gi,
                     `Đáp án đúng: <b>${newCorrectKey}</b>.`
                 );
             }
@@ -1192,6 +1220,10 @@ function prepareExamQuestions(shouldShuffle = false) {
     }
 
     currentExamList = list;
+
+    // Cập nhật nhãn Mã đề trên thanh toolbar
+    const codeBadge = document.getElementById("txtDisplayExamCode");
+    if (codeBadge) codeBadge.innerText = currentExamCode;
 }
 
 /* ==========================================================
@@ -1221,8 +1253,8 @@ function startExamSession() {
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("examArea").style.display = "block";
 
-    // Chuẩn bị đề thi (lần đầu giữ nguyên hoặc đảo nếu đã từng làm lại)
-    prepareExamQuestions(retryCount > 0);
+    // Chuẩn bị đề thi: Luôn xáo trộn câu hỏi và đáp án ngẫu nhiên ngay từ lần đầu
+    prepareExamQuestions(true);
     initExamQuestions();
     startCountdown();
     setupAntiCheatEngine();
@@ -1552,6 +1584,7 @@ function renderResults(score, correctCount, timeSpentFormatted) {
     document.getElementById("txtScoreVal").innerText = score;
     document.getElementById("txtCorrectCount").innerText = `${correctCount}/${currentExamList.length}`;
     document.getElementById("txtWrongCount").innerText = `${wrongCount}/${currentExamList.length}`;
+    document.getElementById("txtResultExamCode").innerText = currentExamCode;
     document.getElementById("txtTimeSpent").innerText = timeSpentFormatted;
     document.getElementById("txtRetryCount").innerText = `${retryCount} lần`;
 
@@ -1629,13 +1662,14 @@ function handleRetryExam() {
     document.getElementById("resultScreen").style.display = "none";
     document.getElementById("submitSection").style.display = "block";
     document.getElementById("timerBox").className = "timer-box";
-    document.getElementById("txtProgress").innerText = `Đã làm: 0/${examData.length} câu`;
+    document.getElementById("txtProgress").innerText = `Đã làm: 0/${currentExamList.length} câu`;
 
     // TỰ ĐỘNG ĐẢO NGẪU NHIÊN CÂU HỎI VÀ ĐÁP ÁN
     prepareExamQuestions(true);
     initExamQuestions();
     startCountdown();
 
+    showCheatToast(`🎲 ĐÃ ĐẢO ĐỀ THÀNH CÔNG: Hệ thống vừa tạo Mã đề mới [${currentExamCode}] với thứ tự câu hỏi và đáp án hoàn toàn mới!`);
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
