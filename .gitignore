@@ -1,0 +1,7 @@
+# Bỏ qua các file tài liệu PDF nặng để repo siêu nhẹ, tải nhanh
+*.pdf
+
+# Bỏ qua file tạm Office / hệ điều hành
+~$*.*
+Thumbs.db
+.DS_Store
