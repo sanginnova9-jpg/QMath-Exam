@@ -1139,6 +1139,61 @@ let retryCount = 0;
 let isTabOut = false;          // Cờ kiểm soát: Đang ở ngoài tab hay không
 let leaveDebounceTimer = null; // Tránh nhiễu sự kiện blur micro-second
 
+// Danh sách câu hỏi phiên làm việc hiện tại (hỗ trợ đảo câu và đảo đáp án)
+let currentExamList = [];
+
+// Hàm xáo trộn mảng Fisher-Yates
+function shuffleArray(arr) {
+    const res = [...arr];
+    for (let i = res.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [res[i], res[j]] = [res[j], res[i]];
+    }
+    return res;
+}
+
+// Hàm chuẩn bị đề thi: Tự động đảo câu hỏi & đảo 4 đáp án A, B, C, D
+function prepareExamQuestions(shouldShuffle = false) {
+    let list = JSON.parse(JSON.stringify(examData));
+
+    if (shouldShuffle) {
+        // 1. Đảo ngẫu nhiên thứ tự các câu hỏi
+        list = shuffleArray(list);
+
+        // 2. Đảo ngẫu nhiên 4 lựa chọn trong từng câu hỏi
+        list.forEach((q) => {
+            const originalCorrectOpt = q.options.find(o => o.key === q.correct);
+            const originalCorrectText = originalCorrectOpt ? originalCorrectOpt.text : "";
+
+            // Trộn ngẫu nhiên các phương án
+            const shuffledOptions = shuffleArray(q.options);
+            const standardKeys = ["A", "B", "C", "D"];
+
+            // Gán lại nhãn A, B, C, D theo thứ tự hiển thị từ trên xuống
+            q.options = shuffledOptions.map((opt, idx) => ({
+                key: standardKeys[idx],
+                text: opt.text
+            }));
+
+            // Tìm lại nhãn mới của đáp án đúng theo nội dung
+            const newCorrectOpt = q.options.find(o => o.text === originalCorrectText);
+            if (newCorrectOpt) {
+                const oldCorrectKey = q.correct;
+                const newCorrectKey = newCorrectOpt.key;
+                q.correct = newCorrectKey;
+
+                // Cập nhật câu kết luận trong lời giải chi tiết
+                q.solution = q.solution.replace(
+                    new RegExp(`Đáp án đúng: ${oldCorrectKey}\\.`, 'g'),
+                    `Đáp án đúng: <b>${newCorrectKey}</b>.`
+                );
+            }
+        });
+    }
+
+    currentExamList = list;
+}
+
 /* ==========================================================
    3. HÀM KHỞI CHẠY BÀI THI
 ========================================================== */
@@ -1166,7 +1221,8 @@ function startExamSession() {
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("examArea").style.display = "block";
 
-    // Khởi tạo bài thi
+    // Chuẩn bị đề thi (lần đầu giữ nguyên hoặc đảo nếu đã từng làm lại)
+    prepareExamQuestions(retryCount > 0);
     initExamQuestions();
     startCountdown();
     setupAntiCheatEngine();
@@ -1184,12 +1240,14 @@ function initExamQuestions() {
     container.innerHTML = "";
     palette.innerHTML = "";
 
-    examData.forEach((q, idx) => {
-        // Nút palette
+    currentExamList.forEach((q, idx) => {
+        const displayIndex = idx + 1;
+
+        // Nút palette hiển thị theo thứ tự 1..10
         const pBtn = document.createElement("button");
         pBtn.className = "palette-btn";
         pBtn.id = `palette-btn-${q.id}`;
-        pBtn.innerText = `Câu ${q.id}`;
+        pBtn.innerText = `Câu ${displayIndex}`;
         pBtn.onclick = () => {
             const card = document.getElementById(`q-card-${q.id}`);
             if (card) {
@@ -1216,7 +1274,7 @@ function initExamQuestions() {
         card.innerHTML = `
             <div class="q-header">
                 <div class="q-title">
-                    <span>📌 Câu ${q.id}</span>
+                    <span>📌 Câu ${displayIndex}</span>
                 </div>
                 <span class="q-level ${q.level.toLowerCase()}">${q.levelText}</span>
             </div>
@@ -1403,8 +1461,8 @@ function handleSubmitExam(isAuto = false) {
     const answeredCount = Object.keys(userAnswers).length;
 
     if (!isAuto) {
-        if (answeredCount < examData.length) {
-            const confirmSubmit = confirm(`⚠️ Em mới làm được ${answeredCount}/${examData.length} câu.\nEm có chắc chắn muốn nộp bài sớm không?`);
+        if (answeredCount < currentExamList.length) {
+            const confirmSubmit = confirm(`⚠️ Em mới làm được ${answeredCount}/${currentExamList.length} câu.\nEm có chắc chắn muốn nộp bài sớm không?`);
             if (!confirmSubmit) return;
         } else {
             const confirmSubmit = confirm(`Em đã hoàn thành tất cả các câu!\nEm có chắc chắn muốn nộp bài để xem điểm không?`);
@@ -1422,13 +1480,13 @@ function handleSubmitExam(isAuto = false) {
 
     // Chấm điểm
     let correctCount = 0;
-    examData.forEach(q => {
+    currentExamList.forEach(q => {
         if (userAnswers[q.id] === q.correct) {
             correctCount++;
         }
     });
 
-    const score = ((correctCount / examData.length) * 10).toFixed(1);
+    const score = ((correctCount / currentExamList.length) * 10).toFixed(1);
     const timeSpentSec = TOTAL_SECONDS - remainingSeconds;
     const spentMin = Math.floor(timeSpentSec / 60);
     const spentSec = timeSpentSec % 60;
@@ -1458,10 +1516,10 @@ function saveSessionRecord(score, correctCount, timeSpentFormatted) {
 
 /* Hiển thị màn hình kết quả */
 function renderResults(score, correctCount, timeSpentFormatted) {
-    const wrongCount = examData.length - correctCount;
+    const wrongCount = currentExamList.length - correctCount;
 
     // Đổi màu các đáp án và hiện lời giải
-    examData.forEach(q => {
+    currentExamList.forEach(q => {
         const studentAns = userAnswers[q.id];
         const isRight = studentAns === q.correct;
 
@@ -1492,8 +1550,8 @@ function renderResults(score, correctCount, timeSpentFormatted) {
 
     // Điền dữ liệu vào Card kết quả
     document.getElementById("txtScoreVal").innerText = score;
-    document.getElementById("txtCorrectCount").innerText = `${correctCount}/${examData.length}`;
-    document.getElementById("txtWrongCount").innerText = `${wrongCount}/${examData.length}`;
+    document.getElementById("txtCorrectCount").innerText = `${correctCount}/${currentExamList.length}`;
+    document.getElementById("txtWrongCount").innerText = `${wrongCount}/${currentExamList.length}`;
     document.getElementById("txtTimeSpent").innerText = timeSpentFormatted;
     document.getElementById("txtRetryCount").innerText = `${retryCount} lần`;
 
@@ -1545,9 +1603,10 @@ function renderResults(score, correctCount, timeSpentFormatted) {
 
 /* ==========================================================
    8. CHỨC NĂNG LÀM LẠI BÀI THI (RETRY)
+   Tự động ĐẢO NGẪU NHIÊN câu hỏi & ĐẢO ĐÁP ÁN khi làm lại
 ========================================================== */
 function handleRetryExam() {
-    const confirmRetry = confirm("Em có muốn làm lại bài thi từ đầu không?\nSố lần làm lại sẽ được tính tăng thêm 1 lần.");
+    const confirmRetry = confirm("Em có muốn làm lại bài thi từ đầu không?\nHệ thống sẽ tự động ĐẢO THỨ TỰ CÂU HỎI & ĐÁP ÁN ngẫu nhiên để em rèn luyện lại.");
     if (!confirmRetry) return;
 
     // Tăng số lần làm lại và lưu
@@ -1570,9 +1629,10 @@ function handleRetryExam() {
     document.getElementById("resultScreen").style.display = "none";
     document.getElementById("submitSection").style.display = "block";
     document.getElementById("timerBox").className = "timer-box";
-    document.getElementById("txtProgress").innerText = "Đã làm: 0/10 câu";
+    document.getElementById("txtProgress").innerText = `Đã làm: 0/${examData.length} câu`;
 
-    // Khởi tạo lại câu hỏi và đếm giờ
+    // TỰ ĐỘNG ĐẢO NGẪU NHIÊN CÂU HỎI VÀ ĐÁP ÁN
+    prepareExamQuestions(true);
     initExamQuestions();
     startCountdown();
 
