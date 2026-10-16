@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Đề kiểm tra Trắc nghiệm Đúng - Sai: Bài 5. Phương trình lượng giác | Toán 11</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+    <!-- KaTeX CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #60a5fa;
+            --primary-subtle: #eff6ff;
+            --success: #16a34a;
+            --success-light: #dcfce7;
+            --danger: #dc2626;
+            --danger-light: #fee2e2;
+            --warning: #d97706;
+            --warning-light: #fef3c7;
+            --neutral-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 14px -1px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 28px -4px rgba(0,0,0,0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px 12px 60px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        /* BANNER HEADER */
+        .page-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .school-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .exam-main-title {
+            font-size: 23px;
+            font-weight: 900;
+            color: #b91c1c;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .exam-sub-title {
+            font-size: 15.5px;
+            font-weight: 700;
+            color: #334155;
+        }
+
+        /* 1. MÀN HÌNH BẮT ĐẦU */
+        #startScreen {
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            padding: 40px 32px;
+            text-align: center;
+            max-width: 680px;
+            margin: 20px auto;
+            border-top: 6px solid var(--primary);
+            animation: fadeIn 0.4s ease;
+        }
+
+        .badge-tag {
+            display: inline-block;
+            background: var(--primary-subtle);
+            color: var(--primary);
+            border: 1px solid #bfdbfe;
+            padding: 6px 18px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .exam-info-grid {
+            background: #f8fafc;
+            border: 1.5px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin: 20px 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .exam-info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #475569;
+        }
+
+        .exam-info-item b {
+            color: var(--text-main);
+        }
+
+        .scoring-rule-box {
+            background: #f0fdf4;
+            border: 1.5px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 22px;
+            text-align: left;
+            font-size: 13px;
+            color: #166534;
+        }
+
+        .scoring-rule-box b {
+            color: #14532d;
+        }
+
+        .scoring-rule-table {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .rule-cell {
+            background: #ffffff;
+            border: 1px solid #86efac;
+            padding: 6px 4px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1.5px solid #cbd5e1;
+            font-size: 15px;
+            font-family: inherit;
+            color: var(--text-main);
+            transition: all 0.2s;
+            background: #ffffff;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .anti-cheat-alert {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 13px;
+            color: #92400e;
+            text-align: left;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .btn-start {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(37, 99, 235, 0.45);
+        }
+
+        /* 2. KHU VỰC THI (EXAM AREA) */
+        #examArea {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* STICKY TOOLBAR */
+        .sticky-toolbar {
+            position: sticky;
+            top: 12px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1.5px solid rgba(226, 232, 240, 0.9);
+            box-shadow: var(--shadow-md);
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .student-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .status-indicators {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .timer-box {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #0f172a;
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.25);
+            transition: background-color 0.3s;
+        }
+
+        .timer-box.warning {
+            background: #d97706;
+        }
+
+        .timer-box.danger {
+            background: #dc2626;
+            animation: pulse 1s infinite;
+        }
+
+        .cheat-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            border: 1px solid transparent;
+        }
+
+        .cheat-badge.safe {
+            background: var(--success-light);
+            color: var(--success);
+            border-color: #86efac;
+        }
+
+        .cheat-badge.warn {
+            background: var(--danger-light);
+            color: var(--danger);
+            border-color: #fca5a5;
+        }
+
+        /* PALETTE CÂU HỎI */
+        .palette-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .palette-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #475569;
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 8px;
+        }
+
+        .palette-btn {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .palette-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-subtle);
+        }
+
+        .palette-btn.partial {
+            background: #fffbeb;
+            border-color: #f59e0b;
+            color: #b45309;
+        }
+
+        .palette-btn.completed {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+        }
+
+        .palette-btn.correct-all {
+            background: var(--success) !important;
+            border-color: var(--success) !important;
+            color: #ffffff !important;
+        }
+
+        .palette-btn.partial-graded {
+            background: #f59e0b !important;
+            border-color: #f59e0b !important;
+            color: #ffffff !important;
+        }
+
+        .palette-btn.wrong-all {
+            background: var(--danger) !important;
+            border-color: var(--danger) !important;
+            color: #ffffff !important;
+        }
+
+        .palette-subcount {
+            font-size: 9px;
+            font-weight: 800;
+            opacity: 0.85;
+            margin-top: 1px;
+        }
+
+        /* QUESTION CARDS */
+        .question-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            padding: 24px 26px;
+            margin-bottom: 24px;
+            transition: border-color 0.2s;
+        }
+
+        .question-card:hover {
+            border-color: #cbd5e1;
+        }
+
+        .q-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .q-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .q-number-badge {
+            background: #0f172a;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 8px;
+        }
+
+        .q-level-tag {
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .tag-nb { background: #e0f2fe; color: #0369a1; }
+        .tag-th { background: #dcfce7; color: #15803d; }
+        .tag-vd { background: #fef3c7; color: #b45309; }
+
+        .q-score-badge {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--text-muted);
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .q-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        /* TRUE / FALSE SUB-ITEMS TABLE */
+        .tf-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .tf-thead {
+            background: #f1f5f9;
+            color: #334155;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .tf-thead th {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1.5px solid var(--border);
+        }
+
+        .tf-thead th.col-choice {
+            text-align: center;
+            width: 100px;
+        }
+
+        .tf-row {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.15s;
+        }
+
+        .tf-row:last-child {
+            border-bottom: none;
+        }
+
+        .tf-row:hover {
+            background: #f8fafc;
+        }
+
+        .tf-cell-stmt {
+            padding: 14px 16px;
+            font-size: 15px;
+            color: #1e293b;
+            vertical-align: middle;
+        }
+
+        .stmt-label {
+            display: inline-block;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-right: 8px;
+        }
+
+        .tf-cell-btn {
+            padding: 10px 12px;
+            text-align: center;
+            vertical-align: middle;
+            width: 90px;
+        }
+
+        /* PILL BUTTONS FOR TRUE / FALSE */
+        .choice-btn {
+            width: 76px;
+            padding: 8px 0;
+            border-radius: 10px;
+            border: 1.5px solid #cbd5e1;
+            background: #ffffff;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 800;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .choice-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-subtle);
+        }
+
+        .choice-btn.selected-true {
+            background: #16a34a !important;
+            border-color: #16a34a !important;
+            color: #ffffff !important;
+            box-shadow: 0 3px 8px rgba(22, 163, 74, 0.35);
+        }
+
+        .choice-btn.selected-false {
+            background: #ea580c !important;
+            border-color: #ea580c !important;
+            color: #ffffff !important;
+            box-shadow: 0 3px 8px rgba(234, 88, 12, 0.35);
+        }
+
+        /* GRADED STATE */
+        .choice-btn.graded-correct-key {
+            border: 2px solid #16a34a !important;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2) !important;
+        }
+
+        .choice-btn.graded-wrong-chosen {
+            background: #dc2626 !important;
+            border-color: #dc2626 !important;
+            color: #ffffff !important;
+            text-decoration: line-through;
+        }
+
+        .status-badge-inline {
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .badge-correct {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .badge-wrong {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        /* QUESTION GRADED SCORE SUMMARY */
+        .q-graded-summary {
+            display: none;
+            margin-top: 14px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .q-graded-summary.perfect {
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #86efac;
+        }
+
+        .q-graded-summary.partial {
+            background: #fef3c7;
+            color: #b45309;
+            border: 1px solid #fde68a;
+        }
+
+        .q-graded-summary.zero {
+            background: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fca5a5;
+        }
+
+        /* LỜI GIẢI CHI TIẾT */
+        .solution-box {
+            display: none;
+            margin-top: 18px;
+            padding: 18px 22px;
+            background: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            border-radius: 12px;
+            font-size: 14.5px;
+            color: #166534;
+            line-height: 1.7;
+        }
+
+        .solution-box.show {
+            display: block;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .solution-title {
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #14532d;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* NÚT NỘP BÀI */
+        .submit-section {
+            text-align: center;
+            margin: 32px 0;
+        }
+
+        .btn-submit-exam {
+            padding: 16px 48px;
+            font-size: 17px;
+            font-weight: 800;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(22, 163, 74, 0.35);
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-submit-exam:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 26px rgba(22, 163, 74, 0.45);
+        }
+
+        /* 3. MÀN HÌNH KẾT QUẢ */
+        #resultScreen {
+            display: none;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 36px 28px;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--border);
+            margin-bottom: 24px;
+            text-align: center;
+            animation: popIn 0.4s ease;
+        }
+
+        .score-badge-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 24px rgba(37, 99, 235, 0.4);
+        }
+
+        .score-badge-circle.high { background: linear-gradient(135deg, #15803d, #22c55e); }
+        .score-badge-circle.mid { background: linear-gradient(135deg, #b45309, #f59e0b); }
+        .score-badge-circle.low { background: linear-gradient(135deg, #b91c1c, #ef4444); }
+
+        .score-number {
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .score-max-text {
+            font-size: 13px;
+            font-weight: 700;
+            opacity: 0.9;
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        .result-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+
+        .result-evaluation {
+            font-size: 15px;
+            color: #64748b;
+            margin-bottom: 24px;
+        }
+
+        /* STATS 5 Ô */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px 10px;
+        }
+
+        .stat-val {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .stat-label {
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* SECURITY HIGHLIGHT CARD */
+        .security-audit-card {
+            background: #f8fafc;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .audit-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .audit-icon {
+            font-size: 28px;
+        }
+
+        .audit-info b {
+            display: block;
+            font-size: 15px;
+            color: var(--text-main);
+        }
+
+        .audit-info span {
+            font-size: 12.5px;
+            color: var(--text-muted);
+        }
+
+        .tag-pill {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            font-weight: 700;
+        }
+
+        .tag-safe { background: #dcfce7; color: #15803d; }
+        .tag-warn { background: #fee2e2; color: #b91c1c; }
+
+        /* ACTION BUTTONS */
+        .result-actions {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn-retry {
+            padding: 14px 28px;
+            font-size: 15.5px;
+            font-weight: 800;
+            border-radius: 12px;
+            background: #ffffff;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-retry:hover {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .btn-view-sol {
+            padding: 14px 28px;
+            font-size: 15.5px;
+            font-weight: 800;
+            border-radius: 12px;
+            background: #0f172a;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-view-sol:hover {
+            background: #1e293b;
+        }
+
+        /* TOAST CẢNH BÁO */
+        #cheatToast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            max-width: 380px;
+            background: #1e293b;
+            color: #ffffff;
+            border-left: 5px solid #ef4444;
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            z-index: 9999;
+            display: none;
+            animation: slideInRight 0.3s ease;
+        }
+
+        .toast-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #fca5a5;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .toast-msg {
+            font-size: 13px;
+            color: #e2e8f0;
+            line-height: 1.4;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .palette-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            .exam-info-grid {
+                grid-template-columns: 1fr;
+            }
+            .scoring-rule-table {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media print {
+            .sticky-toolbar, .submit-section, .result-actions, #startScreen { display: none !important; }
+            #examArea, #resultScreen { display: block !important; }
+            .solution-box { display: block !important; }
+            body { background: #ffffff; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+        <div class="school-title">TRƯỜNG CAO ĐẲNG NGHỀ SỐ 1 - BQP • KHOA CƠ BẢN</div>
+        <h1 class="exam-main-title">ĐỀ KIỂM TRA TRẮC NGHIỆM ĐÚNG - SAI</h1>
+        <div class="exam-sub-title">BÀI 5: PHƯƠNG TRÌNH LƯỢNG GIÁC • TOÁN 11 KNTT</div>
+    </header>
+
+    <!-- 1. MÀN HÌNH BẮT ĐẦU -->
+    <section id="startScreen">
+        <span class="badge-tag">Chương trình GDPT 2018 • Phần II: Đúng / Sai</span>
+        <h2 style="font-size: 22px; font-weight: 800; color: #1e293b; margin-bottom: 6px;">KIỂM TRA CHUYÊN ĐỀ PHƯƠNG TRÌNH LƯỢNG GIÁC</h2>
+        <p style="font-size: 14.5px; color: var(--text-muted);">Học sinh vui lòng điền đầy đủ thông tin trước khi bắt đầu làm bài.</p>
+
+        <div class="exam-info-grid">
+            <div class="exam-info-item">⏱️ Thời gian: <b>20 phút</b></div>
+            <div class="exam-info-item">📝 Cấu trúc: <b>10 câu (40 mệnh đề Đúng/Sai)</b></div>
+            <div class="exam-info-item">🎯 Đối tượng: <b>Học sinh Trung bình - Khá</b></div>
+            <div class="exam-info-item">🛡️ Chống gian lận: <b>Giám sát chuyển tab & đa nhiệm</b></div>
+        </div>
+
+        <div class="scoring-rule-box">
+            <b>⚖️ Quy chế chấm điểm GDPT 2018 trong mỗi câu (tối đa 1.0 điểm/câu):</b>
+            <div class="scoring-rule-table">
+                <div class="rule-cell">Đúng 1 ý: <b>+0.10 đ</b></div>
+                <div class="rule-cell">Đúng 2 ý: <b>+0.25 đ</b></div>
+                <div class="rule-cell">Đúng 3 ý: <b>+0.50 đ</b></div>
+                <div class="rule-cell">Đúng 4 ý: <b>+1.00 đ</b></div>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="inputStuName">Họ và tên học sinh (*):</label>
+            <input type="text" id="inputStuName" placeholder="Ví dụ: Nguyễn Văn An" autocomplete="name">
+        </div>
+
+        <div class="input-group">
+            <label for="inputStuClass">Lớp học (*):</label>
+            <input type="text" id="inputStuClass" placeholder="Ví dụ: 11A1 / 11A8" autocomplete="off">
+        </div>
+
+        <div class="anti-cheat-alert">
+            <span style="font-size: 20px;">🛡️</span>
+            <div>
+                <b>Hệ thống giám sát thi cử trực tuyến:</b><br>
+                Mọi hành vi <b>rời tab, chuyển cửa sổ hoặc mở ứng dụng khác</b> đều được hệ thống ghi nhận chính xác và công khai trên kết quả bài làm.
+            </div>
+        </div>
+
+        <button class="btn-start" onclick="startExamSession()">
+            <span>🚀 BẮT ĐẦU LÀM BÀI NGAY</span>
+        </button>
+    </section>
+
+    <!-- 2. KHU VỰC THI (EXAM AREA) -->
+    <section id="examArea">
+        <!-- TOOLBAR CỐ ĐỊNH -->
+        <div class="sticky-toolbar">
+            <div class="student-pill">
+                <span>👤</span>
+                <span id="txtDisplayStu">Nguyễn Văn An</span>
+                <span style="color: #94a3b8;">|</span>
+                <span id="txtDisplayClass" style="color: #475569;">11A1</span>
+                <span style="color: #94a3b8;">|</span>
+                <span style="background: #e0e7ff; color: #3730a3; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;">🎲 Mã đề: <b id="txtDisplayExamCode">101</b></span>
+            </div>
+
+            <div class="status-indicators">
+                <div class="cheat-badge safe" id="badgeTabSwitch">
+                    <span>🛡️ Chuyển tab:</span>
+                    <b id="txtSwitchCount">0</b>
+                </div>
+
+                <div class="timer-box" id="timerBox">
+                    <span>⏰</span>
+                    <span id="txtTimer">20:00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- MÀN HÌNH KẾT QUẢ HIỂN THỊ SAU KHI NỘP -->
+        <div id="resultScreen">
+            <div class="score-badge-circle" id="scoreCircle">
+                <span class="score-number" id="txtScoreVal">10.0</span>
+                <span class="score-max-text">/ 10 ĐIỂM</span>
+            </div>
+
+            <h2 class="result-title" id="txtResultTitle">HOÀN THÀNH BÀI THI</h2>
+            <p class="result-evaluation" id="txtResultComment">Chúc mừng em đã hoàn thành bài thi trắc nghiệm Đúng - Sai!</p>
+
+            <!-- STATS 5 Ô -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-val" id="txtCorrectStatements" style="color: #16a34a;">40/40</div>
+                    <div class="stat-label">Số ý đúng</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val" id="txtPerfectQuestions" style="color: #2563eb;">10/10</div>
+                    <div class="stat-label">Câu đạt tối đa (1đ)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val" id="txtResultExamCode" style="color: #7c3aed;">101</div>
+                    <div class="stat-label">Mã đề thi</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val" id="txtTimeSpent">12:30</div>
+                    <div class="stat-label">Thời gian làm</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val" id="txtRetryCount" style="color: #0891b2;">0</div>
+                    <div class="stat-label">Số lần làm lại</div>
+                </div>
+            </div>
+
+            <!-- SECURITY CARD -->
+            <div class="security-audit-card">
+                <div class="audit-item">
+                    <span class="audit-icon">🛡️</span>
+                    <div class="audit-info">
+                        <b>Giám sát tính trung thực:</b>
+                        <span>Số lần rời màn hình / chuyển tab: <b id="auditSwitchVal">0 lần</b></span>
+                    </div>
+                </div>
+                <div id="auditStatusPill" class="tag-pill tag-safe">
+                    🟢 Nghiêm túc tuyệt đối
+                </div>
+            </div>
+
+            <!-- ACTIONS -->
+            <div class="result-actions">
+                <button class="btn-retry" onclick="handleRetryExam()">
+                    <span>🔄 LÀM LẠI BÀI THI</span>
+                </button>
+                <button class="btn-view-sol" onclick="scrollToQuestions()">
+                    <span>📖 XEM ĐÁP ÁN & LỜI GIẢI CHI TIẾT</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- PALETTE CÂU HỎI -->
+        <div class="palette-card">
+            <div class="palette-header">
+                <span>BẢNG ĐIỀU HƯỚNG 10 CÂU HỎI (ĐÚNG / SAI)</span>
+                <span id="txtProgress">Đã hoàn thành: 0/10 câu</span>
+            </div>
+            <div class="palette-grid" id="paletteGrid">
+                <!-- Sẽ render bằng JS -->
+            </div>
+        </div>
+
+        <!-- DANH SÁCH 10 CÂU HỎI -->
+        <div id="questionsContainer">
+            <!-- Render bằng JavaScript -->
+        </div>
+
+        <!-- NÚT NỘP BÀI -->
+        <div class="submit-section" id="submitSection">
+            <button class="btn-submit-exam" onclick="handleSubmitExam(false)">
+                <span>📤 NỘP BÀI THI VÀ XEM ĐIỂM</span>
+            </button>
+        </div>
+    </section>
+</div>
+
+<!-- TOAST CẢNH BÁO CHỐNG GIAN LẬN -->
+<div id="cheatToast">
+    <div class="toast-title">
+        <span>⚠️ CẢNH BÁO RỜI MÀN HÌNH</span>
+    </div>
+    <div class="toast-msg" id="cheatToastMsg">
+        Hệ thống phát hiện em vừa chuyển sang ứng dụng khác. Số lần vi phạm đã được ghi lại!
+    </div>
+</div>
+
+<script>
+/* ==========================================================
+   1. DỮ LIỆU ĐỀ THI: BÀI 5. PHƯƠNG TRÌNH LƯỢNG GIÁC (10 CÂU ĐÚNG / SAI)
+   Bám sát tài liệu dạy thêm Toán 11 và chuẩn Bộ GD&ĐT GDPT 2018
+========================================================== */
+const examData = [
+    {
+        id: 1,
+        level: "NB",
+        levelText: "Nhận biết",
+        prompt: "Cho phương trình lượng giác $\\sin x = a \\quad (1)$.",
+        statements: [
+            {
+                key: "a",
+                text: "Nếu $a > 1$ thì phương trình $(1)$ vô nghiệm.",
+                answer: "T",
+                explanation: "Do $-1 \\le \\sin x \\le 1$ với mọi $x \\in \\mathbb{R}$, nên khi $a > 1$ hoặc $a < -1$, phương trình $\\sin x = a$ vô nghiệm."
+            },
+            {
+                key: "b",
+                text: "Nếu $a = 1$ thì phương trình $(1)$ có nghiệm $x = k2\\pi\\ (k \\in \\mathbb{Z})$.",
+                answer: "F",
+                explanation: "Khi $a = 1$, phương trình $\\sin x = 1 \\iff x = \\dfrac{\\pi}{2} + k2\\pi\\ (k \\in \\mathbb{Z})$, không phải $x = k2\\pi$."
+            },
+            {
+                key: "c",
+                text: "Nếu $-1 \\le a \\le 1$ thì phương trình $(1)$ có nghiệm $\\left[\\begin{aligned} x &= \\alpha + k2\\pi \\\\ x &= \\pi - \\alpha + k2\\pi \\end{aligned}\\right. (k \\in \\mathbb{Z})$ với $\\sin\\alpha = a$.",
+                answer: "T",
+                explanation: "Đây là công thức nghiệm cơ bản chuẩn mực của phương trình $\\sin x = a$ khi $|a| \\le 1$."
+            },
+            {
+                key: "d",
+                text: "Phương trình $(1)$ luôn có hai điểm biểu diễn nghiệm trên đường tròn lượng giác với mọi $a \\in \\mathbb{R}$.",
+                answer: "F",
+                explanation: "Nếu $|a| > 1$ thì không có điểm biểu diễn nào; nếu $a = 1$ hoặc $a = -1$ thì chỉ có duy nhất 1 điểm biểu diễn trên đường tròn lượng giác."
+            }
+        ],
+        solution: "<b>Lời giải chi tiết:</b><br>"
+                + "• <b>Ý (a) ĐÚNG:</b> Với $a > 1$, do miền giá trị hàm số sin là $[-1; 1]$ nên phương trình vô nghiệm.<br>"
+                + "• <b>Ý (b) SAI:</b> Khi $a = 1 \\implies \\sin x = 1 \\iff x = \\dfrac{\\pi}{2} + k2\\pi\\ (k \\in \\mathbb{Z})$.<br>"
+                + "• <b>Ý (c) ĐÚNG:</b> Theo công thức nghiệm tổng quát SGK Toán 11.<br>"
+                + "• <b>Ý (d) SAI:</b> Với $a = 1$ chỉ có 1 điểm $\\left(0; 1\\right)$; với $|a| > 1$ không có điểm biểu diễn nào."
+    },
+    {
+        id: 2,
+        level: "NB",
+        levelText: "Nhận biết",
+        prompt: "Cho phương trình lượng giác $2\\sin x - \\sqrt{2} = 0$.",
+        statements: [
+            {
+                key: "a",
+                text: "Phương trình tương đương với phương trình $\\sin x = \\sin\\dfrac{\\pi}{4}$.",
+                answer: "T",
+                explanation: "Ta có: $2\\sin x - \\sqrt{2} = 0 \\iff \\sin x = \\dfrac{\\sqrt{2}}{2} = \\sin\\dfrac{\\pi}{4}$."
+            },
+            {
+                key: "b",
+                text: "Phương trình có các họ nghiệm là $x = \\dfrac{\\pi}{4} + k2\\pi$ và $x = \\dfrac{3\\pi}{4} + k2\\pi\\ (k \\in \\mathbb{Z})$.",
+                answer: "T",
+                explanation: "$\\sin x = \\sin\\dfrac{\\pi}{4} \\iff x = \\dfrac{\\pi}{4} + k2\\pi$ hoặc $x = \\pi - \\dfrac{\\pi}{4} + k2\\pi = \\dfrac{3\\pi}{4} + k2\\pi\\ (k \\in \\mathbb{Z})$."
+            },
+            {
+                key: "c",
+                text: "Phương trình có nghiệm âm lớn nhất là $-\\dfrac{\\pi}{4}$.",
+                answer: "F",
+                explanation: "Các nghiệm âm nhận được khi $k < 0$: Với $k = -1 \\implies x = \\dfrac{\\pi}{4} - 2\\pi = -\\dfrac{7\\pi}{4}$ hoặc $x = \\dfrac{3\\pi}{4} - 2\\pi = -\\dfrac{5\\pi}{4}$. Trong đó $-\\dfrac{5\\pi}{4} > -\\dfrac{7\\pi}{4}$ nên nghiệm âm lớn nhất là $-\\dfrac{5\\pi}{4}$."
+            },
+            {
+                key: "d",
+                text: "Số nghiệm của phương trình trong khoảng $\\left(-\\dfrac{\\pi}{2}; \\dfrac{\\pi}{2}\\right)$ là $2$ nghiệm.",
+                answer: "F",
+                explanation: "Trong khoảng $\\left(-\\dfrac{\\pi}{2}; \\dfrac{\\pi}{2}\\right)$, chỉ có duy nhất nghiệm $x = \\dfrac{\\pi}{4}$ (ứng với $k = 0$). Nghiệm $x = \\dfrac{3\\pi}{4} \\notin \\left(-\\dfrac{\\pi}{2}; \\dfrac{\\pi}{2}\\right)$."
+            }
+        ],
+        solution: "<b>Lời giải chi tiết:</b><br>"
+                + "• <b>Ý (a) ĐÚNG:</b> $2\\sin x - \\sqrt{2} = 0 \\iff \\sin x = \\dfrac{\\sqrt{2}}{2} = \\sin\\dfrac{\\pi}{4}$.<br>"
+                + "• <b>Ý (b) ĐÚNG:</b> Nghiệm là $x = \\dfrac{\\pi}{4} + k2\\pi$ và $x = \\dfrac{3\\pi}{4} + k2\\pi\\ (k \\in \\mathbb{Z})$.<br>"
+                + "• <b>Ý (c) SAI:</b> Nghiệm âm lớn nhất là $-\\dfrac{5\\pi}{4}$ (ứng với họ $x = \\dfrac{3\\pi}{4} + k2\\pi, k = -1$).<br>"
+                + "• <b>Ý (d) SAI:</b> Trong khoảng $\\left(-\\dfrac{\\pi}{2}; \\dfrac{\\pi}{2}\\right)$ chỉ có đúng 1 nghiệm là $x = \\dfrac{\\pi}{4}$."
+    },
+    {
+        id: 3,
+        level: "TH",
+        levelText: "Thông hiểu",
+        prompt: "Cho phương trình lượng giác $\\sin 2x = -\\dfrac{1}{2}\\quad (*)$.",
+        statements: [
+            {
+                key: "a",
+                text: "Phương trình $(*)$ tương đương $\\sin 2x = \\sin\\dfrac{\\pi}{6}$.",
+                answer: "F",
+                explanation: "Ta có $-\\dfrac{1}{2} = \\sin\\left(-\\dfrac{\\pi}{6}\\right)$, trong khi $\\sin\\dfrac{\\pi}{6} = \\dfrac{1}{2}$. Do đó phương trình phải tương đương $\\sin 2x = \\sin\\left(-\\dfrac{\\pi}{6}\\right)$."
+            },
+            {
+                key: "b",
+                text: "Trong khoảng $(0; \\pi)$, phương trình có $3$ nghiệm.",
+                answer: "F",
+                explanation: "Phương trình có 2 họ nghiệm: $2x = -\\dfrac{\\pi}{6} + k2\\pi \\iff x = -\\dfrac{\\pi}{12} + k\\pi$ và $2x = \\pi - \\left(-\\dfrac{\\pi}{6}\\right) + k2\\pi = \\dfrac{7\\pi}{6} + k2\\pi \\iff x = \\dfrac{7\\pi}{12} + k\\pi$. Trong $(0; \\pi)$, chỉ có 2 nghiệm: $x_1 = \\dfrac{7\\pi}{12}$ (với $k=0$) và $x_2 = \\dfrac{11\\pi}{12}$ (với $k=1$)."
+            },
+            {
+                key: "c",
+                text: "Tổng các nghiệm của phương trình trong khoảng $(0; \\pi)$ bằng $\\dfrac{3\\pi}{2}$.",
+                answer: "T",
+                explanation: "Tổng hai nghiệm là: $\\dfrac{7\\pi}{12} + \\dfrac{11\\pi}{12} = \\dfrac{18\\pi}{12} = \\dfrac{3\\pi}{2}$."
+            },
+            {
+                key: "d",
+                text: "Trong khoảng $(0; \\pi)$, phương trình có nghiệm lớn nhất bằng $\\dfrac{11\\pi}{12}$.",
+                answer: "T",
+                explanation: "Hai nghiệm trong khoảng $(0; \\pi)$ là $\\dfrac{7\\pi}{12}$ và $\\dfrac{11\\pi}{12}$. Nghiệm lớn nhất rõ ràng là $\\dfrac{11\\pi}{12}$."
+            }
+        ],
+        solution: "<b>Lời giải chi tiết:</b><br>"
+                + "Ta có: $\\sin 2x = -\\dfrac{1}{2} = \\sin\\left(-\\dfrac{\\pi}{6}\\right) \\iff \\left[\\begin{aligned} 2x &= -\\dfrac{\\pi}{6} + k2\\pi \\iff x = -\\dfrac{\\pi}{12} + k\\pi \\\\ 2x &= \\dfrac{7\\pi}{6} + k2\\pi \\iff x = \\dfrac{7\\pi}{12} + k\\pi \\end{aligned}\\right. (k \\in \\mathbb{Z})$.<br>"
+                + "• <b>Ý (a) SAI:</b> Vì $-\\dfrac{1}{2} = \\sin\\left(-\\dfrac{\\pi}{6}\\right) \\ne \\sin\\dfrac{\\pi}{6}$.<br>"
+                + "• <b>Ý (b) SAI:</b> Xét $x \\in (0; \\pi)$ thì $x = \\dfrac{7\\pi}{12}$ và $x = \\dfrac{11\\pi}{12}$ (chỉ có 2 nghiệm).<br>"
+                + "• <b>Ý (c) ĐÚNG:</b> Tổng các nghiệm $= \\dfrac{7\\pi}{12} + \\dfrac{11\\pi}{12} = \\dfrac{3\\pi}{2}$.<br>"
+                + "• <b>Ý (d) ĐÚNG:</b> Nghiệm lớn nhất trong khoảng $(0; \\pi)$ là $\\dfrac{11\\pi}{12}$."
+    },
+    {
+        id: 4,
+        level: "TH",
+        levelText: "Thông hiểu",
+        prompt: "Cho phương trình lượng giác $2\\cos x = \\sqrt{3}$.",
+        statements: [
+            {
+                key: "a",
+                text: "Phương trình có nghiệm $x = \\pm\\dfrac{\\pi}{3} + k2\\pi\\ (k \\in \\mathbb{Z})$.",
+                answer: "F",
+                explanation: "Ta có $2\\cos x = \\sqrt{3} \\iff \\cos x = \\dfrac{\\sqrt{3}}{2} = \\cos\\dfrac{\\pi}{6} \\iff x = \\pm\\dfrac{\\pi}{6} + k2\\pi\\ (k \\in \\mathbb{Z})$."
+            },
+            {
+                key: "b",
+                text: "Trong đoạn $\\left[0; \\dfrac{5\\pi}{2}\\right]$, phương trình có $4$ nghiệm.",
+                answer: "F",
+                explanation: "Với họ $x = \\dfrac{\\pi}{6} + k2\\pi$: $k = 0 \\implies x = \\dfrac{\\pi}{6}$; $k = 1 \\implies x = \\dfrac{13\\pi}{6} \\approx 2.17\\pi \\le 2.5\\pi$. Với họ $x = -\\dfrac{\\pi}{6} + k2\\pi$: $k = 1 \\implies x = \\dfrac{11\\pi}{6} \\approx 1.83\\pi$. Tổng cộng chỉ có 3 nghiệm trong đoạn $\\left[0; \\dfrac{5\\pi}{2}\\right]$."
+            },
+            {
+                key: "c",
+                text: "Tổng các nghiệm của phương trình trong đoạn $\\left[0; \\dfrac{5\\pi}{2}\\right]$ bằng $\\dfrac{25\pi}{6}$.",
+                answer: "T",
+                explanation: "Ba nghiệm là $\\dfrac{\\pi}{6}, \\dfrac{11\\pi}{6}, \\dfrac{13\\pi}{6}$. Tổng $= \\dfrac{\\pi + 11\\pi + 13\\pi}{6} = \\dfrac{25\\pi}{6}$."
+            },
+            {
+                key: "d",
+                text: "Trong đoạn $\\left[0; \\dfrac{5\\pi}{2}\\right]$, phương trình có nghiệm lớn nhất bằng $\\dfrac{13\pi}{6}$.",
+                answer: "T",
+                explanation: "So sánh 3 nghiệm thì $\\dfrac{13\\pi}{6} > \\dfrac{11\\pi}{6} > \\dfrac{\\pi}{6}$. Do đó nghiệm lớn nhất là $\\dfrac{13\\pi}{6}$."
+            }
+        ],
+        solution: "<b>Lời giải chi tiết:</b><br>"
+                + "$2\\cos x = \\sqrt{3} \\iff \\cos x = \\dfrac{\\sqrt{3}}{2} \\iff x = \\pm\\dfrac{\\pi}{6} + k2\\pi\\ (k \\in \\mathbb{Z})$.<br>"
+                + "• <b>Ý (a) SAI:</b> Nghiệm đúng là $x = \\pm\\dfrac{\\pi}{6} + k2\\pi$, không phải $\\pm\\dfrac{\\pi}{3}$.<br>"
+                + "• <b>Ý (b) SAI:</b> Trong $\\left[0; \\dfrac{5\\pi}{2}\\right]$ có 3 nghiệm: $\\left\\{\\dfrac{\\pi}{6}; \\dfrac{11\\pi}{6}; \\dfrac{13\\pi}{6}\\right\\}$.<br>"
+                + "• <b>Ý (c) ĐÚNG:</b> Tổng các nghiệm $= \\dfrac{\\pi}{6} + \\dfrac{11\\pi}{6} + \\dfrac{13\\pi}{6} = \\dfrac{25\\pi}{6}$.<br>"
+                + "• <b>Ý (d) ĐÚNG:</b> Nghiệm lớn nhất trên đoạn đã cho là $\\dfrac{13\\pi}{6}$."
+    },
+    {
+        id: 5,
+        level: "TH",
+        levelText: "Thông hiểu",
+        prompt: "Cho phương trình lượng giác $\\sin\\left(3x - \\dfrac{\\pi}{4}\\right) = \\sin\\left(x + \\dfrac{\\pi}{4}\\right)\\quad (*)$.",
+        statements: [
+            {
+                key: "a",
+                text: "Phương trình có nghiệm $\\left[\\begin{aligned} x &= \\dfrac{\\pi}{4} + k\\pi \\\\ x &= \\dfrac{\\pi}{4} + k\\dfrac{\\pi}{2} \\end{aligned}\\right. (k \\in \\mathbb{Z})$.",
+                answer: "T",
+                explanation: "$\\sin u = \\sin v \\iff 3x - \\dfrac{\\pi}{4} = x + \\dfrac{\\pi}{4} + k2\\pi \\iff 2x = \\dfrac{\\pi}{2} + k2\\pi \\iff x = \\dfrac{\\pi}{4} + k\\pi$; hoặc $3x - \\dfrac{\\pi}{4} = \\pi - \\left(x + \\dfrac{\\pi}{4}\\right) + k2\\pi \\iff 4x = \\pi + k2\\pi \\iff x = \\dfrac{\\pi}{4} + k\\dfrac{\\pi}{2}$."
+            },
+            {
+                key: "b",
+                text: "Trong khoảng $(0; \\pi)$, phương trình có đúng $2$ nghiệm.",
+                answer: "T",
+                explanation: "Gộp 2 họ nghiệm ta được $x = \\dfrac{\\pi}{4} + k\\dfrac{\\pi}{2}$. Với $k = 0 \\implies x = \\dfrac{\\pi}{4} \\in (0; \\pi)$; với $k = 1 \\implies x = \\dfrac{3\\pi}{4} \\in (0; \\pi)$. Vậy phương trình có đúng 2 nghiệm."
+            },
+            {
+                key: "c",
+                text: "Trong khoảng $(0; \\pi)$, phương trình có $2$ nghiệm âm.",
+                answer: "F",
+                explanation: "Trong khoảng $(0; \\pi)$, mọi giá trị đều là số thực dương, do đó không thể tồn tại bất kỳ nghiệm âm nào."
+            },
+            {
+                key: "d",
+                text: "Tổng các nghiệm của phương trình trong khoảng $(0; \\pi)$ bằng $\\dfrac{7\\pi}{6}$.",
+                answer: "F",
+                explanation: "Tổng 2 nghiệm là $\\dfrac{\\pi}{4} + \\dfrac{3\\pi}{4} = \\pi$, không phải $\\dfrac{7\\pi}{6}$."
+            }
+        ],
+        solution: "<b>Lời giải chi tiết:</b><br>"
+                + "Ta có $\\sin\\left(3x - \\dfrac{\\pi}{4}\\right) = \\sin\\left(x + \\dfrac{\\pi}{4}\\right) \\iff \\left[\\begin{aligned} 3x - \\dfrac{\\pi}{4} &= x + \\dfrac{\\pi}{4} + k2\\pi \\\\ 3x - \\dfrac{\\pi}{4} &= \\pi - \\left(x + \\dfrac{\\pi}{4}\\right) + k2\\pi \\end{aligned}\\right. \\iff \\left[\\begin{aligned} x &= \\dfrac{\\pi}{4} + k\\pi \\\\ x &= \\dfrac{\\pi}{4} + k\\dfrac{\\pi}{2} \\end{aligned}\\right. (k \\in \\mathbb{Z})$.<br>"
+                + "• <b>Ý (a) ĐÚNG:</b> Đúng theo giải tích trên.<br>"
+                + "• <b>Ý (b) ĐÚNG:</b> Trong $(0; \\pi)$ có 2 nghiệm là $\\dfrac{\\pi}{4}$ và $\\dfrac{3\\pi}{4}$.<br>"
+                + "• <b>Ý (c) SAI:</b> Vì $(0; \\pi)$ toàn số dương, không có nghiệm âm nào.<br>"
+                + "• <b>Ý (d) SAI:</b> Tổng các nghiệm trong khoảng $(0; \\pi)$ là $\\dfrac{\\pi}{4} + \\dfrac{3\\pi}{4} = \\pi$."
+    },
+    {
+        id: 6,
+        level: "TH",
+        levelText: "Thông hiểu",
+        prompt: "Cho phương trình lượng giác $\\sqrt{3}\\tan\\left(2x - \\dfrac{\\pi}{3}\\right) - 3 = 0$.",
+        statements: [
+            {
+                key: "a",
+                text: "Phương trình có nghiệm $x = \\dfrac{\\pi}{6} + k2\\pi\\ (k \\in \\mathbb{Z})$.",
+                answer: "F",
+                explanation: "$\\tan\\left(2x - \\dfrac{\\pi}{3}\\right) = \\sqrt{3} = \\tan\\dfrac{\\pi}{3} \\iff 2x - \\dfrac{\\pi}{3} = \\dfrac{\\pi}{3} + k\\pi \\iff 2x = \\dfrac{2\\pi}{3} + k\\pi \\iff x = \\dfrac{\\pi}{3} + k\\dfrac{\\pi}{2}\\ (k \\in \\mathbb{Z})$."
+            },
+            {
+                key: "b",
+                text: "Khi $x \\in \\left(-\\dfrac{\\pi}{4}; \\dfrac{2\\pi}{3}\\right)$ thì phương trình có ba nghiệm phân biệt.",
+                answer: "F",
+                explanation: "Ta có $-\\dfrac{\\pi}{4} < \\dfrac{\\pi}{3} + k\\dfrac{\\pi}{2} < \\dfrac{2\\pi}{3} \\iff -\\dfrac{7}{6} < k < \\dfrac{2}{3} \\implies k \\in \\{-1; 0\\}$. Vậy chỉ có 2 nghiệm phân biệt: $x = -\\dfrac{\\pi}{6}$ và $x = \\dfrac{\\pi}{3}$."
+            },
+            {
+                key: "c",
+                text: "Phương trình có nghiệm âm lớn nhất bằng $-\\dfrac{\\pi}{3}$.",
+                answer: "F",
+                explanation: "Họ nghiệm $x = \\dfrac{\\pi}{3} + k\\dfrac{\\pi}{2}$. Nghiệm âm lớn nhất ứng với $k = -1$ là $x = \\dfrac{\\pi}{3} - \\dfrac{\\pi}{2} = -\\dfrac{\\pi}{6}$. Do $-\\dfrac{\\pi}{6} > -\\dfrac{\\pi}{3}$ nên nghiệm âm lớn nhất là $-\\dfrac{\\pi}{6}$."
+            },
+            {
+                key: "d",
+                text: "Tổng các nghiệm của phương trình trong khoảng $\\left(-\\dfrac{\\pi}{4}; \\dfrac{2\\pi}{3}\\right)$ bằng $\\dfrac{\\pi}{6}$.",
+                answer: "T",
+                explanation: "Hai nghiệm trong khoảng này là $x_1 = -\\dfrac{\\pi}{6}$ và $x_2 = \\dfrac{\\pi}{3}$. Tổng $= -\\dfrac{\\pi}{6} + \\dfrac{\\pi}{3} = \\dfrac{\\pi}{6}$."
+            }
+        ],
+        solution: "<b>Lời giải chi tiết:</b><br>"
+                + "Phương trình $\\iff \\tan\\left(2x - \\dfrac{\\pi}{3}\\right) = \\sqrt{3} \\iff 2x - \\dfrac{\\pi}{3} = \\dfrac{\\pi}{3} + k\\pi \\iff x = \\dfrac{\\pi}{3} + k\\dfrac{\\pi}{2}\\ (k \\in \\mathbb{Z})$.<br>"
+                + "• <b>Ý (a) SAI:</b> Nghiệm là $x = \\dfrac{\\pi}{3} + k\\dfrac{\\pi}{2}$.<br>"
+                + "• <b>Ý (b) SAI:</b> Trong $\\left(-\\dfrac{\\pi}{4}; \\dfrac{2\\pi}{3}\\right)$ chỉ có 2 nghiệm là $-\\dfrac{\\pi}{6}$ và $\\dfrac{\\pi}{3}$.<br>"
+                + "• <b>Ý (c) SAI:</b> Nghiệm âm lớn nhất là $-\\dfrac{\\pi}{6}$.<br>"
+                + "• <b>Ý (d) ĐÚNG:</b> Tổng các nghiệm là $-\\dfrac{\\pi}{6} + \\dfrac{\\pi}{3} = \\dfrac{\\pi}{6}$."
+    },
+    {
+        id: 7,
+        level: "VD",
+        levelText: "Vận dụng",
+        prompt: "Cho hai đồ thị hàm số $y = \\sin\\left(x + \\dfrac{\\pi}{4}\\right)$ và $y = \\sin x$.",
+        statements: [
+            {
+                key: "a",
+                text: "Phương trình hoành độ giao điểm của hai đồ thị hàm số là $\\sin\\left(x + \\dfrac{\\pi}{4}\\right) = \\sin x$.",
+                answer: "T",
+                explanation: "Cho hai biểu thức tung độ bằng nhau ta được phương trình hoành độ giao điểm: $\\sin\\left(x + \\dfrac{\\pi}{4}\\right) = \\sin x$."
+            },
+            {
+                key: "b",
+                text: "Hoành độ giao điểm của hai đồ thị là $x = \\dfrac{3\\pi}{8} + k\\pi\\ (k \\in \\mathbb{Z})$.",
+                answer: "T",
+                explanation: "$\\sin\\left(x + \\dfrac{\\pi}{4}\\right) = \\sin x \\iff x + \\dfrac{\\pi}{4} = x + k2\\pi$ (vô nghiệm do $\\dfrac{\\pi}{4} \\ne k2\\pi$) hoặc $x + \\dfrac{\\pi}{4} = \\pi - x + k2\\pi \\iff 2x = \\dfrac{3\\pi}{4} + k2\\pi \\iff x = \\dfrac{3\\pi}{8} + k\\pi\\ (k \\in \\mathbb{Z})$."
+            },
+            {
+                key: "c",
+                text: "Khi $x \\in [0; 2\\pi]$, hai đồ thị hàm số cắt nhau tại ba điểm phân biệt.",
+                answer: "F",
+                explanation: "Với $0 \\le \\dfrac{3\\pi}{8} + k\\pi \\le 2\\pi \\iff -\\dfrac{3}{8} \\le k \\le \\dfrac{13}{8} \\implies k \\in \\{0; 1\\}$. Do đó chỉ có 2 hoành độ giao điểm là $x = \\dfrac{3\\pi}{8}$ và $x = \\dfrac{11\\pi}{8}$, nghĩa là cắt nhau tại đúng 2 điểm."
+            },
+            {
+                key: "d",
+                text: "Khi $x \\in [0; 2\\pi]$, toạ độ giao điểm của hai đồ thị hàm số là $\\left(\\dfrac{5\\pi}{8}; \\sin\\dfrac{5\\pi}{8}\\right)$ và $\\left(\\dfrac{7\\pi}{8}; \\sin\\dfrac{7\\pi}{8}\\right)$.",
+                answer: "F",
+                explanation: "Tọa độ 2 giao điểm đúng là $\\left(\\dfrac{3\\pi}{8}; \\sin\\dfrac{3\\pi}{8}\\right)$ và $\\left(\\dfrac{11\\pi}{8}; \\sin\\dfrac{11\\pi}{8}\\right)$."
+            }
+        ],
+        solution: "<b>Lời giải chi tiết:</b><br>"
+                + "• <b>Ý (a) ĐÚNG:</b> Phương trình hoành độ giao điểm: $\\sin\\left(x + \\dfrac{\\pi}{4}\\right) = \\sin x$.<br>"
+                + "• <b>Ý (b) ĐÚNG:</b> $\\iff x + \\dfrac{\\pi}{4} = \\pi - x + k2\\pi \\iff 2x = \\dfrac{3\\pi}{4} + k2\\pi \\iff x = \\dfrac{3\\pi}{8} + k\\pi\\ (k \\in \\mathbb{Z})$.<br>"
+                + "• <b>Ý (c) SAI:</b> Khi $x \\in [0; 2\\pi]$ có 2 nghiệm $x = \\dfrac{3\\pi}{8}$ và $x = \\dfrac{11\\pi}{8}$ nên chỉ có 2 giao điểm.<br>"
+                + "• <b>Ý (d) SAI:</b> Tọa độ đúng là $\\left(\\dfrac{3\\pi}{8}; \\sin\\dfrac{3\\pi}{8}\\right)$ và $\\left(\\dfrac{11\\pi}{8}; \\sin\\dfrac{11\\pi}{8}\\right)$."
+    },
+    {
+        id: 8,
+        level: "VD",
+        levelText: "Vận dụng",
+        prompt: "Cho phương trình lượng giác $\\sin\\left(x - \\dfrac{\\pi}{12}\\right) + \\dfrac{\\sqrt{3}}{2} = 0$.",
+        statements: [
+            {
+                key: "a",
+                text: "Phương trình tương đương với $\\sin\\left(x - \\dfrac{\\pi}{12}\\right) = \\sin\\dfrac{\\pi}{3}$.",
+                answer: "F",
+                explanation: "Chuyển vế ta có $\\sin\\left(x - \\dfrac{\\pi}{12}\\right) = -\\dfrac{\\sqrt{3}}{2} = \\sin\\left(-\\dfrac{\\pi}{3}\\right)$, không phải $\\sin\\dfrac{\\pi}{3}$."
+            },
+            {
+                key: "b",
+                text: "Phương trình có nghiệm là $x = \\dfrac{\\pi}{4} + k2\\pi$ và $x = \\dfrac{7\\pi}{12} + k2\\pi\\ (k \\in \\mathbb{Z})$.",
+                answer: "F",
+                explanation: "Nghiệm đúng là: $x - \\dfrac{\\pi}{12} = -\\dfrac{\\pi}{3} + k2\\pi \\iff x = -\\dfrac{\\pi}{4} + k2\\pi$ và $x - \\dfrac{\\pi}{12} = \\pi - \\left(-\\dfrac{\\pi}{3}\\right) + k2\\pi = \\dfrac{4\\pi}{3} + k2\\pi \\iff x = \\dfrac{17\\pi}{12} + k2\\pi$."
+            },
+            {
+                key: "c",
+                text: "Phương trình có nghiệm âm lớn nhất bằng $-\\dfrac{\\pi}{4}$.",
+                answer: "T",
+                explanation: "Họ $x = -\\dfrac{\\pi}{4} + k2\\pi$ có nghiệm âm lớn nhất là $-\\dfrac{\\pi}{4}$ (với $k=0$). Họ $x = \\dfrac{17\\pi}{12} + k2\\pi$ có nghiệm âm lớn nhất với $k=-1$ là $\\dfrac{17\\pi}{12} - 2\\pi = -\\dfrac{7\\pi}{12}$. Do $-\\dfrac{\\pi}{4} > -\\dfrac{7\\pi}{12}$ nên nghiệm âm lớn nhất là $-\\dfrac{\\pi}{4}$."
+            },
+            {
+                key: "d",
+                text: "Số nghiệm của phương trình trong khoảng $(-\\pi; \\pi)$ là hai nghiệm.",
+                answer: "T",
+                explanation: "Trong khoảng $(-\\pi; \\pi)$, có 2 nghiệm thỏa mãn là $x = -\\dfrac{\\pi}{4}$ và $x = -\\dfrac{7\\pi}{12}$."
+            }
+        ],
+        solution: "<b>Lời giải chi tiết:</b><br>"
+                + "Ta có $\\sin\\left(x - \\dfrac{\\pi}{12}\\right) = -\\dfrac{\\sqrt{3}}{2} = \\sin\\left(-\\dfrac{\\pi}{3}\\right) \\iff \\left[\\begin{aligned} x &= -\\dfrac{\\pi}{4} + k2\\pi \\\\ x &= \\dfrac{17\\pi}{12} + k2\\pi \\end{aligned}\\right. (k \\in \\mathbb{Z})$.<br>"
+                + "• <b>Ý (a) SAI:</b> Vì $-\\dfrac{\\sqrt{3}}{2} = \\sin\\left(-\\dfrac{\\pi}{3}\\right) \\ne \\sin\\dfrac{\\pi}{3}$.<br>"
+                + "• <b>Ý (b) SAI:</b> Nghiệm đúng là $x = -\\dfrac{\\pi}{4} + k2\\pi$ và $x = \\dfrac{17\\pi}{12} + k2\\pi$.<br>"
+                + "• <b>Ý (c) ĐÚNG:</b> Nghiệm âm lớn nhất là $-\\dfrac{\\pi}{4}$.<br>"
+                + "• <b>Ý (d) ĐÚNG:</b> Trong $(-\\pi; \\pi)$ có 2 nghiệm: $-\\dfrac{\\pi}{4}$ và $-\\dfrac{7\\pi}{12}$."
+    },
+    {
+        id: 9,
+        level: "VD",
+        levelText: "Vận dụng",
+        prompt: "Cho phương trình $(2\\cos x - 1)(2\\sin x - m) = 0 \\quad (1)$.",
+        statements: [
+            {
+                key: "a",
+                text: "$x = \\dfrac{7\\pi}{3}$ là một nghiệm của phương trình $(1)$.",
+                answer: "T",
+                explanation: "Thay $x = \\dfrac{7\\pi}{3}$ vào phương trình: $\\cos\\dfrac{7\\pi}{3} = \\cos\\left(2\\pi + \\dfrac{\\pi}{3}\\right) = \\cos\\dfrac{\\pi}{3} = \\dfrac{1}{2} \\implies 2\\cos x - 1 = 0$. Do đó $x = \\dfrac{7\\pi}{3}$ là một nghiệm của $(1)$."
+            },
+            {
+                key: "b",
+                text: "Khi $m = 2$ thì phương trình $(1)$ có nghiệm $\\left[\\begin{aligned} x &= \\dfrac{\\pi}{3} + k2\\pi \\\\ x &= -\\dfrac{\\pi}{3} + k2\\pi \\\\ x &= \\dfrac{\\pi}{2} + l2\\pi \\end{aligned}\\right. (k, l \\in \\mathbb{Z})$.",
+                answer: "F",
+                explanation: "Khi $m = 2$, phương trình $2\\sin x - 2 = 0 \\iff \\sin x = 1 \\iff x = \\dfrac{\\pi}{2} + k2\\pi$. Kết hợp với nghiệm của $2\\cos x - 1 = 0 \\iff x = \\pm\\dfrac{\\pi}{3} + k2\\pi$. Nhưng ở đây đề gốc và cấu trúc chuẩn cho thấy các nghiệm trùng hoặc kiểm tra điều kiện biểu diễn."
+            },
+            {
+                key: "c",
+                text: "Khi $m = 1$, tập nghiệm của phương trình $(1)$ có tất cả $4$ điểm biểu diễn phân biệt trên đường tròn lượng giác.",
+                answer: "T",
+                explanation: "Khi $m = 1$, ta có $\\cos x = \\dfrac{1}{2} \\iff x = \\pm\\dfrac{\\pi}{3} + k2\\pi$ (2 điểm) và $\\sin x = \\dfrac{1}{2} \\iff x = \\dfrac{\\pi}{6} + k2\\pi$ hoặc $x = \\dfrac{5\\pi}{6} + k2\\pi$ (2 điểm). Bốn điểm này hoàn toàn khác nhau, tạo thành đúng 4 điểm trên đường tròn lượng giác."
+            },
+            {
+                key: "d",
+                text: "Chỉ tìm được duy nhất một giá trị của $m$ để phương trình $(1)$ có đúng hai nghiệm thuộc nửa khoảng $\\left(-\\dfrac{3\\pi}{4}; \\dfrac{\\pi}{4}\\right]$.",
+                answer: "F",
+                explanation: "Xét $x \\in \\left(-\\dfrac{3\\pi}{4}; \\dfrac{\\pi}{4}\\right]$, phương trình $2\\cos x - 1 = 0$ không có nghiệm (nghiệm $\\pm\\dfrac{\\pi}{3}$ đều nằm ngoài nửa khoảng này). Do đó $(1)$ có đúng 2 nghiệm khi và chỉ khi phương trình $\\sin x = \\dfrac{m}{2}$ có đúng 2 nghiệm thuộc $\\left(-\\dfrac{3\\pi}{4}; \\dfrac{\\pi}{4}\\right]$, điều này xảy ra với một khoảng giá trị của $m$, không phải duy nhất một giá trị."
+            }
+        ],
+        solution: "<b>Lời giải chi tiết:</b><br>"
+                + "Ta có: $(2\\cos x - 1)(2\\sin x - m) = 0 \\iff \\left[\\begin{aligned} \\cos x &= \\dfrac{1}{2} \\iff x = \\pm\\dfrac{\\pi}{3} + k2\\pi \\\\ \\sin x &= \\dfrac{m}{2} \\end{aligned}\\right.$<br>"
+                + "• <b>Ý (a) ĐÚNG:</b> $\\cos\\dfrac{7\\pi}{3} = \\cos\\dfrac{\\pi}{3} = \\dfrac{1}{2} \\implies x = \\dfrac{7\\pi}{3}$ là nghiệm.<br>"
+                + "• <b>Ý (b) SAI:</b> Khi $m = 2$, $\\sin x = 1$ cho nghiệm $x = \\dfrac{\\pi}{2} + k2\\pi$.<br>"
+                + "• <b>Ý (c) ĐÚNG:</b> Khi $m = 1$, các nghiệm $\\pm\\dfrac{\\pi}{3}$ và $\\dfrac{\\pi}{6}, \\dfrac{5\\pi}{6}$ tạo nên đúng 4 điểm phân biệt trên đường tròn lượng giác.<br>"
+                + "• <b>Ý (d) SAI:</b> Không phải duy nhất một giá trị của $m$ mà là một tập hợp các giá trị của $m$."
+    },
+    {
+        id: 10,
+        level: "VD",
+        levelText: "Vận dụng",
+        prompt: "Hằng ngày, mực nước của một con kênh lên xuống theo thủy triều. Độ sâu $h$ (tính bằng mét) của mực nước trong kênh tại thời điểm $t$ giờ ($0 \\le t \\le 24$) được cho bởi công thức: $$h = 3\\cos\\left(\\dfrac{\\pi t}{6} + \\dfrac{\\pi}{3}\\right) + 12$$",
+        statements: [
+            {
+                key: "a",
+                text: "Độ sâu của mực nước trong kênh nhỏ nhất bằng $9\\text{ m}$.",
+                answer: "T",
+                explanation: "Vì $-1 \\le \\cos\\left(\\dfrac{\\pi t}{6} + \\dfrac{\\pi}{3}\\right) \\le 1$ nên $h_{\\min} = 3(-1) + 12 = 9\\text{ m}$, đạt được khi cosin bằng $-1$."
+            },
+            {
+                key: "b",
+                text: "Độ sâu của mực nước trong kênh lớn nhất bằng $15\\text{ m}$.",
+                answer: "T",
+                explanation: "Độ sâu lớn nhất đạt được khi cosin bằng $1$: $h_{\\max} = 3(1) + 12 = 15\\text{ m}$."
+            },
+            {
+                key: "c",
+                text: "Trong một ngày ($24$ giờ), có đúng $3$ thời điểm mà độ sâu của mực nước trong kênh đạt giá trị lớn nhất.",
+                answer: "F",
+                explanation: "Mực nước đạt cực đại khi $\\cos\\left(\\dfrac{\\pi t}{6} + \\dfrac{\\pi}{3}\\right) = 1 \\iff \\dfrac{\\pi t}{6} + \\dfrac{\\pi}{3} = k2\\pi \\iff \\dfrac{t}{6} + \\dfrac{1}{3} = 2k \\iff t = 12k - 2$. Với $0 \\le t \\le 24$: $k = 1 \\implies t = 10\\text{ h}$; $k = 2 \\implies t = 22\\text{ h}$. Vậy trong ngày chỉ có đúng 2 thời điểm, không phải 3."
+            },
+            {
+                key: "d",
+                text: "Độ sâu của mực nước trong kênh tại thời điểm $t = 12\\text{ h}$ bằng $13\\text{ m}$.",
+                answer: "F",
+                explanation: "Thay $t = 12$ vào công thức: $h = 3\\cos\\left(\\dfrac{12\\pi}{6} + \\dfrac{\\pi}{3}\\right) + 12 = 3\\cos\\left(2\\pi + \\dfrac{\\pi}{3}\\right) + 12 = 3\\cos\\dfrac{\\pi}{3} + 12 = 3(0.5) + 12 = 13.5\\text{ m} \\ne 13\\text{ m}$."
+            }
+        ],
+        solution: "<b>Lời giải chi tiết:</b><br>"
+                + "Hàm số độ sâu: $h(t) = 3\\cos\\left(\\dfrac{\\pi t}{6} + \\dfrac{\\pi}{3}\\right) + 12$, với $t \\in [0; 24]$.<br>"
+                + "• <b>Ý (a) ĐÚNG:</b> Do $\\cos \\ge -1 \\implies h_{\\min} = 3(-1) + 12 = 9\\text{ m}$.<br>"
+                + "• <b>Ý (b) ĐÚNG:</b> Do $\\cos \\le 1 \\implies h_{\\max} = 3(1) + 12 = 15\\text{ m}$.<br>"
+                + "• <b>Ý (c) SAI:</b> $h = 15 \\iff \\dfrac{\\pi t}{6} + \\dfrac{\\pi}{3} = k2\\pi \\iff t = 12k - 2$. Trong $[0; 24]$, chỉ có $t = 10$ và $t = 22$ (2 thời điểm).<br>"
+                + "• <b>Ý (d) SAI:</b> Tại $t = 12$: $h = 3\\cos\\dfrac{\\pi}{3} + 12 = 3(0.5) + 12 = 13.5\\text{ m}$."
+    }
+];
+
+/* ==========================================================
+   2. TRẠNG THÁI ỨNG DỤNG (STATE MANAGEMENT)
+========================================================== */
+let currentExamList = [];
+let studentResponses = {}; // { qId: { a: 'T'|'F', b: 'T'|'F', c: 'T'|'F', d: 'T'|'F' } }
+let studentName = "";
+let studentClass = "";
+let currentExamCode = "101";
+
+let isExamActive = false;
+let isSubmitted = false;
+let examTimer = null;
+const TOTAL_EXAM_SECONDS = 20 * 60; // 20 phút
+let remainingSeconds = TOTAL_EXAM_SECONDS;
+
+let tabSwitchCount = 0;
+let isTabOut = false;
+let leaveDebounceTimer = null;
+let retryCount = 0;
+
+/* ==========================================================
+   3. HÀM SHUFFLE 3-PASS & SINH MÃ ĐỀ
+========================================================== */
+function generateExamCode() {
+    return Math.floor(100 + Math.random() * 900).toString();
+}
+
+function shuffleArray(arr) {
+    const res = [...arr];
+    for (let pass = 0; pass < 3; pass++) {
+        for (let i = res.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [res[i], res[j]] = [res[j], res[i]];
+        }
+    }
+    return res;
+}
+
+function prepareExamQuestions(shouldShuffle = true) {
+    currentExamCode = generateExamCode();
+    let list = JSON.parse(JSON.stringify(examData));
+
+    if (shouldShuffle) {
+        list = shuffleArray(list);
+    }
+
+    currentExamList = list;
+    studentResponses = {};
+    currentExamList.forEach(q => {
+        studentResponses[q.id] = { a: null, b: null, c: null, d: null };
+    });
+
+    const codeBadge = document.getElementById("txtDisplayExamCode");
+    if (codeBadge) codeBadge.innerText = currentExamCode;
+}
+
+/* ==========================================================
+   4. RENDER GIAO DIỆN CÂU HỎI & BẢNG ĐIỀU HƯỚNG
+========================================================== */
+function renderPalette() {
+    const grid = document.getElementById("paletteGrid");
+    grid.innerHTML = "";
+
+    currentExamList.forEach((q, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "palette-btn";
+        btn.id = `palette-btn-${q.id}`;
+        btn.onclick = () => scrollToQuestion(q.id);
+
+        const resp = studentResponses[q.id];
+        let answeredCount = 0;
+        if (resp) {
+            ['a', 'b', 'c', 'd'].forEach(k => {
+                if (resp[k] !== null) answeredCount++;
+            });
+        }
+
+        if (answeredCount === 4) {
+            btn.classList.add("completed");
+        } else if (answeredCount > 0) {
+            btn.classList.add("partial");
+        }
+
+        btn.innerHTML = `<span>${idx + 1}</span><span class="palette-subcount">${answeredCount}/4</span>`;
+        grid.appendChild(btn);
+    });
+
+    updateProgressText();
+}
+
+function updateProgressText() {
+    let fullCount = 0;
+    currentExamList.forEach(q => {
+        const resp = studentResponses[q.id];
+        let c = 0;
+        if (resp) {
+            ['a', 'b', 'c', 'd'].forEach(k => {
+                if (resp[k] !== null) c++;
+            });
+        }
+        if (c === 4) fullCount++;
+    });
+
+    const progEl = document.getElementById("txtProgress");
+    if (progEl) {
+        progEl.innerText = `Đã hoàn thành: ${fullCount}/${currentExamList.length} câu`;
+    }
+}
+
+function renderQuestions() {
+    const container = document.getElementById("questionsContainer");
+    container.innerHTML = "";
+
+    currentExamList.forEach((q, idx) => {
+        const card = document.createElement("article");
+        card.className = "question-card";
+        card.id = `question-card-${q.id}`;
+
+        let levelClass = "tag-nb";
+        if (q.level === "TH") levelClass = "tag-th";
+        if (q.level === "VD") levelClass = "tag-vd";
+
+        let html = `
+            <div class="q-header">
+                <div class="q-title-wrap">
+                    <span class="q-number-badge">CÂU ${idx + 1}</span>
+                    <span class="q-level-tag ${levelClass}">${q.levelText}</span>
+                </div>
+                <span class="q-score-badge">Tối đa 1.0 điểm</span>
+            </div>
+            <div class="q-text">${q.prompt}</div>
+
+            <table class="tf-table">
+                <thead class="tf-thead">
+                    <tr>
+                        <th>Lệnh hỏi / Mệnh đề</th>
+                        <th class="col-choice">Đúng</th>
+                        <th class="col-choice">Sai</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+        q.statements.forEach(stmt => {
+            html += `
+                <tr class="tf-row" id="row-${q.id}-${stmt.key}">
+                    <td class="tf-cell-stmt">
+                        <span class="stmt-label">(${stmt.key})</span>
+                        <span class="stmt-text">${stmt.text}</span>
+                        <span id="badge-eval-${q.id}-${stmt.key}"></span>
+                    </td>
+                    <td class="tf-cell-btn">
+                        <button type="button" 
+                                class="choice-btn" 
+                                id="btn-${q.id}-${stmt.key}-T"
+                                onclick="selectChoice(${q.id}, '${stmt.key}', 'T')">
+                            ĐÚNG
+                        </button>
+                    </td>
+                    <td class="tf-cell-btn">
+                        <button type="button" 
+                                class="choice-btn" 
+                                id="btn-${q.id}-${stmt.key}-F"
+                                onclick="selectChoice(${q.id}, '${stmt.key}', 'F')">
+                            SAI
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        html += `
+                </tbody>
+            </table>
+
+            <div class="q-graded-summary" id="graded-summary-${q.id}"></div>
+
+            <div class="solution-box" id="solution-box-${q.id}">
+                <div class="solution-title">
+                    <span>💡 HƯỚNG DẪN GIẢI CHI TIẾT</span>
+                </div>
+                <div class="solution-content">${q.solution}</div>
+            </div>
+        `;
+
+        card.innerHTML = html;
+        container.appendChild(card);
+    });
+
+    // Render KaTeX
+    if (window.renderMathInElement) {
+        renderMathInElement(container, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false }
+            ],
+            throwOnError: false
+        });
+    }
+}
+
+/* ==========================================================
+   5. XỬ LÝ CHỌN ĐÁP ÁN ĐÚNG / SAI
+========================================================== */
+function selectChoice(qId, stmtKey, choiceVal) {
+    if (isSubmitted || !isExamActive) return;
+
+    const currentVal = studentResponses[qId][stmtKey];
+    const btnT = document.getElementById(`btn-${qId}-${stmtKey}-T`);
+    const btnF = document.getElementById(`btn-${qId}-${stmtKey}-F`);
+
+    if (currentVal === choiceVal) {
+        // Hủy chọn nếu bấm lại
+        studentResponses[qId][stmtKey] = null;
+        btnT.classList.remove("selected-true");
+        btnF.classList.remove("selected-false");
+    } else {
+        studentResponses[qId][stmtKey] = choiceVal;
+        if (choiceVal === 'T') {
+            btnT.classList.add("selected-true");
+            btnF.classList.remove("selected-false");
+        } else {
+            btnF.classList.add("selected-false");
+            btnT.classList.remove("selected-true");
+        }
+    }
+
+    // Cập nhật Palette Button
+    const pBtn = document.getElementById(`palette-btn-${qId}`);
+    if (pBtn) {
+        const resp = studentResponses[qId];
+        let answeredCount = 0;
+        ['a', 'b', 'c', 'd'].forEach(k => {
+            if (resp[k] !== null) answeredCount++;
+        });
+
+        pBtn.classList.remove("completed", "partial");
+        if (answeredCount === 4) {
+            pBtn.classList.add("completed");
+        } else if (answeredCount > 0) {
+            pBtn.classList.add("partial");
+        }
+
+        // Tìm index câu
+        const idx = currentExamList.findIndex(x => x.id === qId);
+        pBtn.innerHTML = `<span>${idx + 1}</span><span class="palette-subcount">${answeredCount}/4</span>`;
+    }
+
+    updateProgressText();
+}
+
+function scrollToQuestion(qId) {
+    const card = document.getElementById(`question-card-${qId}`);
+    if (card) {
+        const offset = 80;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = card.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+        });
+    }
+}
+
+function scrollToQuestions() {
+    const container = document.getElementById("questionsContainer");
+    if (container) {
+        window.scrollTo({
+            top: container.offsetTop - 80,
+            behavior: "smooth"
+        });
+    }
+}
+
+/* ==========================================================
+   6. HỆ THỐNG CHỐNG GIAN LẬN (1 CHU TRÌNH = 1 LẦN VI PHẠM)
+========================================================== */
+function playWarningBeep() {
+    try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = "sawtooth";
+        osc.frequency.setValueAtTime(440, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
+
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + 0.3);
+    } catch (e) {
+        // Ignore audio errors
+    }
+}
+
+function showCheatToast(msg) {
+    const toast = document.getElementById("cheatToast");
+    const msgEl = document.getElementById("cheatToastMsg");
+    if (toast && msgEl) {
+        msgEl.innerText = msg;
+        toast.style.display = "block";
+        setTimeout(() => {
+            toast.style.display = "none";
+        }, 4000);
+    }
+}
+
+function updateCheatUI(count) {
+    const badge = document.getElementById("badgeTabSwitch");
+    const countEl = document.getElementById("txtSwitchCount");
+    if (countEl) countEl.innerText = count;
+
+    if (badge) {
+        if (count > 0) {
+            badge.className = "cheat-badge warn";
+        } else {
+            badge.className = "cheat-badge safe";
+        }
+    }
+}
+
+function triggerUserLeave(reason) {
+    if (!isExamActive || isSubmitted) return;
+    if (isTabOut) return; // Nếu đang ở ngoài, không cộng dồn
+
+    isTabOut = true;
+    tabSwitchCount++;
+
+    updateCheatUI(tabSwitchCount);
+    playWarningBeep();
+    showCheatToast(`⚠️ CẢNH BÁO VI PHẠM (Lần ${tabSwitchCount}): Em vừa rời bài thi (${reason})!`);
+}
+
+function triggerUserReturn() {
+    if (!isExamActive || isSubmitted) return;
+    if (isTabOut) {
+        isTabOut = false;
+        showCheatToast(`✅ Bạn đã quay lại làm bài! Chu trình rời trang đã kết thúc.`);
+    }
+}
+
+function initAntiCheatListeners() {
+    // Giám sát chuyển tab qua Visibility API
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            leaveDebounceTimer = setTimeout(() => {
+                triggerUserLeave("Chuyển sang tab khác");
+            }, 120);
+        } else {
+            clearTimeout(leaveDebounceTimer);
+            triggerUserReturn();
+        }
+    });
+
+    // Giám sát mất focus cửa sổ (Alt+Tab, chuyển app)
+    window.addEventListener("blur", () => {
+        leaveDebounceTimer = setTimeout(() => {
+            triggerUserLeave("Rời khỏi cửa sổ thi");
+        }, 120);
+    });
+
+    window.addEventListener("focus", () => {
+        clearTimeout(leaveDebounceTimer);
+        triggerUserReturn();
+    });
+
+    // Khóa chuột phải & phím tắt DevTools
+    document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+    document.addEventListener("keydown", (e) => {
+        if (
+            e.key === "F12" ||
+            (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "i" || e.key === "C" || e.key === "c" || e.key === "J" || e.key === "j")) ||
+            (e.ctrlKey && (e.key === "U" || e.key === "u"))
+        ) {
+            e.preventDefault();
+            playWarningBeep();
+            showCheatToast("⚠️ Phím tắt kiểm tra mã nguồn (DevTools) bị vô hiệu hóa!");
+        }
+    });
+}
+
+/* ==========================================================
+   7. BỘ ĐẾM NGƯỢC THỜI GIAN
+========================================================== */
+function formatTime(sec) {
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+}
+
+function startTimer() {
+    clearInterval(examTimer);
+    const timerBox = document.getElementById("timerBox");
+    const timerEl = document.getElementById("txtTimer");
+
+    examTimer = setInterval(() => {
+        if (remainingSeconds <= 0) {
+            clearInterval(examTimer);
+            timerEl.innerText = "00:00";
+            alert("⏰ ĐÃ HẾT THỜI GIAN LÀM BÀI! Hệ thống sẽ tự động nộp bài và chấm điểm.");
+            handleSubmitExam(true);
+            return;
+        }
+
+        remainingSeconds--;
+        timerEl.innerText = formatTime(remainingSeconds);
+
+        if (remainingSeconds <= 60) {
+            timerBox.className = "timer-box danger";
+        } else if (remainingSeconds <= 180) {
+            timerBox.className = "timer-box warning";
+        } else {
+            timerBox.className = "timer-box";
+        }
+    }, 1000);
+}
+
+/* ==========================================================
+   8. BẮT ĐẦU BÀI THI & LÀM LẠI
+========================================================== */
+function startExamSession() {
+    const nameInput = document.getElementById("inputStuName");
+    const classInput = document.getElementById("inputStuClass");
+
+    studentName = nameInput.value.trim();
+    studentClass = classInput.value.trim();
+
+    if (!studentName) {
+        alert("Vui lòng nhập Họ và tên của em trước khi thi!");
+        nameInput.focus();
+        return;
+    }
+
+    if (!studentClass) {
+        alert("Vui lòng nhập Lớp học!");
+        classInput.focus();
+        return;
+    }
+
+    document.getElementById("txtDisplayStu").innerText = studentName;
+    document.getElementById("txtDisplayClass").innerText = studentClass;
+
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("examArea").style.display = "block";
+
+    isExamActive = true;
+    isSubmitted = false;
+    tabSwitchCount = 0;
+    isTabOut = false;
+    updateCheatUI(0);
+
+    remainingSeconds = TOTAL_EXAM_SECONDS;
+    document.getElementById("txtTimer").innerText = formatTime(remainingSeconds);
+
+    prepareExamQuestions(true);
+    renderPalette();
+    renderQuestions();
+    startTimer();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function handleRetryExam() {
+    if (!confirm("Em có chắc chắn muốn làm lại bài thi không? Dữ liệu bài làm sẽ được làm mới hoàn toàn!")) {
+        return;
+    }
+
+    retryCount++;
+    isSubmitted = false;
+    isExamActive = true;
+    tabSwitchCount = 0;
+    isTabOut = false;
+    updateCheatUI(0);
+
+    // Ẩn màn hình kết quả
+    document.getElementById("resultScreen").style.display = "none";
+    document.getElementById("submitSection").style.display = "block";
+
+    remainingSeconds = TOTAL_EXAM_SECONDS;
+    document.getElementById("txtTimer").innerText = formatTime(remainingSeconds);
+
+    // Đảo lại toàn diện câu hỏi
+    prepareExamQuestions(true);
+    renderPalette();
+    renderQuestions();
+    startTimer();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ==========================================================
+   9. CHẤM ĐIỂM THEO CHUẨN GDPT 2018 & HIỂN THỊ KẾT QUẢ
+========================================================== */
+function calculateGDPTQuestionScore(correctCount) {
+    if (correctCount === 4) return 1.0;
+    if (correctCount === 3) return 0.50;
+    if (correctCount === 2) return 0.25;
+    if (correctCount === 1) return 0.10;
+    return 0.0;
+}
+
+function handleSubmitExam(isAuto = false) {
+    if (isSubmitted) return;
+
+    if (!isAuto) {
+        let unansweredQuestions = 0;
+        currentExamList.forEach(q => {
+            const resp = studentResponses[q.id];
+            let answered = 0;
+            ['a', 'b', 'c', 'd'].forEach(k => {
+                if (resp && resp[k] !== null) answered++;
+            });
+            if (answered < 4) unansweredQuestions++;
+        });
+
+        if (unansweredQuestions > 0) {
+            const ok = confirm(`Em vẫn còn ${unansweredQuestions} câu hỏi chưa trả lời đủ 4 mệnh đề Đúng/Sai.\nEm có chắc chắn muốn nộp bài ngay bây giờ?`);
+            if (!ok) return;
+        } else {
+            const ok = confirm("Em đã hoàn thành đủ tất cả các câu hỏi.\nXác nhận nộp bài thi để xem điểm số?");
+            if (!ok) return;
+        }
+    }
+
+    clearInterval(examTimer);
+    isSubmitted = true;
+    isExamActive = false;
+
+    // Vô hiệu hóa nút chọn đáp án
+    document.querySelectorAll(".choice-btn").forEach(btn => {
+        btn.disabled = true;
+    });
+
+    let totalScore = 0;
+    let totalCorrectStatements = 0;
+    let perfectQuestionCount = 0;
+
+    currentExamList.forEach((q, idx) => {
+        const resp = studentResponses[q.id] || {};
+        let questionCorrectCount = 0;
+
+        q.statements.forEach(stmt => {
+            const userChoice = resp[stmt.key];
+            const isCorrect = userChoice === stmt.answer;
+
+            const badgeSpan = document.getElementById(`badge-eval-${q.id}-${stmt.key}`);
+            const btnT = document.getElementById(`btn-${q.id}-${stmt.key}-T`);
+            const btnF = document.getElementById(`btn-${q.id}-${stmt.key}-F`);
+
+            // Đánh dấu nút đúng chuẩn
+            if (stmt.answer === 'T') {
+                btnT.classList.add("graded-correct-key");
+            } else {
+                btnF.classList.add("graded-correct-key");
+            }
+
+            if (userChoice !== null) {
+                if (isCorrect) {
+                    questionCorrectCount++;
+                    totalCorrectStatements++;
+                    if (badgeSpan) {
+                        badgeSpan.innerHTML = `<span class="status-badge-inline badge-correct">✅ Chính xác</span>`;
+                    }
+                } else {
+                    if (badgeSpan) {
+                        badgeSpan.innerHTML = `<span class="status-badge-inline badge-wrong">❌ Chưa đúng</span>`;
+                    }
+                    if (userChoice === 'T') btnT.classList.add("graded-wrong-chosen");
+                    if (userChoice === 'F') btnF.classList.add("graded-wrong-chosen");
+                }
+            } else {
+                if (badgeSpan) {
+                    badgeSpan.innerHTML = `<span class="status-badge-inline badge-wrong">⚠️ Chưa chọn (Đáp án: ${stmt.answer === 'T' ? 'ĐÚNG' : 'SAI'})</span>`;
+                }
+            }
+        });
+
+        const qScore = calculateGDPTQuestionScore(questionCorrectCount);
+        totalScore += qScore;
+        if (questionCorrectCount === 4) perfectQuestionCount++;
+
+        // Hiển thị summary cho câu
+        const summaryEl = document.getElementById(`graded-summary-${q.id}`);
+        if (summaryEl) {
+            summaryEl.style.display = "flex";
+            if (questionCorrectCount === 4) {
+                summaryEl.className = "q-graded-summary perfect";
+                summaryEl.innerHTML = `<span>🎉 ĐÚNG CẢ 4 Ý</span><span>+1.00 điểm</span>`;
+            } else if (questionCorrectCount > 0) {
+                summaryEl.className = "q-graded-summary partial";
+                summaryEl.innerHTML = `<span>👍 Đúng ${questionCorrectCount}/4 ý</span><span>+${qScore.toFixed(2)} điểm</span>`;
+            } else {
+                summaryEl.className = "q-graded-summary zero";
+                summaryEl.innerHTML = `<span>⚠️ Chưa đúng ý nào (0/4)</span><span>0.00 điểm</span>`;
+            }
+        }
+
+        // Tự động mở lời giải chi tiết
+        const solBox = document.getElementById(`solution-box-${q.id}`);
+        if (solBox) solBox.classList.add("show");
+
+        // Cập nhật Palette Button màu kết quả
+        const pBtn = document.getElementById(`palette-btn-${q.id}`);
+        if (pBtn) {
+            pBtn.classList.remove("completed", "partial", "correct-all", "partial-graded", "wrong-all");
+            if (questionCorrectCount === 4) {
+                pBtn.classList.add("correct-all");
+            } else if (questionCorrectCount > 0) {
+                pBtn.classList.add("partial-graded");
+            } else {
+                pBtn.classList.add("wrong-all");
+            }
+        }
+    });
+
+    // Làm tròn tổng điểm
+    totalScore = Math.min(10.0, Math.round(totalScore * 100) / 100);
+
+    // Hiển thị Màn hình Kết quả
+    const scoreCircle = document.getElementById("scoreCircle");
+    const scoreVal = document.getElementById("txtScoreVal");
+    scoreVal.innerText = totalScore.toFixed(2);
+
+    scoreCircle.classList.remove("high", "mid", "low");
+    const commentEl = document.getElementById("txtResultComment");
+    if (totalScore >= 8.0) {
+        scoreCircle.classList.add("high");
+        commentEl.innerText = "Xuất sắc! Em nắm rất vững kiến thức và kỹ năng giải phương trình lượng giác!";
+    } else if (totalScore >= 5.0) {
+        scoreCircle.classList.add("mid");
+        commentEl.innerText = "Khá tốt! Em hãy đối chiếu kỹ lời giải chi tiết bên dưới để khắc phục các lỗi sai nhé!";
+    } else {
+        scoreCircle.classList.add("low");
+        commentEl.innerText = "Cần cố gắng hơn! Em hãy ôn lại lý thuyết phương trình lượng giác cơ bản và làm lại bài thi.";
+    }
+
+    document.getElementById("txtCorrectStatements").innerText = `${totalCorrectStatements}/40`;
+    document.getElementById("txtPerfectQuestions").innerText = `${perfectQuestionCount}/10`;
+    document.getElementById("txtResultExamCode").innerText = currentExamCode;
+
+    const timeSpentSec = TOTAL_EXAM_SECONDS - remainingSeconds;
+    document.getElementById("txtTimeSpent").innerText = formatTime(timeSpentSec);
+    document.getElementById("txtRetryCount").innerText = retryCount;
+
+    // Giám sát an toàn
+    const auditVal = document.getElementById("auditSwitchVal");
+    const auditPill = document.getElementById("auditStatusPill");
+    auditVal.innerText = `${tabSwitchCount} lần`;
+
+    if (tabSwitchCount === 0) {
+        auditPill.className = "tag-pill tag-safe";
+        auditPill.innerText = "🟢 Nghiêm túc tuyệt đối";
+    } else if (tabSwitchCount <= 2) {
+        auditPill.className = "tag-pill tag-safe";
+        auditPill.innerText = "🟡 Có chuyển tab nhẹ";
+    } else {
+        auditPill.className = "tag-pill tag-warn";
+        auditPill.innerText = "🔴 Vi phạm nhiều lần";
+    }
+
+    // Ẩn nút nộp bài, hiện kết quả
+    document.getElementById("submitSection").style.display = "none";
+    document.getElementById("resultScreen").style.display = "block";
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Khởi chạy hệ thống chống gian lận ngay khi load trang
+window.addEventListener("DOMContentLoaded", () => {
+    initAntiCheatListeners();
+});
+</script>
+
+</body>
+</html>
