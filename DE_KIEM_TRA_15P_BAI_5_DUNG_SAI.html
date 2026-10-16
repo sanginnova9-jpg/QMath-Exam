@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Đề kiểm tra Trắc nghiệm Đúng - Sai: Bài 5. Phương trình lượng giác | Toán 11</title>
+    <title>Đề kiểm tra Trắc nghiệm Đúng - Sai: Bài 5. Phương trình lượng giác (20 phút) | Toán 11</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -169,6 +169,7 @@
             padding: 6px 4px;
             border-radius: 8px;
             font-weight: 600;
+            font-size: 12.5px;
         }
 
         .input-group {
@@ -349,20 +350,22 @@
 
         .palette-grid {
             display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            gap: 8px;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 540px;
+            margin: 0 auto;
+            gap: 12px;
         }
 
         .palette-btn {
-            aspect-ratio: 1;
+            padding: 12px 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             background: #f8fafc;
             border: 1.5px solid #cbd5e1;
-            border-radius: 10px;
-            font-size: 13px;
+            border-radius: 12px;
+            font-size: 14px;
             font-weight: 700;
             color: #475569;
             cursor: pointer;
@@ -408,10 +411,10 @@
         }
 
         .palette-subcount {
-            font-size: 9px;
+            font-size: 11px;
             font-weight: 800;
-            opacity: 0.85;
-            margin-top: 1px;
+            opacity: 0.9;
+            margin-top: 2px;
         }
 
         /* QUESTION CARDS */
@@ -447,9 +450,9 @@
         .q-number-badge {
             background: #0f172a;
             color: #ffffff;
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 800;
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 8px;
         }
 
@@ -468,8 +471,9 @@
         .q-score-badge {
             font-size: 12.5px;
             font-weight: 700;
-            color: var(--text-muted);
-            background: #f1f5f9;
+            color: var(--primary-dark);
+            background: var(--primary-subtle);
+            border: 1px solid #bfdbfe;
             padding: 4px 10px;
             border-radius: 6px;
         }
@@ -941,7 +945,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             .palette-grid {
-                grid-template-columns: repeat(5, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
             .exam-info-grid {
                 grid-template-columns: 1fr;
@@ -965,7 +969,7 @@
     <!-- PAGE HEADER -->
     <header class="page-header">
         <div class="school-title">TRƯỜNG CAO ĐẲNG NGHỀ SỐ 1 - BQP • KHOA CƠ BẢN</div>
-        <h1 class="exam-main-title">ĐỀ KIỂM TRA TRẮC NGHIỆM ĐÚNG - SAI</h1>
+        <h1 class="exam-main-title">ĐỀ KIỂM TRA 20 PHÚT TRẮC NGHIỆM ĐÚNG - SAI</h1>
         <div class="exam-sub-title">BÀI 5: PHƯƠNG TRÌNH LƯỢNG GIÁC • TOÁN 11 KNTT</div>
     </header>
 
@@ -977,18 +981,18 @@
 
         <div class="exam-info-grid">
             <div class="exam-info-item">⏱️ Thời gian: <b>20 phút</b></div>
-            <div class="exam-info-item">📝 Cấu trúc: <b>10 câu (40 mệnh đề Đúng/Sai)</b></div>
+            <div class="exam-info-item">📝 Cấu trúc: <b>4 câu (16 mệnh đề Đúng/Sai)</b></div>
             <div class="exam-info-item">🎯 Đối tượng: <b>Học sinh Trung bình - Khá</b></div>
             <div class="exam-info-item">🛡️ Chống gian lận: <b>Giám sát chuyển tab & đa nhiệm</b></div>
         </div>
 
         <div class="scoring-rule-box">
-            <b>⚖️ Quy chế chấm điểm GDPT 2018 trong mỗi câu (tối đa 1.0 điểm/câu):</b>
+            <b>⚖️ Quy chế chấm điểm GDPT 2018 (Thang điểm 10.0 - Mỗi câu 2.5 điểm):</b>
             <div class="scoring-rule-table">
-                <div class="rule-cell">Đúng 1 ý: <b>+0.10 đ</b></div>
-                <div class="rule-cell">Đúng 2 ý: <b>+0.25 đ</b></div>
-                <div class="rule-cell">Đúng 3 ý: <b>+0.50 đ</b></div>
-                <div class="rule-cell">Đúng 4 ý: <b>+1.00 đ</b></div>
+                <div class="rule-cell">Đúng 1 ý: <b>+0.25 đ</b></div>
+                <div class="rule-cell">Đúng 2 ý: <b>+0.60 đ</b></div>
+                <div class="rule-cell">Đúng 3 ý: <b>+1.25 đ</b></div>
+                <div class="rule-cell">Đúng 4 ý: <b>+2.50 đ</b></div>
             </div>
         </div>
 
@@ -1054,19 +1058,19 @@
             <!-- STATS 5 Ô -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-val" id="txtCorrectStatements" style="color: #16a34a;">40/40</div>
+                    <div class="stat-val" id="txtCorrectStatements" style="color: #16a34a;">16/16</div>
                     <div class="stat-label">Số ý đúng</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-val" id="txtPerfectQuestions" style="color: #2563eb;">10/10</div>
-                    <div class="stat-label">Câu đạt tối đa (1đ)</div>
+                    <div class="stat-val" id="txtPerfectQuestions" style="color: #2563eb;">4/4</div>
+                    <div class="stat-label">Câu đạt tối đa (2.5đ)</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-val" id="txtResultExamCode" style="color: #7c3aed;">101</div>
                     <div class="stat-label">Mã đề thi</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-val" id="txtTimeSpent">12:30</div>
+                    <div class="stat-val" id="txtTimeSpent">14:15</div>
                     <div class="stat-label">Thời gian làm</div>
                 </div>
                 <div class="stat-card">
@@ -1103,15 +1107,15 @@
         <!-- PALETTE CÂU HỎI -->
         <div class="palette-card">
             <div class="palette-header">
-                <span>BẢNG ĐIỀU HƯỚNG 10 CÂU HỎI (ĐÚNG / SAI)</span>
-                <span id="txtProgress">Đã hoàn thành: 0/10 câu</span>
+                <span>BẢNG ĐIỀU HƯỚNG 4 CÂU HỎI (ĐÚNG / SAI)</span>
+                <span id="txtProgress">Đã hoàn thành: 0/4 câu</span>
             </div>
             <div class="palette-grid" id="paletteGrid">
                 <!-- Sẽ render bằng JS -->
             </div>
         </div>
 
-        <!-- DANH SÁCH 10 CÂU HỎI -->
+        <!-- DANH SÁCH 4 CÂU HỎI -->
         <div id="questionsContainer">
             <!-- Render bằng JavaScript -->
         </div>
@@ -1137,49 +1141,13 @@
 
 <script>
 /* ==========================================================
-   1. DỮ LIỆU ĐỀ THI: BÀI 5. PHƯƠNG TRÌNH LƯỢNG GIÁC (10 CÂU ĐÚNG / SAI)
-   Bám sát tài liệu dạy thêm Toán 11 và chuẩn Bộ GD&ĐT GDPT 2018
+   1. DỮ LIỆU ĐỀ THI: BÀI 5. PHƯƠNG TRÌNH LƯỢNG GIÁC (4 CÂU CHUẨN)
+   Phân hóa 4 mức độ: NB - TH - TH/VD - Vận dụng thực tế
+   Thang điểm 10.0 (Mỗi câu tối đa 2.5 điểm)
 ========================================================== */
 const examData = [
     {
         id: 1,
-        level: "NB",
-        levelText: "Nhận biết",
-        prompt: "Cho phương trình lượng giác $\\sin x = a \\quad (1)$.",
-        statements: [
-            {
-                key: "a",
-                text: "Nếu $a > 1$ thì phương trình $(1)$ vô nghiệm.",
-                answer: "T",
-                explanation: "Do $-1 \\le \\sin x \\le 1$ với mọi $x \\in \\mathbb{R}$, nên khi $a > 1$ hoặc $a < -1$, phương trình $\\sin x = a$ vô nghiệm."
-            },
-            {
-                key: "b",
-                text: "Nếu $a = 1$ thì phương trình $(1)$ có nghiệm $x = k2\\pi\\ (k \\in \\mathbb{Z})$.",
-                answer: "F",
-                explanation: "Khi $a = 1$, phương trình $\\sin x = 1 \\iff x = \\dfrac{\\pi}{2} + k2\\pi\\ (k \\in \\mathbb{Z})$, không phải $x = k2\\pi$."
-            },
-            {
-                key: "c",
-                text: "Nếu $-1 \\le a \\le 1$ thì phương trình $(1)$ có nghiệm $\\left[\\begin{aligned} x &= \\alpha + k2\\pi \\\\ x &= \\pi - \\alpha + k2\\pi \\end{aligned}\\right. (k \\in \\mathbb{Z})$ với $\\sin\\alpha = a$.",
-                answer: "T",
-                explanation: "Đây là công thức nghiệm cơ bản chuẩn mực của phương trình $\\sin x = a$ khi $|a| \\le 1$."
-            },
-            {
-                key: "d",
-                text: "Phương trình $(1)$ luôn có hai điểm biểu diễn nghiệm trên đường tròn lượng giác với mọi $a \\in \\mathbb{R}$.",
-                answer: "F",
-                explanation: "Nếu $|a| > 1$ thì không có điểm biểu diễn nào; nếu $a = 1$ hoặc $a = -1$ thì chỉ có duy nhất 1 điểm biểu diễn trên đường tròn lượng giác."
-            }
-        ],
-        solution: "<b>Lời giải chi tiết:</b><br>"
-                + "• <b>Ý (a) ĐÚNG:</b> Với $a > 1$, do miền giá trị hàm số sin là $[-1; 1]$ nên phương trình vô nghiệm.<br>"
-                + "• <b>Ý (b) SAI:</b> Khi $a = 1 \\implies \\sin x = 1 \\iff x = \\dfrac{\\pi}{2} + k2\\pi\\ (k \\in \\mathbb{Z})$.<br>"
-                + "• <b>Ý (c) ĐÚNG:</b> Theo công thức nghiệm tổng quát SGK Toán 11.<br>"
-                + "• <b>Ý (d) SAI:</b> Với $a = 1$ chỉ có 1 điểm $\\left(0; 1\\right)$; với $|a| > 1$ không có điểm biểu diễn nào."
-    },
-    {
-        id: 2,
         level: "NB",
         levelText: "Nhận biết",
         prompt: "Cho phương trình lượng giác $2\\sin x - \\sqrt{2} = 0$.",
@@ -1200,7 +1168,7 @@ const examData = [
                 key: "c",
                 text: "Phương trình có nghiệm âm lớn nhất là $-\\dfrac{\\pi}{4}$.",
                 answer: "F",
-                explanation: "Các nghiệm âm nhận được khi $k < 0$: Với $k = -1 \\implies x = \\dfrac{\\pi}{4} - 2\\pi = -\\dfrac{7\\pi}{4}$ hoặc $x = \\dfrac{3\\pi}{4} - 2\\pi = -\\dfrac{5\\pi}{4}$. Trong đó $-\\dfrac{5\\pi}{4} > -\\dfrac{7\\pi}{4}$ nên nghiệm âm lớn nhất là $-\\dfrac{5\\pi}{4}$."
+                explanation: "Các nghiệm âm nhận được khi $k < 0$: Với $k = -1 \\implies x = \\dfrac{\\pi}{4} - 2\\pi = -\\dfrac{7\\pi}{4}$ hoặc $x = \\dfrac{3\\pi}{4} - 2\\pi = -\\dfrac{5\\pi}{4}$. Do $-\\dfrac{5\\pi}{4} > -\\dfrac{7\\pi}{4}$ nên nghiệm âm lớn nhất là $-\\dfrac{5\\pi}{4}$."
             },
             {
                 key: "d",
@@ -1216,45 +1184,7 @@ const examData = [
                 + "• <b>Ý (d) SAI:</b> Trong khoảng $\\left(-\\dfrac{\\pi}{2}; \\dfrac{\\pi}{2}\\right)$ chỉ có đúng 1 nghiệm là $x = \\dfrac{\\pi}{4}$."
     },
     {
-        id: 3,
-        level: "TH",
-        levelText: "Thông hiểu",
-        prompt: "Cho phương trình lượng giác $\\sin 2x = -\\dfrac{1}{2}\\quad (*)$.",
-        statements: [
-            {
-                key: "a",
-                text: "Phương trình $(*)$ tương đương $\\sin 2x = \\sin\\dfrac{\\pi}{6}$.",
-                answer: "F",
-                explanation: "Ta có $-\\dfrac{1}{2} = \\sin\\left(-\\dfrac{\\pi}{6}\\right)$, trong khi $\\sin\\dfrac{\\pi}{6} = \\dfrac{1}{2}$. Do đó phương trình phải tương đương $\\sin 2x = \\sin\\left(-\\dfrac{\\pi}{6}\\right)$."
-            },
-            {
-                key: "b",
-                text: "Trong khoảng $(0; \\pi)$, phương trình có $3$ nghiệm.",
-                answer: "F",
-                explanation: "Phương trình có 2 họ nghiệm: $2x = -\\dfrac{\\pi}{6} + k2\\pi \\iff x = -\\dfrac{\\pi}{12} + k\\pi$ và $2x = \\pi - \\left(-\\dfrac{\\pi}{6}\\right) + k2\\pi = \\dfrac{7\\pi}{6} + k2\\pi \\iff x = \\dfrac{7\\pi}{12} + k\\pi$. Trong $(0; \\pi)$, chỉ có 2 nghiệm: $x_1 = \\dfrac{7\\pi}{12}$ (với $k=0$) và $x_2 = \\dfrac{11\\pi}{12}$ (với $k=1$)."
-            },
-            {
-                key: "c",
-                text: "Tổng các nghiệm của phương trình trong khoảng $(0; \\pi)$ bằng $\\dfrac{3\\pi}{2}$.",
-                answer: "T",
-                explanation: "Tổng hai nghiệm là: $\\dfrac{7\\pi}{12} + \\dfrac{11\\pi}{12} = \\dfrac{18\\pi}{12} = \\dfrac{3\\pi}{2}$."
-            },
-            {
-                key: "d",
-                text: "Trong khoảng $(0; \\pi)$, phương trình có nghiệm lớn nhất bằng $\\dfrac{11\\pi}{12}$.",
-                answer: "T",
-                explanation: "Hai nghiệm trong khoảng $(0; \\pi)$ là $\\dfrac{7\\pi}{12}$ và $\\dfrac{11\\pi}{12}$. Nghiệm lớn nhất rõ ràng là $\\dfrac{11\\pi}{12}$."
-            }
-        ],
-        solution: "<b>Lời giải chi tiết:</b><br>"
-                + "Ta có: $\\sin 2x = -\\dfrac{1}{2} = \\sin\\left(-\\dfrac{\\pi}{6}\\right) \\iff \\left[\\begin{aligned} 2x &= -\\dfrac{\\pi}{6} + k2\\pi \\iff x = -\\dfrac{\\pi}{12} + k\\pi \\\\ 2x &= \\dfrac{7\\pi}{6} + k2\\pi \\iff x = \\dfrac{7\\pi}{12} + k\\pi \\end{aligned}\\right. (k \\in \\mathbb{Z})$.<br>"
-                + "• <b>Ý (a) SAI:</b> Vì $-\\dfrac{1}{2} = \\sin\\left(-\\dfrac{\\pi}{6}\\right) \\ne \\sin\\dfrac{\\pi}{6}$.<br>"
-                + "• <b>Ý (b) SAI:</b> Xét $x \\in (0; \\pi)$ thì $x = \\dfrac{7\\pi}{12}$ và $x = \\dfrac{11\\pi}{12}$ (chỉ có 2 nghiệm).<br>"
-                + "• <b>Ý (c) ĐÚNG:</b> Tổng các nghiệm $= \\dfrac{7\\pi}{12} + \\dfrac{11\\pi}{12} = \\dfrac{3\\pi}{2}$.<br>"
-                + "• <b>Ý (d) ĐÚNG:</b> Nghiệm lớn nhất trong khoảng $(0; \\pi)$ là $\\dfrac{11\\pi}{12}$."
-    },
-    {
-        id: 4,
+        id: 2,
         level: "TH",
         levelText: "Thông hiểu",
         prompt: "Cho phương trình lượng giác $2\\cos x = \\sqrt{3}$.",
@@ -1292,7 +1222,7 @@ const examData = [
                 + "• <b>Ý (d) ĐÚNG:</b> Nghiệm lớn nhất trên đoạn đã cho là $\\dfrac{13\\pi}{6}$."
     },
     {
-        id: 5,
+        id: 3,
         level: "TH",
         levelText: "Thông hiểu",
         prompt: "Cho phương trình lượng giác $\\sin\\left(3x - \\dfrac{\\pi}{4}\\right) = \\sin\\left(x + \\dfrac{\\pi}{4}\\right)\\quad (*)$.",
@@ -1324,164 +1254,13 @@ const examData = [
         ],
         solution: "<b>Lời giải chi tiết:</b><br>"
                 + "Ta có $\\sin\\left(3x - \\dfrac{\\pi}{4}\\right) = \\sin\\left(x + \\dfrac{\\pi}{4}\\right) \\iff \\left[\\begin{aligned} 3x - \\dfrac{\\pi}{4} &= x + \\dfrac{\\pi}{4} + k2\\pi \\\\ 3x - \\dfrac{\\pi}{4} &= \\pi - \\left(x + \\dfrac{\\pi}{4}\\right) + k2\\pi \\end{aligned}\\right. \\iff \\left[\\begin{aligned} x &= \\dfrac{\\pi}{4} + k\\pi \\\\ x &= \\dfrac{\\pi}{4} + k\\dfrac{\\pi}{2} \\end{aligned}\\right. (k \\in \\mathbb{Z})$.<br>"
-                + "• <b>Ý (a) ĐÚNG:</b> Đúng theo giải tích trên.<br>"
+                + "• <b>Ý (a) ĐÚNG:</b> Đúng theo công thức biến đổi trên.<br>"
                 + "• <b>Ý (b) ĐÚNG:</b> Trong $(0; \\pi)$ có 2 nghiệm là $\\dfrac{\\pi}{4}$ và $\\dfrac{3\\pi}{4}$.<br>"
-                + "• <b>Ý (c) SAI:</b> Vì $(0; \\pi)$ toàn số dương, không có nghiệm âm nào.<br>"
+                + "• <b>Ý (c) SAI:</b> Vì khoảng $(0; \\pi)$ toàn số dương, không có nghiệm âm nào.<br>"
                 + "• <b>Ý (d) SAI:</b> Tổng các nghiệm trong khoảng $(0; \\pi)$ là $\\dfrac{\\pi}{4} + \\dfrac{3\\pi}{4} = \\pi$."
     },
     {
-        id: 6,
-        level: "TH",
-        levelText: "Thông hiểu",
-        prompt: "Cho phương trình lượng giác $\\sqrt{3}\\tan\\left(2x - \\dfrac{\\pi}{3}\\right) - 3 = 0$.",
-        statements: [
-            {
-                key: "a",
-                text: "Phương trình có nghiệm $x = \\dfrac{\\pi}{6} + k2\\pi\\ (k \\in \\mathbb{Z})$.",
-                answer: "F",
-                explanation: "$\\tan\\left(2x - \\dfrac{\\pi}{3}\\right) = \\sqrt{3} = \\tan\\dfrac{\\pi}{3} \\iff 2x - \\dfrac{\\pi}{3} = \\dfrac{\\pi}{3} + k\\pi \\iff 2x = \\dfrac{2\\pi}{3} + k\\pi \\iff x = \\dfrac{\\pi}{3} + k\\dfrac{\\pi}{2}\\ (k \\in \\mathbb{Z})$."
-            },
-            {
-                key: "b",
-                text: "Khi $x \\in \\left(-\\dfrac{\\pi}{4}; \\dfrac{2\\pi}{3}\\right)$ thì phương trình có ba nghiệm phân biệt.",
-                answer: "F",
-                explanation: "Ta có $-\\dfrac{\\pi}{4} < \\dfrac{\\pi}{3} + k\\dfrac{\\pi}{2} < \\dfrac{2\\pi}{3} \\iff -\\dfrac{7}{6} < k < \\dfrac{2}{3} \\implies k \\in \\{-1; 0\\}$. Vậy chỉ có 2 nghiệm phân biệt: $x = -\\dfrac{\\pi}{6}$ và $x = \\dfrac{\\pi}{3}$."
-            },
-            {
-                key: "c",
-                text: "Phương trình có nghiệm âm lớn nhất bằng $-\\dfrac{\\pi}{3}$.",
-                answer: "F",
-                explanation: "Họ nghiệm $x = \\dfrac{\\pi}{3} + k\\dfrac{\\pi}{2}$. Nghiệm âm lớn nhất ứng với $k = -1$ là $x = \\dfrac{\\pi}{3} - \\dfrac{\\pi}{2} = -\\dfrac{\\pi}{6}$. Do $-\\dfrac{\\pi}{6} > -\\dfrac{\\pi}{3}$ nên nghiệm âm lớn nhất là $-\\dfrac{\\pi}{6}$."
-            },
-            {
-                key: "d",
-                text: "Tổng các nghiệm của phương trình trong khoảng $\\left(-\\dfrac{\\pi}{4}; \\dfrac{2\\pi}{3}\\right)$ bằng $\\dfrac{\\pi}{6}$.",
-                answer: "T",
-                explanation: "Hai nghiệm trong khoảng này là $x_1 = -\\dfrac{\\pi}{6}$ và $x_2 = \\dfrac{\\pi}{3}$. Tổng $= -\\dfrac{\\pi}{6} + \\dfrac{\\pi}{3} = \\dfrac{\\pi}{6}$."
-            }
-        ],
-        solution: "<b>Lời giải chi tiết:</b><br>"
-                + "Phương trình $\\iff \\tan\\left(2x - \\dfrac{\\pi}{3}\\right) = \\sqrt{3} \\iff 2x - \\dfrac{\\pi}{3} = \\dfrac{\\pi}{3} + k\\pi \\iff x = \\dfrac{\\pi}{3} + k\\dfrac{\\pi}{2}\\ (k \\in \\mathbb{Z})$.<br>"
-                + "• <b>Ý (a) SAI:</b> Nghiệm là $x = \\dfrac{\\pi}{3} + k\\dfrac{\\pi}{2}$.<br>"
-                + "• <b>Ý (b) SAI:</b> Trong $\\left(-\\dfrac{\\pi}{4}; \\dfrac{2\\pi}{3}\\right)$ chỉ có 2 nghiệm là $-\\dfrac{\\pi}{6}$ và $\\dfrac{\\pi}{3}$.<br>"
-                + "• <b>Ý (c) SAI:</b> Nghiệm âm lớn nhất là $-\\dfrac{\\pi}{6}$.<br>"
-                + "• <b>Ý (d) ĐÚNG:</b> Tổng các nghiệm là $-\\dfrac{\\pi}{6} + \\dfrac{\\pi}{3} = \\dfrac{\\pi}{6}$."
-    },
-    {
-        id: 7,
-        level: "VD",
-        levelText: "Vận dụng",
-        prompt: "Cho hai đồ thị hàm số $y = \\sin\\left(x + \\dfrac{\\pi}{4}\\right)$ và $y = \\sin x$.",
-        statements: [
-            {
-                key: "a",
-                text: "Phương trình hoành độ giao điểm của hai đồ thị hàm số là $\\sin\\left(x + \\dfrac{\\pi}{4}\\right) = \\sin x$.",
-                answer: "T",
-                explanation: "Cho hai biểu thức tung độ bằng nhau ta được phương trình hoành độ giao điểm: $\\sin\\left(x + \\dfrac{\\pi}{4}\\right) = \\sin x$."
-            },
-            {
-                key: "b",
-                text: "Hoành độ giao điểm của hai đồ thị là $x = \\dfrac{3\\pi}{8} + k\\pi\\ (k \\in \\mathbb{Z})$.",
-                answer: "T",
-                explanation: "$\\sin\\left(x + \\dfrac{\\pi}{4}\\right) = \\sin x \\iff x + \\dfrac{\\pi}{4} = x + k2\\pi$ (vô nghiệm do $\\dfrac{\\pi}{4} \\ne k2\\pi$) hoặc $x + \\dfrac{\\pi}{4} = \\pi - x + k2\\pi \\iff 2x = \\dfrac{3\\pi}{4} + k2\\pi \\iff x = \\dfrac{3\\pi}{8} + k\\pi\\ (k \\in \\mathbb{Z})$."
-            },
-            {
-                key: "c",
-                text: "Khi $x \\in [0; 2\\pi]$, hai đồ thị hàm số cắt nhau tại ba điểm phân biệt.",
-                answer: "F",
-                explanation: "Với $0 \\le \\dfrac{3\\pi}{8} + k\\pi \\le 2\\pi \\iff -\\dfrac{3}{8} \\le k \\le \\dfrac{13}{8} \\implies k \\in \\{0; 1\\}$. Do đó chỉ có 2 hoành độ giao điểm là $x = \\dfrac{3\\pi}{8}$ và $x = \\dfrac{11\\pi}{8}$, nghĩa là cắt nhau tại đúng 2 điểm."
-            },
-            {
-                key: "d",
-                text: "Khi $x \\in [0; 2\\pi]$, toạ độ giao điểm của hai đồ thị hàm số là $\\left(\\dfrac{5\\pi}{8}; \\sin\\dfrac{5\\pi}{8}\\right)$ và $\\left(\\dfrac{7\\pi}{8}; \\sin\\dfrac{7\\pi}{8}\\right)$.",
-                answer: "F",
-                explanation: "Tọa độ 2 giao điểm đúng là $\\left(\\dfrac{3\\pi}{8}; \\sin\\dfrac{3\\pi}{8}\\right)$ và $\\left(\\dfrac{11\\pi}{8}; \\sin\\dfrac{11\\pi}{8}\\right)$."
-            }
-        ],
-        solution: "<b>Lời giải chi tiết:</b><br>"
-                + "• <b>Ý (a) ĐÚNG:</b> Phương trình hoành độ giao điểm: $\\sin\\left(x + \\dfrac{\\pi}{4}\\right) = \\sin x$.<br>"
-                + "• <b>Ý (b) ĐÚNG:</b> $\\iff x + \\dfrac{\\pi}{4} = \\pi - x + k2\\pi \\iff 2x = \\dfrac{3\\pi}{4} + k2\\pi \\iff x = \\dfrac{3\\pi}{8} + k\\pi\\ (k \\in \\mathbb{Z})$.<br>"
-                + "• <b>Ý (c) SAI:</b> Khi $x \\in [0; 2\\pi]$ có 2 nghiệm $x = \\dfrac{3\\pi}{8}$ và $x = \\dfrac{11\\pi}{8}$ nên chỉ có 2 giao điểm.<br>"
-                + "• <b>Ý (d) SAI:</b> Tọa độ đúng là $\\left(\\dfrac{3\\pi}{8}; \\sin\\dfrac{3\\pi}{8}\\right)$ và $\\left(\\dfrac{11\\pi}{8}; \\sin\\dfrac{11\\pi}{8}\\right)$."
-    },
-    {
-        id: 8,
-        level: "VD",
-        levelText: "Vận dụng",
-        prompt: "Cho phương trình lượng giác $\\sin\\left(x - \\dfrac{\\pi}{12}\\right) + \\dfrac{\\sqrt{3}}{2} = 0$.",
-        statements: [
-            {
-                key: "a",
-                text: "Phương trình tương đương với $\\sin\\left(x - \\dfrac{\\pi}{12}\\right) = \\sin\\dfrac{\\pi}{3}$.",
-                answer: "F",
-                explanation: "Chuyển vế ta có $\\sin\\left(x - \\dfrac{\\pi}{12}\\right) = -\\dfrac{\\sqrt{3}}{2} = \\sin\\left(-\\dfrac{\\pi}{3}\\right)$, không phải $\\sin\\dfrac{\\pi}{3}$."
-            },
-            {
-                key: "b",
-                text: "Phương trình có nghiệm là $x = \\dfrac{\\pi}{4} + k2\\pi$ và $x = \\dfrac{7\\pi}{12} + k2\\pi\\ (k \\in \\mathbb{Z})$.",
-                answer: "F",
-                explanation: "Nghiệm đúng là: $x - \\dfrac{\\pi}{12} = -\\dfrac{\\pi}{3} + k2\\pi \\iff x = -\\dfrac{\\pi}{4} + k2\\pi$ và $x - \\dfrac{\\pi}{12} = \\pi - \\left(-\\dfrac{\\pi}{3}\\right) + k2\\pi = \\dfrac{4\\pi}{3} + k2\\pi \\iff x = \\dfrac{17\\pi}{12} + k2\\pi$."
-            },
-            {
-                key: "c",
-                text: "Phương trình có nghiệm âm lớn nhất bằng $-\\dfrac{\\pi}{4}$.",
-                answer: "T",
-                explanation: "Họ $x = -\\dfrac{\\pi}{4} + k2\\pi$ có nghiệm âm lớn nhất là $-\\dfrac{\\pi}{4}$ (với $k=0$). Họ $x = \\dfrac{17\\pi}{12} + k2\\pi$ có nghiệm âm lớn nhất với $k=-1$ là $\\dfrac{17\\pi}{12} - 2\\pi = -\\dfrac{7\\pi}{12}$. Do $-\\dfrac{\\pi}{4} > -\\dfrac{7\\pi}{12}$ nên nghiệm âm lớn nhất là $-\\dfrac{\\pi}{4}$."
-            },
-            {
-                key: "d",
-                text: "Số nghiệm của phương trình trong khoảng $(-\\pi; \\pi)$ là hai nghiệm.",
-                answer: "T",
-                explanation: "Trong khoảng $(-\\pi; \\pi)$, có 2 nghiệm thỏa mãn là $x = -\\dfrac{\\pi}{4}$ và $x = -\\dfrac{7\\pi}{12}$."
-            }
-        ],
-        solution: "<b>Lời giải chi tiết:</b><br>"
-                + "Ta có $\\sin\\left(x - \\dfrac{\\pi}{12}\\right) = -\\dfrac{\\sqrt{3}}{2} = \\sin\\left(-\\dfrac{\\pi}{3}\\right) \\iff \\left[\\begin{aligned} x &= -\\dfrac{\\pi}{4} + k2\\pi \\\\ x &= \\dfrac{17\\pi}{12} + k2\\pi \\end{aligned}\\right. (k \\in \\mathbb{Z})$.<br>"
-                + "• <b>Ý (a) SAI:</b> Vì $-\\dfrac{\\sqrt{3}}{2} = \\sin\\left(-\\dfrac{\\pi}{3}\\right) \\ne \\sin\\dfrac{\\pi}{3}$.<br>"
-                + "• <b>Ý (b) SAI:</b> Nghiệm đúng là $x = -\\dfrac{\\pi}{4} + k2\\pi$ và $x = \\dfrac{17\\pi}{12} + k2\\pi$.<br>"
-                + "• <b>Ý (c) ĐÚNG:</b> Nghiệm âm lớn nhất là $-\\dfrac{\\pi}{4}$.<br>"
-                + "• <b>Ý (d) ĐÚNG:</b> Trong $(-\\pi; \\pi)$ có 2 nghiệm: $-\\dfrac{\\pi}{4}$ và $-\\dfrac{7\\pi}{12}$."
-    },
-    {
-        id: 9,
-        level: "VD",
-        levelText: "Vận dụng",
-        prompt: "Cho phương trình $(2\\cos x - 1)(2\\sin x - m) = 0 \\quad (1)$.",
-        statements: [
-            {
-                key: "a",
-                text: "$x = \\dfrac{7\\pi}{3}$ là một nghiệm của phương trình $(1)$.",
-                answer: "T",
-                explanation: "Thay $x = \\dfrac{7\\pi}{3}$ vào phương trình: $\\cos\\dfrac{7\\pi}{3} = \\cos\\left(2\\pi + \\dfrac{\\pi}{3}\\right) = \\cos\\dfrac{\\pi}{3} = \\dfrac{1}{2} \\implies 2\\cos x - 1 = 0$. Do đó $x = \\dfrac{7\\pi}{3}$ là một nghiệm của $(1)$."
-            },
-            {
-                key: "b",
-                text: "Khi $m = 2$ thì phương trình $(1)$ có nghiệm $\\left[\\begin{aligned} x &= \\dfrac{\\pi}{3} + k2\\pi \\\\ x &= -\\dfrac{\\pi}{3} + k2\\pi \\\\ x &= \\dfrac{\\pi}{2} + l2\\pi \\end{aligned}\\right. (k, l \\in \\mathbb{Z})$.",
-                answer: "F",
-                explanation: "Khi $m = 2$, phương trình $2\\sin x - 2 = 0 \\iff \\sin x = 1 \\iff x = \\dfrac{\\pi}{2} + k2\\pi$. Kết hợp với nghiệm của $2\\cos x - 1 = 0 \\iff x = \\pm\\dfrac{\\pi}{3} + k2\\pi$. Nhưng ở đây đề gốc và cấu trúc chuẩn cho thấy các nghiệm trùng hoặc kiểm tra điều kiện biểu diễn."
-            },
-            {
-                key: "c",
-                text: "Khi $m = 1$, tập nghiệm của phương trình $(1)$ có tất cả $4$ điểm biểu diễn phân biệt trên đường tròn lượng giác.",
-                answer: "T",
-                explanation: "Khi $m = 1$, ta có $\\cos x = \\dfrac{1}{2} \\iff x = \\pm\\dfrac{\\pi}{3} + k2\\pi$ (2 điểm) và $\\sin x = \\dfrac{1}{2} \\iff x = \\dfrac{\\pi}{6} + k2\\pi$ hoặc $x = \\dfrac{5\\pi}{6} + k2\\pi$ (2 điểm). Bốn điểm này hoàn toàn khác nhau, tạo thành đúng 4 điểm trên đường tròn lượng giác."
-            },
-            {
-                key: "d",
-                text: "Chỉ tìm được duy nhất một giá trị của $m$ để phương trình $(1)$ có đúng hai nghiệm thuộc nửa khoảng $\\left(-\\dfrac{3\\pi}{4}; \\dfrac{\\pi}{4}\\right]$.",
-                answer: "F",
-                explanation: "Xét $x \\in \\left(-\\dfrac{3\\pi}{4}; \\dfrac{\\pi}{4}\\right]$, phương trình $2\\cos x - 1 = 0$ không có nghiệm (nghiệm $\\pm\\dfrac{\\pi}{3}$ đều nằm ngoài nửa khoảng này). Do đó $(1)$ có đúng 2 nghiệm khi và chỉ khi phương trình $\\sin x = \\dfrac{m}{2}$ có đúng 2 nghiệm thuộc $\\left(-\\dfrac{3\\pi}{4}; \\dfrac{\\pi}{4}\\right]$, điều này xảy ra với một khoảng giá trị của $m$, không phải duy nhất một giá trị."
-            }
-        ],
-        solution: "<b>Lời giải chi tiết:</b><br>"
-                + "Ta có: $(2\\cos x - 1)(2\\sin x - m) = 0 \\iff \\left[\\begin{aligned} \\cos x &= \\dfrac{1}{2} \\iff x = \\pm\\dfrac{\\pi}{3} + k2\\pi \\\\ \\sin x &= \\dfrac{m}{2} \\end{aligned}\\right.$<br>"
-                + "• <b>Ý (a) ĐÚNG:</b> $\\cos\\dfrac{7\\pi}{3} = \\cos\\dfrac{\\pi}{3} = \\dfrac{1}{2} \\implies x = \\dfrac{7\\pi}{3}$ là nghiệm.<br>"
-                + "• <b>Ý (b) SAI:</b> Khi $m = 2$, $\\sin x = 1$ cho nghiệm $x = \\dfrac{\\pi}{2} + k2\\pi$.<br>"
-                + "• <b>Ý (c) ĐÚNG:</b> Khi $m = 1$, các nghiệm $\\pm\\dfrac{\\pi}{3}$ và $\\dfrac{\\pi}{6}, \\dfrac{5\\pi}{6}$ tạo nên đúng 4 điểm phân biệt trên đường tròn lượng giác.<br>"
-                + "• <b>Ý (d) SAI:</b> Không phải duy nhất một giá trị của $m$ mà là một tập hợp các giá trị của $m$."
-    },
-    {
-        id: 10,
+        id: 4,
         level: "VD",
         levelText: "Vận dụng",
         prompt: "Hằng ngày, mực nước của một con kênh lên xuống theo thủy triều. Độ sâu $h$ (tính bằng mét) của mực nước trong kênh tại thời điểm $t$ giờ ($0 \\le t \\le 24$) được cho bởi công thức: $$h = 3\\cos\\left(\\dfrac{\\pi t}{6} + \\dfrac{\\pi}{3}\\right) + 12$$",
@@ -1532,7 +1311,7 @@ let currentExamCode = "101";
 let isExamActive = false;
 let isSubmitted = false;
 let examTimer = null;
-const TOTAL_EXAM_SECONDS = 20 * 60; // 20 phút
+const TOTAL_EXAM_SECONDS = 20 * 60; // 20 phút = 1200 giây
 let remainingSeconds = TOTAL_EXAM_SECONDS;
 
 let tabSwitchCount = 0;
@@ -1603,7 +1382,7 @@ function renderPalette() {
             btn.classList.add("partial");
         }
 
-        btn.innerHTML = `<span>${idx + 1}</span><span class="palette-subcount">${answeredCount}/4</span>`;
+        btn.innerHTML = `<span>CÂU ${idx + 1}</span><span class="palette-subcount">${answeredCount}/4 ý</span>`;
         grid.appendChild(btn);
     });
 
@@ -1648,7 +1427,7 @@ function renderQuestions() {
                     <span class="q-number-badge">CÂU ${idx + 1}</span>
                     <span class="q-level-tag ${levelClass}">${q.levelText}</span>
                 </div>
-                <span class="q-score-badge">Tối đa 1.0 điểm</span>
+                <span class="q-score-badge">Tối đa 2.5 điểm</span>
             </div>
             <div class="q-text">${q.prompt}</div>
 
@@ -1763,9 +1542,8 @@ function selectChoice(qId, stmtKey, choiceVal) {
             pBtn.classList.add("partial");
         }
 
-        // Tìm index câu
         const idx = currentExamList.findIndex(x => x.id === qId);
-        pBtn.innerHTML = `<span>${idx + 1}</span><span class="palette-subcount">${answeredCount}/4</span>`;
+        pBtn.innerHTML = `<span>CÂU ${idx + 1}</span><span class="palette-subcount">${answeredCount}/4 ý</span>`;
     }
 
     updateProgressText();
@@ -1853,7 +1631,7 @@ function updateCheatUI(count) {
 
 function triggerUserLeave(reason) {
     if (!isExamActive || isSubmitted) return;
-    if (isTabOut) return; // Nếu đang ở ngoài, không cộng dồn
+    if (isTabOut) return;
 
     isTabOut = true;
     tabSwitchCount++;
@@ -1872,7 +1650,6 @@ function triggerUserReturn() {
 }
 
 function initAntiCheatListeners() {
-    // Giám sát chuyển tab qua Visibility API
     document.addEventListener("visibilitychange", () => {
         if (document.hidden) {
             leaveDebounceTimer = setTimeout(() => {
@@ -1884,7 +1661,6 @@ function initAntiCheatListeners() {
         }
     });
 
-    // Giám sát mất focus cửa sổ (Alt+Tab, chuyển app)
     window.addEventListener("blur", () => {
         leaveDebounceTimer = setTimeout(() => {
             triggerUserLeave("Rời khỏi cửa sổ thi");
@@ -1896,7 +1672,6 @@ function initAntiCheatListeners() {
         triggerUserReturn();
     });
 
-    // Khóa chuột phải & phím tắt DevTools
     document.addEventListener("contextmenu", (e) => e.preventDefault());
 
     document.addEventListener("keydown", (e) => {
@@ -2005,14 +1780,12 @@ function handleRetryExam() {
     isTabOut = false;
     updateCheatUI(0);
 
-    // Ẩn màn hình kết quả
     document.getElementById("resultScreen").style.display = "none";
     document.getElementById("submitSection").style.display = "block";
 
     remainingSeconds = TOTAL_EXAM_SECONDS;
     document.getElementById("txtTimer").innerText = formatTime(remainingSeconds);
 
-    // Đảo lại toàn diện câu hỏi
     prepareExamQuestions(true);
     renderPalette();
     renderQuestions();
@@ -2022,13 +1795,13 @@ function handleRetryExam() {
 }
 
 /* ==========================================================
-   9. CHẤM ĐIỂM THEO CHUẨN GDPT 2018 & HIỂN THỊ KẾT QUẢ
+   9. CHẤM ĐIỂM THEO CHUẨN GDPT 2018 (4 CÂU = 10 ĐIỂM)
 ========================================================== */
 function calculateGDPTQuestionScore(correctCount) {
-    if (correctCount === 4) return 1.0;
-    if (correctCount === 3) return 0.50;
-    if (correctCount === 2) return 0.25;
-    if (correctCount === 1) return 0.10;
+    if (correctCount === 4) return 2.50;
+    if (correctCount === 3) return 1.25;
+    if (correctCount === 2) return 0.60;
+    if (correctCount === 1) return 0.25;
     return 0.0;
 }
 
@@ -2118,7 +1891,7 @@ function handleSubmitExam(isAuto = false) {
             summaryEl.style.display = "flex";
             if (questionCorrectCount === 4) {
                 summaryEl.className = "q-graded-summary perfect";
-                summaryEl.innerHTML = `<span>🎉 ĐÚNG CẢ 4 Ý</span><span>+1.00 điểm</span>`;
+                summaryEl.innerHTML = `<span>🎉 ĐÚNG CẢ 4 Ý</span><span>+2.50 điểm</span>`;
             } else if (questionCorrectCount > 0) {
                 summaryEl.className = "q-graded-summary partial";
                 summaryEl.innerHTML = `<span>👍 Đúng ${questionCorrectCount}/4 ý</span><span>+${qScore.toFixed(2)} điểm</span>`;
@@ -2146,7 +1919,6 @@ function handleSubmitExam(isAuto = false) {
         }
     });
 
-    // Làm tròn tổng điểm
     totalScore = Math.min(10.0, Math.round(totalScore * 100) / 100);
 
     // Hiển thị Màn hình Kết quả
@@ -2167,8 +1939,8 @@ function handleSubmitExam(isAuto = false) {
         commentEl.innerText = "Cần cố gắng hơn! Em hãy ôn lại lý thuyết phương trình lượng giác cơ bản và làm lại bài thi.";
     }
 
-    document.getElementById("txtCorrectStatements").innerText = `${totalCorrectStatements}/40`;
-    document.getElementById("txtPerfectQuestions").innerText = `${perfectQuestionCount}/10`;
+    document.getElementById("txtCorrectStatements").innerText = `${totalCorrectStatements}/16`;
+    document.getElementById("txtPerfectQuestions").innerText = `${perfectQuestionCount}/4`;
     document.getElementById("txtResultExamCode").innerText = currentExamCode;
 
     const timeSpentSec = TOTAL_EXAM_SECONDS - remainingSeconds;
@@ -2191,14 +1963,12 @@ function handleSubmitExam(isAuto = false) {
         auditPill.innerText = "🔴 Vi phạm nhiều lần";
     }
 
-    // Ẩn nút nộp bài, hiện kết quả
     document.getElementById("submitSection").style.display = "none";
     document.getElementById("resultScreen").style.display = "block";
 
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Khởi chạy hệ thống chống gian lận ngay khi load trang
 window.addEventListener("DOMContentLoaded", () => {
     initAntiCheatListeners();
 });

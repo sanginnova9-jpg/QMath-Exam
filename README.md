@@ -29,14 +29,14 @@ Hệ thống khảo sát trắc nghiệm trực tuyến chuẩn GDPT 2018 (Kết
 
 ## 🔗 Liên Kết Truy Cập Trực Tuyến (GitHub Pages)
 
-- **Trang chủ (Bài 5: Trắc nghiệm Đúng - Sai 10 câu)**:  
+- **Trang chủ (Bài 5: Trắc nghiệm Đúng - Sai 4 câu / 20 phút)**:  
   👉 [https://sanginnova9-jpg.github.io/QMath-Exam/](https://sanginnova9-jpg.github.io/QMath-Exam/)
 
 - **Bài 5: Đề Đúng - Sai (Trực tiếp)**:  
   👉 [https://sanginnova9-jpg.github.io/QMath-Exam/DE_KIEM_TRA_15P_BAI_5_DUNG_SAI.html](https://sanginnova9-jpg.github.io/QMath-Exam/DE_KIEM_TRA_15P_BAI_5_DUNG_SAI.html)
 
-- **Bài 5: Đề Trắc nghiệm 4 lựa chọn (A-B-C-D 10 câu)**:  
+- **Bài 5: Đề Trắc nghiệm 4 lựa chọn (A-B-C-D 10 câu / 15 phút)**:  
   👉 [https://sanginnova9-jpg.github.io/QMath-Exam/DE_KIEM_TRA_15P_BAI_5_PHUONG_TRINH_LUONG_GIAC.html](https://sanginnova9-jpg.github.io/QMath-Exam/DE_KIEM_TRA_15P_BAI_5_PHUONG_TRINH_LUONG_GIAC.html)
 
-- **Bài 4: Hàm số lượng giác (A-B-C-D 10 câu)**:  
+- **Bài 4: Hàm số lượng giác (A-B-C-D 10 câu / 15 phút)**:  
   👉 [https://sanginnova9-jpg.github.io/QMath-Exam/DE_KIEM_TRA_15P_BAI_4_HAM_SO_LUONG_GIAC.html](https://sanginnova9-jpg.github.io/QMath-Exam/DE_KIEM_TRA_15P_BAI_4_HAM_SO_LUONG_GIAC.html)
