@@ -1276,7 +1276,7 @@
 
         <div>
             <button class="btn-teacher-top" onclick="openTeacherDashboard()">
-                <span>👨‍🏫 Bảng tra cứu điểm số dành cho Giáo viên</span>
+                <span>🔒 Bảng tra cứu điểm số (Dành riêng cho Giáo viên)</span>
             </button>
         </div>
     </div>
@@ -1398,6 +1398,21 @@
         Hệ thống Kiểm tra Trực tuyến QMath • ThS. Nguyễn Văn Sang - Khoa Cơ bản - Trường Cao đẳng Nghề số 1 - BQP
     </div>
 
+</div>
+
+<!-- MODAL XÁC THỰC MÃ PIN BẢO MẬT GIÁO VIÊN -->
+<div id="pinModal" class="modal-overlay" style="display: none; align-items: center; justify-content: center; z-index: 10001;">
+    <div style="background: white; border-radius: 20px; padding: 26px 24px; max-width: 360px; width: 92%; box-shadow: 0 25px 50px rgba(0,0,0,0.35); text-align: center; border: 1px solid #e2e8f0; animation: popIn 0.3s ease;">
+        <div style="font-size: 36px; margin-bottom: 8px;">🔐</div>
+        <h3 style="margin: 0 0 6px 0; color: #0f172a; font-size: 18px; font-weight: 800;">Xác thực Giáo viên</h3>
+        <p style="color: #64748b; font-size: 13px; margin: 0 0 16px 0;">Vui lòng nhập mã PIN bảo mật để mở Bảng tra cứu điểm số học sinh.</p>
+        <input type="password" id="inputTeacherPin" placeholder="••••" maxlength="16" style="width: 100%; padding: 12px 14px; border: 2px solid #cbd5e1; border-radius: 12px; font-size: 20px; text-align: center; letter-spacing: 6px; outline: none; margin-bottom: 6px; box-sizing: border-box; transition: border 0.2s;" onkeydown="if(event.key==='Enter') verifyTeacherPin();" />
+        <div id="pinErrorMsg" style="color: #ef4444; font-size: 12px; font-weight: 700; min-height: 20px; margin-bottom: 12px; display: none;">⚠️ Mã PIN bảo mật không chính xác!</div>
+        <div style="display: flex; gap: 10px;">
+            <button onclick="closePinModal()" style="flex: 1; padding: 10px; border-radius: 12px; border: 1px solid #cbd5e1; background: #f8fafc; color: #475569; font-weight: 700; font-size: 13px; cursor: pointer;">Đóng</button>
+            <button onclick="verifyTeacherPin()" style="flex: 1; padding: 10px; border-radius: 12px; border: none; background: #059669; color: white; font-weight: 700; font-size: 13px; cursor: pointer; box-shadow: 0 4px 12px rgba(5,150,105,0.3);">Mở bảng điểm</button>
+        </div>
+    </div>
 </div>
 
 <!-- 6. MODAL BẢNG ĐIỀU KHIỂN GIÁO VIÊN (TEACHER DASHBOARD) -->
@@ -2407,11 +2422,22 @@ document.addEventListener("copy", (e) => { e.preventDefault(); });
 document.addEventListener("cut", (e) => { e.preventDefault(); });
 document.addEventListener("paste", (e) => { e.preventDefault(); });
 
-// 6. QUẢN TRỊ VIÊN / GIÁO VIÊN: TRA CỨU BẢNG ĐIỂM TỪ CLOUD FIRESTORE
+// 6. QUẢN TRỊ VIÊN / GIÁO VIÊN: TRA CỨU BẢNG ĐIỂM TỪ CLOUD FIRESTORE (BẢO MẬT PIN)
 function openTeacherDashboard() {
     const isVerified = sessionStorage.getItem("QMATH_TEACHER_LOGGED") === "true";
     if (!isVerified) {
-        const pin = prompt("🔐 Nhập mã PIN truy cập Bảng điểm Giáo viên (Mặc định: 2026):");
+        const pinModal = document.getElementById("pinModal");
+        if (pinModal) {
+            const input = document.getElementById("inputTeacherPin");
+            const err = document.getElementById("pinErrorMsg");
+            if (input) input.value = "";
+            if (err) err.style.display = "none";
+            pinModal.style.display = "flex";
+            setTimeout(() => { if (input) input.focus(); }, 100);
+            return;
+        }
+        // Fallback an toan khong lo ma PIN
+        const pin = prompt("🔐 Vui lòng nhập mã PIN bảo mật dành cho Giáo viên:");
         if (pin === "2026" || pin === "Sang2026") {
             sessionStorage.setItem("QMATH_TEACHER_LOGGED", "true");
         } else {
@@ -2422,8 +2448,33 @@ function openTeacherDashboard() {
 
     const modal = document.getElementById("teacherModal");
     if (modal) modal.style.display = "flex";
-
     loadSubmissionsFromFirestore();
+}
+
+function closePinModal() {
+    const pinModal = document.getElementById("pinModal");
+    if (pinModal) pinModal.style.display = "none";
+}
+
+function verifyTeacherPin() {
+    const input = document.getElementById("inputTeacherPin");
+    const err = document.getElementById("pinErrorMsg");
+    if (!input) return;
+    const val = input.value.trim();
+    if (val === "2026" || val === "Sang2026") {
+        sessionStorage.setItem("QMATH_TEACHER_LOGGED", "true");
+        closePinModal();
+        const modal = document.getElementById("teacherModal");
+        if (modal) modal.style.display = "flex";
+        loadSubmissionsFromFirestore();
+    } else {
+        if (err) {
+            err.style.display = "block";
+            err.textContent = "⚠️ Mã PIN bảo mật không chính xác, vui lòng thử lại!";
+        }
+        input.value = "";
+        input.focus();
+    }
 }
 
 function closeTeacherDashboard() {
