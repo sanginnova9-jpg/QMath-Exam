@@ -15,14 +15,10 @@
 
 ---
 
-## 🌟 CÁC TÍNH NĂNG MỚI ĐƯỢC NÂNG CẤP (CLOUD DATABASE & DASHBOARD)
-1. ☁️ **Lưu trữ CSDL Cloud Firebase thời gian thực**:
-   - Tự động đồng bộ toàn bộ kết quả bài thi của học sinh vào Firestore collection `exam_submissions` ngay khi bấm nộp bài.
-   - Bản ghi bao gồm: Họ tên, Lớp, Mã đề thi, Điểm số, Số câu đúng/sai, Thời gian làm bài, Số lần vi phạm rời tab, Lần thi và Dấu thời gian (Timestamp).
-   - Cơ chế tự động sao lưu dự phòng Offline trên LocalStorage khi mất mạng.
-2. 👨‍🏫 **Bảng điều khiển Báo cáo & Tra cứu điểm số dành cho Giáo viên (Teacher Dashboard)**:
-   - Tra cứu danh sách toàn bộ học sinh đã làm bài với thống kê tổng hợp: Tổng số bài nộp, Điểm trung bình cả lớp, Điểm cao nhất, Tỉ lệ đạt ($\ge 5.0$).
-   - Thanh tìm kiếm và lọc tức thì theo tên học sinh, lớp hoặc mã đề.
-   - Nút **📥 Xuất Excel (CSV UTF-8)**: Tải bảng điểm về máy tính chỉ bằng 1 chạm, chuẩn font tiếng Việt cho Microsoft Excel.
-3. 🎲 **Thuật toán đảo đề 3-Pass Fisher-Yates**: Đảo ngẫu nhiên 100% câu hỏi và 4 phương án A-B-C-D, tự động sinh mã đề mới và đồng bộ lời giải chi tiết.
-4. 🛡️ **Giám sát chống gian lận (Anti-Cheat)**: 1 chu trình rời tab/màn hình tính đúng 1 lần vi phạm, cảnh báo âm thanh Beep, khóa chuột phải và phím tắt DevTools.
+## 📱 CÁC TỐI ƯU HÓA ĐẶC BIỆT DÀNH CHO THIẾT BỊ DI ĐỘNG (MOBILE-FIRST UX)
+1. 📱 **Chuẩn hóa khung hình & Chống Auto-zoom**: Cấu hình `viewport-fit=cover` và `font-size: 16px` cho các ô nhập liệu giúp ngăn chặn triệt để hiện tượng phóng to tự động gây lệch bố cục trên iPhone / Safari.
+2. 👆 **Vùng chạm lớn (Touch Target $\ge 48$px)**: Các phương án lựa chọn A-B-C-D được thiết kế dạng thẻ nổi rộng rãi, có phản hồi thị giác `:active` và phản hồi rung xúc giác nhẹ (Haptic Vibration) khi chạm trên điện thoại.
+3. 📐 **Bảng câu hỏi Question Palette 6x2**: Xếp thành 2 hàng 6 cột vừa vặn với tầm với ngón tay cái, bấm chuyển câu mượt mà không cần cuộn tìm kiếm.
+4. 🔢 **Cuộn công thức KaTeX không vỡ khung**: Tích hợp thanh cuộn ngang cảm ứng êm ái cho các phân thức hoặc biểu thức toán học dài, giữ vững độ sắc nét và tỷ lệ trang.
+5. 📊 **Thanh điều hướng dính (Sticky Bar) 2 tầng**: Tự động thu gọn thông minh để hiển thị đầy đủ Họ tên, Mã đề, Đồng hồ đếm ngược và Tiến độ mà không che khuất nội dung đề thi.
+6. ☁️ **Lưu trữ CSDL Cloud Firebase & Teacher Dashboard**: Tự động đồng bộ bài thi vào Firestore và cung cấp Bảng điểm Giáo viên xuất file Excel chuẩn UTF-8.
