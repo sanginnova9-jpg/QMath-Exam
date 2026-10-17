@@ -1,6 +1,7 @@
 # HỆ THỐNG ĐỀ KIỂM TRA TRẮC NGHIỆM TRỰC TUYẾN QMATH-EXAM
 > **Giáo viên**: ThS. Nguyễn Văn Sang - Khoa Cơ bản - Trường Cao đẳng Nghề số 1 - BQP.  
-> **Nền tảng xuất bản**: GitHub Pages: [https://sanginnova9-jpg.github.io/QMath-Exam/](https://sanginnova9-jpg.github.io/QMath-Exam/)
+> **Nền tảng xuất bản**: GitHub Pages: [https://sanginnova9-jpg.github.io/QMath-Exam/](https://sanginnova9-jpg.github.io/QMath-Exam/)  
+> **Cơ sở dữ liệu đám mây (Cloud Database)**: Google Cloud Firestore (`qmath-online`).
 
 ---
 
@@ -14,15 +15,14 @@
 
 ---
 
-## 🌟 CÁC TÍNH NĂNG NỔI BẬT ĐƯỢC TÍCH HỢP
-1. ✅ **Mã đề ngẫu nhiên 3 chữ số** (`101` - `999`) tự động sinh cho từng phiên làm bài.
-2. ✅ **Thuật toán đảo đề 3-Pass Fisher-Yates**: Đảo ngẫu nhiên 100% câu hỏi và 4 phương án A, B, C, D ngay từ lần đầu cũng như khi bấm *Làm lại bài*.
-3. ✅ **Đồng bộ lời giải chi tiết**: Tự động liên kết đáp án đúng và cập nhật kết luận trong phần giải thích từng bước.
-4. ✅ **Giám sát chống gian lận (Anti-Cheat Engine)**:
-   - Cơ chế 1 chu trình rời tab/màn hình tính đúng 1 lần vi phạm.
-   - Âm thanh cảnh báo Web Audio Beep thời gian thực.
-   - Vô hiệu hóa chuột phải, bôi đen copy/paste và phím tắt DevTools.
-5. ✅ **Bộ đếm thời gian thông minh**: Đổi màu cảnh báo ở 5 phút và nhấp nháy đỏ ở 1 phút cuối, tự động thu bài khi hết giờ.
-6. ✅ **Bảng điều hướng Question Palette**: Cuộn êm đến câu hỏi, đổi màu xanh khi đã chọn đáp án.
-7. ✅ **Vòng tròn điểm số 3D Gradient & Thống kê đa chiều**: Điểm số thang 10, số câu đúng/sai, thời gian làm bài, số lần rời tab, số lần làm lại bài.
-8. ✅ **Bảo toàn hình vẽ chuẩn vector**: 100% đồ thị và bảng biến thiên trích xuất sắc nét từ tài liệu gốc.
+## 🌟 CÁC TÍNH NĂNG MỚI ĐƯỢC NÂNG CẤP (CLOUD DATABASE & DASHBOARD)
+1. ☁️ **Lưu trữ CSDL Cloud Firebase thời gian thực**:
+   - Tự động đồng bộ toàn bộ kết quả bài thi của học sinh vào Firestore collection `exam_submissions` ngay khi bấm nộp bài.
+   - Bản ghi bao gồm: Họ tên, Lớp, Mã đề thi, Điểm số, Số câu đúng/sai, Thời gian làm bài, Số lần vi phạm rời tab, Lần thi và Dấu thời gian (Timestamp).
+   - Cơ chế tự động sao lưu dự phòng Offline trên LocalStorage khi mất mạng.
+2. 👨‍🏫 **Bảng điều khiển Báo cáo & Tra cứu điểm số dành cho Giáo viên (Teacher Dashboard)**:
+   - Tra cứu danh sách toàn bộ học sinh đã làm bài với thống kê tổng hợp: Tổng số bài nộp, Điểm trung bình cả lớp, Điểm cao nhất, Tỉ lệ đạt ($\ge 5.0$).
+   - Thanh tìm kiếm và lọc tức thì theo tên học sinh, lớp hoặc mã đề.
+   - Nút **📥 Xuất Excel (CSV UTF-8)**: Tải bảng điểm về máy tính chỉ bằng 1 chạm, chuẩn font tiếng Việt cho Microsoft Excel.
+3. 🎲 **Thuật toán đảo đề 3-Pass Fisher-Yates**: Đảo ngẫu nhiên 100% câu hỏi và 4 phương án A-B-C-D, tự động sinh mã đề mới và đồng bộ lời giải chi tiết.
+4. 🛡️ **Giám sát chống gian lận (Anti-Cheat)**: 1 chu trình rời tab/màn hình tính đúng 1 lần vi phạm, cảnh báo âm thanh Beep, khóa chuột phải và phím tắt DevTools.
