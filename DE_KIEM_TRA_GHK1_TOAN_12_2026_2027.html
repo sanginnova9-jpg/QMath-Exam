@@ -1243,8 +1243,8 @@
                 <div class="alert-content">
                     <div class="alert-title">QUY ĐỊNH BẮT BUỘC DÀNH CHO THÍ SINH</div>
                     <div class="alert-text">
-                        Thí sinh bắt buộc phải <b>chọn đúng Lớp học</b> và <b>nhập chính xác đầy đủ Họ và tên (có dấu)</b>.<br>
-                        Mọi trường hợp chọn sai lớp hoặc nhập sai tên <b>SẼ KHÔNG ĐƯỢC CÔNG NHẬN ĐIỂM SỐ</b> và bị hủy bài thi!
+                        • Thí sinh bắt buộc phải <b>chọn đúng Lớp học</b> và <b>nhập chính xác đầy đủ Họ và tên (có dấu)</b>. Chọn sai lớp hoặc nhập sai tên <b>SẼ KHÔNG ĐƯỢC TÍNH ĐIỂM</b>!<br>
+                        • Mỗi thí sinh chỉ được phép <b>làm lại tối đa thêm 2 lần</b>. Thời gian làm bài 45 phút được <b>tính cộng dồn liên tục</b>, không tính lại từ đầu khi làm lại!
                     </div>
                 </div>
             </div>
@@ -2831,23 +2831,26 @@ Nếu chọn sai lớp, bài thi sẽ KHÔNG ĐƯỢC TÍNH ĐIỂM!`);
             document.getElementById("txtP1Correct").innerText = `${p1CorrectCount}/${examQuestionsP1.length}`;
             document.getElementById("txtP2Correct").innerText = `${p2TotalCorrectStatements}/8 ý`;
             document.getElementById("txtTabSwitches").innerText = `${tabSwitchCount} lần`;
-            document.getElementById("txtRetryCount").innerText = `Lần ${retryCount}`;
+            document.getElementById("txtRetryCount").innerText = `Lần ${retryCount}/3 (Làm lại: ${retryCount - 1}/2)`;
 
             // Hiển thị thời gian cộng dồn thực tế
             const usedMin = Math.floor(totalCumulativeTimeSec / 60);
             const usedSec = totalCumulativeTimeSec % 60;
             document.getElementById("txtTotalTimeUsed").innerText = `${usedMin}p ${usedSec.toString().padStart(2, '0')}s`;
 
-            // Kiểm tra nút làm lại có cho phép không (nếu còn thời gian > 30s)
+            // Kiểm tra nút làm lại có cho phép không (nếu còn thời gian > 30s và chưa quá 2 lần làm lại)
             const retryBtn = document.getElementById("btnRetryExam");
-            if (remainingSeconds <= 30) {
+            if (retryCount >= 3) {
+                retryBtn.disabled = true;
+                retryBtn.innerText = "🔒 ĐÃ ĐẠT GIỚI HẠN LÀM LẠI (TỐI ĐA THÊM 2 LẦN)";
+            } else if (remainingSeconds <= 30) {
                 retryBtn.disabled = true;
                 retryBtn.innerText = "⏰ ĐÃ HẾT TỔNG THỜI GIAN LÀM BÀI (KHÔNG THỂ THI LẠI)";
             } else {
                 retryBtn.disabled = false;
                 const remMin = Math.floor(remainingSeconds / 60);
                 const remSec = remainingSeconds % 60;
-                retryBtn.innerText = `🔄 LÀM LẠI BÀI THI (ĐẢO ĐỀ MỚI - CÒN ${remMin}P ${remSec}S)`;
+                retryBtn.innerText = `🔄 LÀM LẠI BÀI THI (LẦN ${retryCount}/2 - CÒN ${remMin}P ${remSec}S)`;
             }
 
             // Huy hiệu đánh giá sư phạm
@@ -3067,8 +3070,15 @@ Nếu chọn sai lớp, bài thi sẽ KHÔNG ĐƯỢC TÍNH ĐIỂM!`);
             }
         }
 
-        // LÀM LẠI BÀI THI (ĐẢO ĐỀ MỚI - TÍNH TIẾP THỜI GIAN CÒN LẠI CỘNG DỒN)
+        // LÀM LẠI BÀI THI (ĐẢO ĐỀ MỚI - TỐI ĐA THÊM 2 LẦN - TÍNH TIẾP THỜI GIAN CÒN LẠI CỘNG DỒN)
         function retryExam() {
+            // Kiểm tra giới hạn số lần làm lại tối đa 2 lần
+            if (retryCount >= 3) {
+                alert(`🔒 BẠN ĐÃ HẾT LƯỢT LÀM LẠI!
+Quy định bài thi chỉ cho phép làm lại tối đa thêm 2 lần.`);
+                return;
+            }
+
             // Kiểm tra thời gian còn lại
             if (remainingSeconds <= 30) {
                 alert(`⏰ THỜI GIAN LÀM BÀI ĐÃ GẦN HẾT (dưới 30 giây)!
