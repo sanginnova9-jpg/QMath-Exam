@@ -1289,6 +1289,13 @@
                 </div>
             </div>
 
+                        <!-- KHUNG THÔNG BÁO LỊCH THI TRỰC TUYẾN -->
+            <div id="scheduleBanner" style="display: none; border-radius: 14px; padding: 18px 20px; margin-bottom: 22px; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.06); transition: all 0.3s ease;">
+                <div id="scheduleTitle" style="font-size: 16px; font-weight: 700; margin-bottom: 6px;"></div>
+                <div id="scheduleCountdown" style="font-size: 26px; font-weight: 800; font-family: monospace; letter-spacing: 1.5px; margin: 8px 0;"></div>
+                <div id="scheduleDetails" style="font-size: 13.5px; opacity: 0.9;"></div>
+            </div>
+
             <button type="button" class="btn-start" onclick="startExam()">🚀 BẮT ĐẦU LÀM BÀI</button>
         </div>
 
@@ -1450,6 +1457,53 @@
             </div>
             <div class="dash-modal-body">
                 <!-- Thống kê tổng quan -->
+                
+                <!-- KHỐI CÀI ĐẶT LỊCH THI TRỰC TUYẾN -->
+                <div class="dash-schedule-box" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 2px solid #cbd5e1; border-radius: 16px; padding: 20px 24px; margin-bottom: 24px; box-shadow: 0 4px 14px rgba(0,0,0,0.04);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 24px;">⏰</span>
+                            <div>
+                                <h4 style="margin: 0; font-size: 17px; font-weight: 700; color: #1e293b;">CÀI ĐẶT LỊCH THI TRỰC TUYẾN (REAL-TIME CLOUD)</h4>
+                                <span style="font-size: 13px; color: #64748b;">Học sinh chỉ được vào làm bài đúng khung giờ quy định</span>
+                            </div>
+                        </div>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; background: #fff; padding: 8px 16px; border-radius: 20px; border: 1.5px solid #cbd5e1; font-weight: 700;">
+                            <input type="checkbox" id="chkEnableSchedule" onchange="toggleScheduleForm()" style="width: 18px; height: 18px; cursor: pointer; accent-color: #2563eb;">
+                            <span id="lblEnableScheduleText" style="font-size: 14px; color: #475569;">Đang tắt lịch thi (Thi tự do)</span>
+                        </label>
+                    </div>
+
+                    <div id="scheduleFormArea" style="opacity: 0.5; pointer-events: none; transition: all 0.3s ease;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                            <div style="background: #fff; padding: 14px 16px; border-radius: 12px; border: 1.5px solid #e2e8f0;">
+                                <label style="display: block; font-size: 13.5px; font-weight: 700; color: #0284c7; margin-bottom: 6px;">🕒 Thời gian Bắt đầu mở đề:</label>
+                                <input type="datetime-local" id="inputScheduleStart" style="width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 14px; font-weight: 600; font-family: inherit;">
+                            </div>
+                            <div style="background: #fff; padding: 14px 16px; border-radius: 12px; border: 1.5px solid #e2e8f0;">
+                                <label style="display: block; font-size: 13.5px; font-weight: 700; color: #dc2626; margin-bottom: 6px;">⏳ Thời gian Đóng cổng thi:</label>
+                                <input type="datetime-local" id="inputScheduleEnd" style="width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 14px; font-weight: 600; font-family: inherit;">
+                            </div>
+                        </div>
+
+                        <!-- Các nút cài đặt nhanh -->
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; align-items: center;">
+                            <span style="font-size: 13px; font-weight: 600; color: #64748b;">⚡ Thiết lập nhanh:</span>
+                            <button type="button" class="btn-dash" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 6px 12px; font-size: 12.5px;" onclick="setQuickSchedule('now_45')">Mở ngay + 45 phút</button>
+                            <button type="button" class="btn-dash" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 6px 12px; font-size: 12.5px;" onclick="setQuickSchedule('now_60')">Mở ngay + 60 phút</button>
+                            <button type="button" class="btn-dash" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 6px 12px; font-size: 12.5px;" onclick="setQuickSchedule('tonight')">Tối nay 19:30 - 20:30</button>
+                            <button type="button" class="btn-dash" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 6px 12px; font-size: 12.5px;" onclick="setQuickSchedule('tomorrow_morning')">Sáng mai 07:30 - 08:30</button>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                            <button type="button" class="btn-dash" onclick="saveExamSchedule()" style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; padding: 12px 24px; font-size: 14.5px; font-weight: 700; border-radius: 10px; box-shadow: 0 4px 12px rgba(37,99,235,0.3);">
+                                💾 LƯU CÀI ĐẶT LỊCH THI (ĐỒNG BỘ TOÀN HỆ THỐNG)
+                            </button>
+                            <span id="txtScheduleSaveStatus" style="font-size: 13.5px; font-weight: 600; color: #16a34a; display: none;"></span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="dash-summary-row">
                     <div class="dash-stat-box">
                         <div class="dash-stat-val" id="dashTotalSubmissions">0</div>
@@ -7560,6 +7614,7 @@ Bạn bắt buộc phải làm lại từ đầu!`);
 
         // 6. QUẢN TRỊ BẢNG ĐIỂM GIÁO VIÊN (TEACHER DASHBOARD) BẢO MẬT PIN
         function openTeacherDashboard() {
+            syncScheduleToTeacherForm();
             const isVerified = sessionStorage.getItem("QMATH_TEACHER_LOGGED") === "true";
             if (!isVerified) {
                 const pinModal = document.getElementById("pinModal");
