@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -1207,6 +1207,341 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+    
+        /* ==============================================================
+           BỘ TỐI ƯU GIAO DIỆN DI ĐỘNG (MOBILE-FIRST RESPONSIVE PERFECTION)
+           Hỗ trợ màn hình từ 320px đến 768px (iPhone SE, Pro Max, Android)
+           ============================================================== */
+        
+        /* Ngăn ngừa iOS tự động phóng to khi chạm vào ô nhập liệu */
+        input[type="text"], input[type="password"], select, input[type="datetime-local"] {
+            font-size: 16px !important;
+        }
+
+        /* Chống tràn công thức KaTeX trên thiết bị di động */
+        .katex-display {
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding: 4px 0;
+            max-width: 100%;
+        }
+        .katex {
+            font-size: 1.05em;
+            max-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            /* 1. Header trường học */
+            .top-header {
+                padding: 10px 12px;
+                margin-bottom: 12px;
+            }
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .header-school-name {
+                font-size: 12px;
+            }
+            .header-faculty {
+                font-size: 11px;
+            }
+            .header-col-right {
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+                border-top: 1px dashed #e2e8f0;
+                padding-top: 6px;
+            }
+            .header-exam-name {
+                font-size: 12.5px;
+            }
+            .btn-teacher-portal {
+                padding: 5px 10px;
+                font-size: 11.5px;
+                border-radius: 6px;
+            }
+
+            /* 2. Màn hình bắt đầu (#startScreen) */
+            #startScreen {
+                padding: 20px 14px;
+                margin: 10px 8px;
+                border-radius: 16px;
+            }
+            .exam-icon-hero {
+                font-size: 40px;
+                margin-bottom: 8px;
+            }
+            .main-exam-title {
+                font-size: 18px;
+                line-height: 1.35;
+            }
+            .sub-exam-title {
+                font-size: 13px;
+                margin-bottom: 16px;
+            }
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+                padding: 10px;
+                margin-bottom: 16px;
+            }
+            .info-item .label {
+                font-size: 10px;
+            }
+            .info-item .value {
+                font-size: 14px;
+            }
+            .red-alert-box {
+                padding: 12px 14px;
+                gap: 10px;
+                margin-bottom: 16px;
+            }
+            .red-alert-box .alert-icon {
+                font-size: 24px;
+            }
+            .red-alert-box .alert-title {
+                font-size: 13.5px;
+            }
+            .red-alert-box .alert-text {
+                font-size: 13px;
+            }
+            .student-form-box {
+                padding: 14px;
+                margin-bottom: 18px;
+            }
+            .form-row label {
+                font-size: 13px;
+            }
+            .form-input, .form-select {
+                padding: 12px 14px;
+                font-size: 15px;
+                border-radius: 10px;
+            }
+            .btn-start {
+                padding: 14px;
+                font-size: 16px;
+                border-radius: 12px;
+                min-height: 48px;
+            }
+
+            /* 3. Sticky Top Toolbar siêu gọn gàng trên mobile */
+            #topToolbar {
+                padding: 8px 10px;
+            }
+            .toolbar-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .toolbar-student-info {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 6px;
+                font-size: 12px;
+            }
+            .student-name-badge {
+                max-width: 150px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 12.5px;
+            }
+            .exam-code-badge {
+                font-size: 11px;
+                padding: 2px 7px;
+                border-radius: 5px;
+            }
+            /* Hàng điều khiển gồm Đồng hồ và Nút Nộp bài */
+            .toolbar-bottom-row {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 8px;
+            }
+            .timer-box {
+                padding: 6px 12px;
+                font-size: 14px;
+                border-radius: 8px;
+                gap: 6px;
+            }
+            .timer-box #txtTimerDisplay {
+                font-size: 16px;
+                font-weight: 800;
+            }
+            .btn-quick-submit {
+                padding: 8px 16px;
+                font-size: 13.5px;
+                font-weight: 800;
+                border-radius: 8px;
+                min-height: 38px;
+            }
+
+            /* 4. Khung bài thi và Palette */
+            .exam-layout-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .palette-card {
+                position: static;
+                margin-top: 14px;
+                padding: 14px;
+                border-radius: 14px;
+            }
+            .palette-grid {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 6px;
+            }
+            .pal-btn {
+                padding: 10px 0;
+                font-size: 13px;
+                min-height: 40px;
+                border-radius: 8px;
+            }
+
+            /* 5. Thẻ câu hỏi và các lựa chọn đáp án */
+            .question-card {
+                padding: 16px 12px;
+                margin-bottom: 14px;
+                border-radius: 14px;
+            }
+            .q-header {
+                margin-bottom: 10px;
+            }
+            .q-number-badge {
+                font-size: 12.5px;
+                padding: 3px 10px;
+            }
+            .q-content {
+                font-size: 15px;
+                line-height: 1.6;
+                margin-bottom: 14px;
+            }
+            .q-image {
+                max-width: 100%;
+                max-height: 240px;
+            }
+            .options-list {
+                gap: 8px;
+            }
+            .options-list.grid-2 {
+                grid-template-columns: 1fr !important;
+            }
+            .opt-item {
+                padding: 12px 12px;
+                border-radius: 10px;
+                min-height: 46px;
+            }
+            .opt-radio-circle {
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+            }
+            .opt-label {
+                font-size: 14px;
+                margin-right: 6px;
+            }
+            .opt-text {
+                font-size: 15px;
+                line-height: 1.45;
+                word-break: break-word;
+            }
+
+            /* Phần II: Đúng / Sai */
+            .stmt-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 12px;
+            }
+            .stmt-text {
+                min-width: 100%;
+                font-size: 14.5px;
+            }
+            .tf-buttons {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .btn-tf {
+                padding: 10px 0;
+                font-size: 14px;
+                min-height: 42px;
+                width: 100%;
+                text-align: center;
+            }
+
+            /* 6. Màn hình kết quả (#resultScreen) */
+            #resultScreen {
+                padding: 24px 14px;
+                margin: 10px 8px;
+                border-radius: 16px;
+            }
+            .score-circle {
+                width: 130px;
+                height: 130px;
+            }
+            .score-value {
+                font-size: 40px;
+            }
+            .stats-summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .stat-card {
+                padding: 12px 10px;
+            }
+            .stat-card-title {
+                font-size: 11px;
+            }
+            .stat-card-val {
+                font-size: 18px;
+            }
+            .results-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn-retry, .btn-solutions {
+                width: 100%;
+                padding: 13px;
+                font-size: 14.5px;
+            }
+
+            /* 7. Modal Quản lý Giáo viên & Cài đặt Lịch thi */
+            .dash-modal-content {
+                width: 96vw !important;
+                max-height: 94vh !important;
+                padding: 16px 12px !important;
+                border-radius: 16px !important;
+            }
+            .dash-summary-row {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 8px !important;
+            }
+            .dash-stat-box {
+                padding: 10px !important;
+            }
+            .dash-stat-val {
+                font-size: 20px !important;
+            }
+            .dash-toolbar-row {
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+            .dash-search {
+                width: 100% !important;
+            }
+            .dash-table-wrap {
+                max-height: 360px !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1302,17 +1637,19 @@
         <!-- 3. STICKY TOP TOOLBAR -->
         <div id="topToolbar">
             <div class="toolbar-inner">
-                <div class="toolbar-student-info" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                <div class="toolbar-student-info">
                     <span class="student-name-badge" id="lblStudentDisplay">Học sinh</span>
                     <span class="exam-code-badge" id="lblExamCodeDisplay">🎲 Mã đề: 101</span>
-                    <span class="exam-code-badge" id="lblAttemptDisplay" style="background: #e0f2fe; color: #0369a1; border-color: #bae6fd;">🎯 Lần thi: 1/3</span>
-                    <span class="exam-code-badge" id="lblTabSwitchDisplay" style="background: #f0fdf4; color: #15803d; border-color: #bbf7d0;">⚠️ Rời tab: 0/3</span>
+                    <span class="exam-code-badge" id="lblAttemptDisplay" style="background: #e0f2fe; color: #0369a1; border-color: #bae6fd;">🎯 Lần: 1/3</span>
+                    <span class="exam-code-badge" id="lblTabSwitchDisplay" style="background: #f0fdf4; color: #15803d; border-color: #bbf7d0;">⚠️ Tab: 0/3</span>
                 </div>
-                <div class="timer-box" id="timerBox">
-                    <span>⏱️</span>
-                    <span id="txtTimerDisplay">45:00</span>
+                <div class="toolbar-bottom-row" style="display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
+                    <div class="timer-box" id="timerBox">
+                        <span>⏱️</span>
+                        <span id="txtTimerDisplay">45:00</span>
+                    </div>
+                    <button type="button" class="btn-quick-submit" onclick="showSubmitConfirmModal()">Nộp bài</button>
                 </div>
-                <button type="button" class="btn-quick-submit" onclick="showSubmitConfirmModal()">Nộp bài</button>
             </div>
         </div>
 
