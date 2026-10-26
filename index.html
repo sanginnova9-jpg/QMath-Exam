@@ -7986,9 +7986,324 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
             }
         });
 
+        // ==========================================
+        // HỆ THỐNG QUẢN LÝ LỊCH THI TRỰC TUYẾN (EXAM SCHEDULING)
+        // ==========================================
+        let examScheduleConfig = {
+            enabled: false,
+            startTime: "", // ISO string YYYY-MM-DDTHH:mm
+            endTime: ""    // ISO string YYYY-MM-DDTHH:mm
+        };
+        let scheduleTickerInterval = null;
+
+        // Khởi tạo và đồng bộ Lịch thi
+        function initExamSchedule() {
+            // 1. Tải cache từ localStorage để phản hồi tức thì
+            try {
+                const cached = localStorage.getItem("QMATH_EXAM_SCHEDULE");
+                if (cached) {
+                    examScheduleConfig = JSON.parse(cached);
+                }
+            } catch (e) {
+                console.warn("Không đọc được cache lịch thi:", e);
+            }
+
+            // 2. Đồng bộ thời gian thực từ Cloud Firestore
+            if (typeof db !== 'undefined' && db) {
+                try {
+                    db.collection("exam_settings").doc("schedule").onSnapshot((doc) => {
+                        if (doc.exists) {
+                            const data = doc.data();
+                            examScheduleConfig = {
+                                enabled: !!data.enabled,
+                                startTime: data.startTime || "",
+                                endTime: data.endTime || ""
+                            };
+                            localStorage.setItem("QMATH_EXAM_SCHEDULE", JSON.stringify(examScheduleConfig));
+                            updateScheduleUI();
+                            syncScheduleToTeacherForm();
+                        }
+                    }, (err) => {
+                        console.warn("Lỗi realtime Firestore schedule:", err);
+                    });
+                } catch (err) {
+                    console.warn("Firestore schedule listener error:", err);
+                }
+            }
+
+            // 3. Khởi chạy bộ đếm kiểm tra mỗi giây
+            if (scheduleTickerInterval) clearInterval(scheduleTickerInterval);
+            scheduleTickerInterval = setInterval(updateScheduleUI, 1000);
+            updateScheduleUI();
+            syncScheduleToTeacherForm();
+        }
+
+        // Đồng bộ dữ liệu lên Form trong Dashboard Giáo viên
+        function syncScheduleToTeacherForm() {
+            const chk = document.getElementById("chkEnableSchedule");
+            const inputStart = document.getElementById("inputScheduleStart");
+            const inputEnd = document.getElementById("inputScheduleEnd");
+            if (chk) {
+                chk.checked = examScheduleConfig.enabled;
+                toggleScheduleForm();
+            }
+            if (inputStart && examScheduleConfig.startTime) {
+                inputStart.value = examScheduleConfig.startTime.slice(0, 16);
+            }
+            if (inputEnd && examScheduleConfig.endTime) {
+                inputEnd.value = examScheduleConfig.endTime.slice(0, 16);
+            }
+        }
+
+        // Bật/Tắt form cài đặt lịch thi
+        function toggleScheduleForm() {
+            const chk = document.getElementById("chkEnableSchedule");
+            const area = document.getElementById("scheduleFormArea");
+            const lbl = document.getElementById("lblEnableScheduleText");
+            if (!chk || !area) return;
+
+            if (chk.checked) {
+                area.style.opacity = "1";
+                area.style.pointerEvents = "auto";
+                if (lbl) {
+                    lbl.innerText = "🟢 ĐANG BẬT LỊCH THI";
+                    lbl.style.color = "#16a34a";
+                }
+            } else {
+                area.style.opacity = "0.5";
+                area.style.pointerEvents = "none";
+                if (lbl) {
+                    lbl.innerText = "⚪ Đang tắt lịch thi (Thi tự do)";
+                    lbl.style.color = "#64748b";
+                }
+            }
+        }
+
+        // Các nút thiết lập nhanh
+        function setQuickSchedule(mode) {
+            const now = new Date();
+            const pad = (n) => String(n).padStart(2, '0');
+            const formatForInput = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+
+            const inputStart = document.getElementById("inputScheduleStart");
+            const inputEnd = document.getElementById("inputScheduleEnd");
+            if (!inputStart || !inputEnd) return;
+
+            if (mode === "now_45") {
+                const end = new Date(now.getTime() + 45 * 60 * 1000);
+                inputStart.value = formatForInput(now);
+                inputEnd.value = formatForInput(end);
+            } else if (mode === "now_60") {
+                const end = new Date(now.getTime() + 60 * 60 * 1000);
+                inputStart.value = formatForInput(now);
+                inputEnd.value = formatForInput(end);
+            } else if (mode === "tonight") {
+                const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 19, 30, 0);
+                const end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 20, 30, 0);
+                inputStart.value = formatForInput(start);
+                inputEnd.value = formatForInput(end);
+            } else if (mode === "tomorrow_morning") {
+                const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+                const start = new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 7, 30, 0);
+                const end = new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 8, 30, 0);
+                inputStart.value = formatForInput(start);
+                inputEnd.value = formatForInput(end);
+            }
+            showCheatToast("⚡ Đã điền nhanh khung giờ. Nhớ bấm [LƯU CÀI ĐẶT LỊCH THI] để áp dụng!");
+        }
+
+        // Lưu cấu hình Lịch thi lên Cloud Firestore và Local
+        async function saveExamSchedule() {
+            const chk = document.getElementById("chkEnableSchedule");
+            const inputStart = document.getElementById("inputScheduleStart");
+            const inputEnd = document.getElementById("inputScheduleEnd");
+            const statusTxt = document.getElementById("txtScheduleSaveStatus");
+
+            const isEnabled = chk ? chk.checked : false;
+            let startVal = inputStart ? inputStart.value : "";
+            let endVal = inputEnd ? inputEnd.value : "";
+
+            if (isEnabled) {
+                if (!startVal || !endVal) {
+                    alert("⚠️ Vui lòng chọn đầy đủ Thời gian Bắt đầu và Thời gian Đóng cổng thi!");
+                    return;
+                }
+                const startDate = new Date(startVal);
+                const endDate = new Date(endVal);
+                if (endDate <= startDate) {
+                    alert("⚠️ Thời gian đóng cổng thi phải lớn hơn thời gian bắt đầu mở đề!");
+                    return;
+                }
+            }
+
+            examScheduleConfig = {
+                enabled: isEnabled,
+                startTime: startVal,
+                endTime: endVal
+            };
+
+            localStorage.setItem("QMATH_EXAM_SCHEDULE", JSON.stringify(examScheduleConfig));
+
+            if (statusTxt) {
+                statusTxt.style.display = "inline";
+                statusTxt.innerText = "⏳ Đang lưu lên Cloud...";
+            }
+
+            if (typeof db !== 'undefined' && db) {
+                try {
+                    await db.collection("exam_settings").doc("schedule").set({
+                        ...examScheduleConfig,
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    if (statusTxt) {
+                        statusTxt.style.color = "#16a34a";
+                        statusTxt.innerText = "✅ Đã lưu và đồng bộ lịch thi tới toàn bộ học sinh!";
+                        setTimeout(() => { statusTxt.style.display = "none"; }, 4000);
+                    }
+                } catch (err) {
+                    console.error("Lỗi lưu lịch thi Firestore:", err);
+                    if (statusTxt) {
+                        statusTxt.style.color = "#d97706";
+                        statusTxt.innerText = "⚠️ Đã lưu trên máy này (Chưa thể đồng bộ Cloud do mất mạng).";
+                    }
+                }
+            } else {
+                if (statusTxt) {
+                    statusTxt.style.color = "#16a34a";
+                    statusTxt.innerText = "✅ Đã lưu lịch thi trên máy cục bộ!";
+                    setTimeout(() => { statusTxt.style.display = "none"; }, 4000);
+                }
+            }
+
+            updateScheduleUI();
+        }
+
+        // Định dạng thời gian thân thiện (DD/MM/YYYY HH:mm)
+        function formatReadableDateTime(isoStr) {
+            if (!isoStr) return "";
+            const d = new Date(isoStr);
+            const pad = (n) => String(n).padStart(2, '0');
+            return `${pad(d.getHours())}:${pad(d.getMinutes())} ngày ${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}`;
+        }
+
+        // Cập nhật giao diện Trạng thái Lịch thi ngoài màn hình chính
+        function updateScheduleUI() {
+            const banner = document.getElementById("scheduleBanner");
+            const titleEl = document.getElementById("scheduleTitle");
+            const countdownEl = document.getElementById("scheduleCountdown");
+            const detailsEl = document.getElementById("scheduleDetails");
+            const startBtn = document.querySelector(".btn-start");
+
+            if (!banner || !startBtn) return;
+
+            // Nếu không bật lịch thi -> Thi tự do bình thường
+            if (!examScheduleConfig.enabled || !examScheduleConfig.startTime || !examScheduleConfig.endTime) {
+                banner.style.display = "none";
+                startBtn.disabled = false;
+                startBtn.style.opacity = "1";
+                startBtn.style.cursor = "pointer";
+                startBtn.style.background = "";
+                startBtn.innerHTML = "🚀 BẮT ĐẦU LÀM BÀI";
+                return;
+            }
+
+            const now = new Date().getTime();
+            const startTime = new Date(examScheduleConfig.startTime).getTime();
+            const endTime = new Date(examScheduleConfig.endTime).getTime();
+
+            banner.style.display = "block";
+
+            // TRƯỜNG HỢP 1: CHƯA ĐẾN GIỜ THI
+            if (now < startTime) {
+                const diffMs = startTime - now;
+                const hours = Math.floor(diffMs / (1000 * 60 * 60));
+                const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((diffMs % (1000 * 60)) / 1000);
+                const pad = (n) => String(n).padStart(2, '0');
+
+                banner.style.background = "#eff6ff";
+                banner.style.border = "2px dashed #3b82f6";
+                banner.style.color = "#1e40af";
+
+                titleEl.innerHTML = "⏳ KỲ THI CHƯA MỞ - ĐỀ THI SẼ TỰ ĐỘNG MỞ SAU:";
+                titleEl.style.color = "#1d4ed8";
+
+                countdownEl.innerHTML = `⏱️ ${pad(hours)} : ${pad(mins)} : ${pad(secs)}`;
+                countdownEl.style.color = "#2563eb";
+
+                detailsEl.innerHTML = `📅 <b>Mở đề lúc:</b> ${formatReadableDateTime(examScheduleConfig.startTime)} &nbsp;|&nbsp; <b>Đóng cổng:</b> ${formatReadableDateTime(examScheduleConfig.endTime)}`;
+
+                // Khóa nút bắt đầu
+                startBtn.disabled = true;
+                startBtn.style.opacity = "0.55";
+                startBtn.style.cursor = "not-allowed";
+                startBtn.style.background = "linear-gradient(135deg, #64748b, #475569)";
+                startBtn.innerHTML = `⏳ CHƯA ĐẾN GIỜ LÀM BÀI (${pad(hours)}:${pad(mins)}:${pad(secs)})`;
+            }
+            // TRƯỜNG HỢP 2: TRONG KHUNG GIỜ THI
+            else if (now >= startTime && now <= endTime) {
+                const diffMs = endTime - now;
+                const hours = Math.floor(diffMs / (1000 * 60 * 60));
+                const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((diffMs % (1000 * 60)) / 1000);
+                const pad = (n) => String(n).padStart(2, '0');
+
+                banner.style.background = "#f0fdf4";
+                banner.style.border = "2px solid #22c55e";
+                banner.style.color = "#15803d";
+
+                titleEl.innerHTML = "🟢 CỔNG THI ĐANG MỞ - HÃY NHANH CHÓNG VÀO LÀM BÀI!";
+                titleEl.style.color = "#15803d";
+
+                countdownEl.innerHTML = `⏳ CÒN LẠI: ${pad(hours)} : ${pad(mins)} : ${pad(secs)}`;
+                countdownEl.style.color = "#16a34a";
+
+                detailsEl.innerHTML = `🚨 <b>Hạn chót đóng cổng thi:</b> ${formatReadableDateTime(examScheduleConfig.endTime)}. Sau thời gian này hệ thống sẽ ngừng nhận bài!`;
+
+                // Mở nút bắt đầu
+                startBtn.disabled = false;
+                startBtn.style.opacity = "1";
+                startBtn.style.cursor = "pointer";
+                startBtn.style.background = "";
+                startBtn.innerHTML = "🚀 BẮT ĐẦU LÀM BÀI";
+            }
+            // TRƯỜNG HỢP 3: ĐÃ HẾT GIỜ THI
+            else {
+                banner.style.background = "#fef2f2";
+                banner.style.border = "2px solid #ef4444";
+                banner.style.color = "#991b1b";
+
+                titleEl.innerHTML = "🔴 KỲ THI ĐÃ CHÍNH THỨC KẾT THÚC";
+                titleEl.style.color = "#b91c1c";
+
+                countdownEl.innerHTML = "🔒 CỔNG THI ĐÃ ĐÓNG";
+                countdownEl.style.color = "#dc2626";
+
+                detailsEl.innerHTML = `Đề thi đã đóng lúc <b>${formatReadableDateTime(examScheduleConfig.endTime)}</b>. Nếu có lý do đặc biệt, vui lòng liên hệ Thầy cô giáo bộ môn!`;
+
+                // Khóa nút bắt đầu
+                startBtn.disabled = true;
+                startBtn.style.opacity = "0.55";
+                startBtn.style.cursor = "not-allowed";
+                startBtn.style.background = "#ef4444";
+                startBtn.innerHTML = "🔒 ĐÃ HẾT HẠN LÀM BÀI";
+
+                // Nếu học sinh đang làm bài thi mà chạm mốc đóng cổng: Tự động nộp bài ngay
+                if (isExamActive && !isSubmitted) {
+                    showCheatToast("⏰ ĐÃ ĐẾN GIỜ ĐÓNG CỔNG THI! Hệ thống tự động nộp bài làm của bạn.");
+                    submitExam();
+                }
+            }
+        }
+
         // 6. QUẢN TRỊ BẢNG ĐIỂM GIÁO VIÊN (TEACHER DASHBOARD) BẢO MẬT PIN
         function openTeacherDashboard() {
-            syncScheduleToTeacherForm();
+            try {
+                if (typeof syncScheduleToTeacherForm === 'function') syncScheduleToTeacherForm();
+            } catch (e) {
+                console.warn(e);
+            }
+
             const isVerified = sessionStorage.getItem("QMATH_TEACHER_LOGGED") === "true";
             if (!isVerified) {
                 const pinModal = document.getElementById("pinModal");
@@ -7996,7 +8311,7 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
                 const err = document.getElementById("pinErrorMsg");
                 if (input) input.value = "";
                 if (err) err.style.display = "none";
-                pinModal.style.display = "flex";
+                if (pinModal) pinModal.style.display = "flex";
                 setTimeout(() => { if (input) input.focus(); }, 100);
                 return;
             }
