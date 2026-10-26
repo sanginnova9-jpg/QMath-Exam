@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <!-- Firebase App & Firestore Compat v10 (Cloud Database) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <style>
         :root {
             --primary: #1d4ed8;
@@ -54,7 +57,7 @@
             color: var(--text-main);
             line-height: 1.6;
             min-height: 100vh;
-            padding-bottom: 60px;
+            padding-bottom: 70px;
         }
 
         .container {
@@ -98,6 +101,9 @@
         }
         .header-col-right {
             text-align: right;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         .header-exam-name {
             font-size: 14px;
@@ -109,6 +115,27 @@
             font-size: 12px;
             font-weight: 600;
             color: var(--text-muted);
+        }
+
+        /* NÚT MỞ BẢNG ĐIỂM GIÁO VIÊN */
+        .btn-teacher-portal {
+            background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+            color: #ffffff;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(15,118,110,0.3);
+            transition: all 0.2s;
+        }
+        .btn-teacher-portal:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(15,118,110,0.4);
         }
 
         /* MÀN HÌNH BẮT ĐẦU (START SCREEN) */
@@ -654,14 +681,14 @@
             box-shadow: 0 12px 28px -4px rgba(21,128,61,0.5);
         }
 
-        /* MODAL XÁC NHẬN NỘP BÀI */
+        /* MODAL CHUNG */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(15, 23, 42, 0.65);
             backdrop-filter: blur(4px);
             display: none;
             align-items: center;
@@ -737,7 +764,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 28px;
+            margin-bottom: 20px;
         }
         .score-circle {
             width: 140px;
@@ -775,6 +802,22 @@
         .eval-good { background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; }
         .eval-average { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
         .eval-poor { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+
+        /* CLOUD SYNC BANNER TRÊN MÀN HÌNH KẾT QUẢ */
+        .cloud-sync-banner {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 13.5px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
 
         .stats-summary-grid {
             display: grid;
@@ -900,6 +943,154 @@
             transform: translateX(-50%) translateY(0);
         }
 
+        /* MODAL BẢNG ĐIỀU KHIỂN GIÁO VIÊN (TEACHER DASHBOARD) */
+        .dash-modal-content {
+            background: #ffffff;
+            border-radius: 20px;
+            max-width: 1100px;
+            width: 96%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            animation: modalPop 0.3s ease;
+        }
+        .dash-modal-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1e40af 100%);
+            color: #ffffff;
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .dash-modal-header h3 {
+            font-size: 17px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dash-close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+        .dash-modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .dash-summary-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .dash-stat-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+        }
+        .dash-stat-val {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--primary-dark);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .dash-stat-lbl {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        .dash-toolbar-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .dash-search {
+            flex: 1;
+            min-width: 240px;
+            padding: 10px 14px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+        }
+        .dash-search:focus {
+            border-color: var(--primary);
+        }
+        .btn-dash {
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .btn-dash-export {
+            background: #16a34a;
+            color: #ffffff;
+        }
+        .btn-dash-refresh {
+            background: #0284c7;
+            color: #ffffff;
+        }
+        .dash-table-wrap {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+        .dash-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+            text-align: left;
+        }
+        .dash-table th {
+            background: #f1f5f9;
+            color: #334155;
+            font-weight: 800;
+            padding: 12px 14px;
+            border-bottom: 2px solid var(--border);
+            white-space: nowrap;
+        }
+        .dash-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+        .dash-table tbody tr:hover {
+            background: #f8fafc;
+        }
+        .score-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .score-good { background: #dcfce7; color: #15803d; }
+        .score-mid { background: #fef3c7; color: #b45309; }
+        .score-low { background: #fee2e2; color: #b91c1c; }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -916,8 +1107,13 @@
                 <div class="header-faculty">KHOA CƠ BẢN — TỔ TOÁN</div>
             </div>
             <div class="header-col-right">
-                <div class="header-exam-name">ĐỀ KIỂM TRA GIỮA HỌC KỲ 1 — TOÁN 12</div>
-                <div class="header-year">NĂM HỌC 2026 - 2027</div>
+                <div style="text-align: right;">
+                    <div class="header-exam-name">ĐỀ KIỂM TRA GIỮA HỌC KỲ 1 — TOÁN 12</div>
+                    <div class="header-year">NĂM HỌC 2026 - 2027</div>
+                </div>
+                <button type="button" class="btn-teacher-portal" onclick="openTeacherDashboard()">
+                    <span>👨‍🏫</span> Bảng điểm GV
+                </button>
             </div>
         </div>
     </header>
@@ -925,7 +1121,7 @@
     <div class="container">
         <!-- 2. MÀN HÌNH BẮT ĐẦU -->
         <div id="startScreen">
-            <div class="exam-banner-badge">Hệ thống Đánh giá QExam Hub</div>
+            <div class="exam-banner-badge">Hệ thống Đánh giá QExam Hub • CSDL Cloud Firebase</div>
             <h1 class="start-main-title">ĐỀ THI GIỮA HỌC KỲ 1 TOÁN 12</h1>
             <p class="start-sub-title">Chương trình GDPT 2018 — Thời gian làm bài: 45 phút</p>
 
@@ -969,8 +1165,8 @@
                 <div class="form-row">
                     <label for="selExamSet">Chọn Bộ đề thi:</label>
                     <select id="selExamSet" class="form-select">
-                        <option value="de1" selected>Đề số 1 (Đề gốc 01 - Mã đề ngẫu nhiên)</option>
-                        <option value="de2">Đề số 2 (Đề gốc 02 - Mã đề ngẫu nhiên)</option>
+                        <option value="de1" selected>Đề số 1 (Đề gốc 01 - Đảo ngẫu nhiên)</option>
+                        <option value="de2">Đề số 2 (Đề gốc 02 - Đảo ngẫu nhiên)</option>
                     </select>
                 </div>
             </div>
@@ -1051,6 +1247,11 @@
                 <div class="eval-badge" id="lblPedagogicalEval">Xuất sắc</div>
             </div>
 
+            <!-- Banner thông báo trạng thái đồng bộ CSDL đám mây -->
+            <div class="cloud-sync-banner" id="cloudSyncBanner">
+                <span>☁️⏳ Đang đồng bộ kết quả bài thi lên Cơ sở dữ liệu đám mây Firebase...</span>
+            </div>
+
             <div class="stats-summary-grid">
                 <div class="stat-card">
                     <div class="stat-card-title">Phần I (6.0đ)</div>
@@ -1103,6 +1304,89 @@
         </div>
     </div>
 
+    <!-- MODAL XÁC THỰC MÃ PIN GIÁO VIÊN -->
+    <div class="modal-overlay" id="pinModal">
+        <div class="modal-box" style="max-width: 380px;">
+            <div style="font-size: 38px; margin-bottom: 8px;">🔐</div>
+            <h3 class="modal-title">Xác thực Giáo viên</h3>
+            <p class="modal-desc" style="font-size: 13.5px; margin-bottom: 16px;">Vui lòng nhập mã PIN bảo mật để tra cứu Bảng điểm CSDL Cloud Firebase.</p>
+            <input type="password" id="inputTeacherPin" placeholder="••••" maxlength="16" style="width: 100%; padding: 12px 14px; border: 2px solid #cbd5e1; border-radius: 12px; font-size: 22px; text-align: center; letter-spacing: 6px; outline: none; margin-bottom: 6px;" onkeydown="if(event.key==='Enter') verifyTeacherPin();">
+            <div id="pinErrorMsg" style="color: #ef4444; font-size: 12.5px; font-weight: 700; min-height: 20px; margin-bottom: 12px; display: none;">⚠️ Mã PIN bảo mật không chính xác!</div>
+            <div class="modal-actions">
+                <button type="button" class="btn-modal-cancel" onclick="closePinModal()">Đóng</button>
+                <button type="button" class="btn-modal-confirm" onclick="verifyTeacherPin()">Mở bảng điểm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL BẢNG ĐIỀU KHIỂN GIÁO VIÊN (TEACHER DASHBOARD) -->
+    <div class="modal-overlay" id="teacherModal">
+        <div class="dash-modal-content">
+            <div class="dash-modal-header">
+                <h3><span>👨‍🏫 BẢNG ĐIỂM HỌC SINH (CLOUD FIREBASE)</span></h3>
+                <button type="button" class="dash-close-btn" onclick="closeTeacherDashboard()">✕</button>
+            </div>
+            <div class="dash-modal-body">
+                <!-- Thống kê tổng quan -->
+                <div class="dash-summary-row">
+                    <div class="dash-stat-box">
+                        <div class="dash-stat-val" id="dashTotalSubmissions">0</div>
+                        <div class="dash-stat-lbl">Tổng số bài nộp</div>
+                    </div>
+                    <div class="dash-stat-box">
+                        <div class="dash-stat-val" id="dashAverageScore" style="color: #0284c7;">0.0</div>
+                        <div class="dash-stat-lbl">Điểm trung bình</div>
+                    </div>
+                    <div class="dash-stat-box">
+                        <div class="dash-stat-val" id="dashHighestScore" style="color: #16a34a;">0.0</div>
+                        <div class="dash-stat-lbl">Điểm cao nhất</div>
+                    </div>
+                    <div class="dash-stat-box">
+                        <div class="dash-stat-val" id="dashPassRate" style="color: #d97706;">0%</div>
+                        <div class="dash-stat-lbl">Tỉ lệ đạt (≥ 5.0)</div>
+                    </div>
+                </div>
+
+                <!-- Toolbar lọc và xuất Excel -->
+                <div class="dash-toolbar-row">
+                    <input type="text" id="dashSearchInput" class="dash-search" placeholder="🔍 Tìm theo Họ tên hoặc Lớp học (VD: 12B4, Nguyễn...)" oninput="filterDashboardTable()">
+                    <div style="display: flex; gap: 8px;">
+                        <button type="button" class="btn-dash btn-dash-export" onclick="exportSubmissionsToCSV()">📥 Xuất Excel (CSV)</button>
+                        <button type="button" class="btn-dash btn-dash-refresh" onclick="loadSubmissionsFromFirestore()">🔄 Làm mới</button>
+                    </div>
+                </div>
+
+                <!-- Bảng danh sách bài thi nộp -->
+                <div class="dash-table-wrap">
+                    <table class="dash-table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Thời gian nộp</th>
+                                <th>Họ và tên</th>
+                                <th>Lớp</th>
+                                <th>Đề</th>
+                                <th>Mã đề</th>
+                                <th>Tổng điểm</th>
+                                <th>Phần I</th>
+                                <th>Phần II</th>
+                                <th>Rời tab</th>
+                                <th>Lần thi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dashTableBody">
+                            <tr>
+                                <td colspan="11" style="text-align: center; color: var(--text-muted); padding: 24px;">
+                                    Đang tải dữ liệu từ CSDL đám mây Firebase...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- TOAST CẢNH BÁO GIAN LẬN -->
     <div id="cheatToast">
         <span style="font-size: 20px;">⚠️</span>
@@ -1110,6 +1394,28 @@
     </div>
 
     <script>
+        // CẤU HÌNH CSDL CLOUD FIREBASE (QMATH-ONLINE)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBBoYCtfFNZSA3sU_O-T-hLthhMHI0h9iI",
+            authDomain: "qmath-online.firebaseapp.com",
+            projectId: "qmath-online",
+            storageBucket: "qmath-online.appspot.com",
+            messagingSenderId: "1062061794711",
+            appId: "1:1062061794711:web:58448e04bce3e6488fe42b"
+        };
+
+        let db = null;
+        try {
+            if (typeof firebase !== 'undefined') {
+                if (!firebase.apps.length) {
+                    firebase.initializeApp(firebaseConfig);
+                }
+                db = firebase.firestore();
+            }
+        } catch(e) {
+            console.warn("Lỗi khởi tạo Firebase Firestore:", e);
+        }
+
         // CƠ SỞ DỮ LIỆU ĐỀ THI
         const rawDatabase = {
     "de1": {
@@ -1976,10 +2282,13 @@
         let isExamActive = false;
         let isSubmitted = false;
         let examTimer = null;
-        let remainingSeconds = 45 * 60; // 45 phút
+        const examDurationSec = 45 * 60; // 45 phút
+        let remainingSeconds = examDurationSec;
+        let timeSpentSec = 0;
         let tabSwitchCount = 0;
         let isTabOut = false;
-        let retryCount = 0;
+        let retryCount = 1;
+        let allSubmissionsCache = [];
 
         // THUẬT TOÁN ĐẢO ĐỀ 3-PASS FISHER-YATES
         function shuffleArray(arr) {
@@ -2261,6 +2570,7 @@
             updateTimerDisplay();
             examTimer = setInterval(() => {
                 remainingSeconds--;
+                timeSpentSec++;
                 updateTimerDisplay();
 
                 if (remainingSeconds <= 0) {
@@ -2315,7 +2625,7 @@
         }
 
         // CHẤM ĐIỂM VÀ NỘP BÀI
-        function submitExam() {
+        async function submitExam() {
             closeSubmitConfirmModal();
             clearInterval(examTimer);
             isSubmitted = true;
@@ -2331,7 +2641,6 @@
             const p1Score = p1CorrectCount * 0.5;
 
             // 2. Chấm Phần II (2 câu = 4.0 điểm, mỗi câu tối đa 2.0 điểm theo quy chế GDPT 2018)
-            // 1 ý đúng = 0.2đ | 2 ý đúng = 0.5đ | 3 ý đúng = 1.0đ | 4 ý đúng = 2.0đ
             let p2TotalCorrectStatements = 0;
             let p2Score = 0;
 
@@ -2364,21 +2673,27 @@
 
             // Huy hiệu đánh giá sư phạm
             const evalBadge = document.getElementById("lblPedagogicalEval");
+            let evalText = "Trung bình";
             if (finalScore >= 9.0) {
                 evalBadge.className = "eval-badge eval-excellent";
                 evalBadge.innerText = "🌟 Xuất sắc";
+                evalText = "Xuất sắc";
             } else if (finalScore >= 8.0) {
                 evalBadge.className = "eval-badge eval-good";
                 evalBadge.innerText = "⭐ Giỏi";
+                evalText = "Giỏi";
             } else if (finalScore >= 6.5) {
                 evalBadge.className = "eval-badge eval-good";
                 evalBadge.innerText = "👍 Khá";
+                evalText = "Khá";
             } else if (finalScore >= 5.0) {
                 evalBadge.className = "eval-badge eval-average";
                 evalBadge.innerText = "📚 Trung bình";
+                evalText = "Trung bình";
             } else {
                 evalBadge.className = "eval-badge eval-poor";
                 evalBadge.innerText = "⚠️ Cần cố gắng ôn tập";
+                evalText = "Yếu";
             }
 
             // Chuyển màn hình
@@ -2388,6 +2703,89 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             renderSolutions();
+
+            // ĐÓNG GÓI BẢN GHI ĐỂ LƯU CLOUD FIREBASE
+            const now = new Date();
+            const dateStr = now.toLocaleString("vi-VN");
+            const timeSpentMinutes = Math.floor(timeSpentSec / 60);
+            const timeSpentRemSec = timeSpentSec % 60;
+            const timeSpentFormatted = `${timeSpentMinutes}p ${timeSpentRemSec}s`;
+
+            const submissionRecord = {
+                studentName: currentStudent.name,
+                studentClass: currentStudent.className,
+                examSet: currentStudent.examSet,
+                examSetName: rawDatabase[currentStudent.examSet].title,
+                examCode: activeExamCode,
+                score: finalScore,
+                p1Score: p1Score,
+                p2Score: p2Score,
+                correctCount: p1CorrectCount,
+                p2CorrectCount: p2TotalCorrectStatements,
+                totalQuestions: examQuestionsP1.length + examQuestionsP2.length,
+                timeSpentSec: timeSpentSec,
+                timeSpentStr: timeSpentFormatted,
+                tabSwitchCount: tabSwitchCount,
+                retryCount: retryCount,
+                evaluation: evalText,
+                submittedAtStr: dateStr,
+                createdAtIso: now.toISOString(),
+                answersP1: studentAnswersP1,
+                answersP2: studentAnswersP2
+            };
+
+            await saveRecordToFirestore(submissionRecord);
+        }
+
+        // LƯU KẾT QUẢ VÀO CSDL CLOUD FIREBASE (QMATH-ONLINE)
+        async function saveRecordToFirestore(record) {
+            const syncBanner = document.getElementById("cloudSyncBanner");
+
+            // 1. Sao lưu dự phòng vào LocalStorage
+            try {
+                const localList = JSON.parse(localStorage.getItem("QMATH_SUBMISSIONS_BACKUP") || "[]");
+                localList.unshift(record);
+                localStorage.setItem("QMATH_SUBMISSIONS_BACKUP", JSON.stringify(localList.slice(0, 150)));
+            } catch (e) {
+                console.warn("Lỗi lưu LocalStorage:", e);
+            }
+
+            // 2. Lưu lên Cloud Firestore
+            if (!db) {
+                if (syncBanner) {
+                    syncBanner.style.background = "#fffbeb";
+                    syncBanner.style.borderColor = "#fde68a";
+                    syncBanner.style.color = "#b45309";
+                    syncBanner.innerHTML = "💾 Đã lưu bài thi vào bộ nhớ máy (CSDL đám mây chưa kết nối).";
+                }
+                return;
+            }
+
+            try {
+                if (syncBanner) {
+                    syncBanner.innerHTML = "⏳ Đang kết nối và lưu dữ liệu lên CSDL Cloud Firebase...";
+                }
+
+                const docRef = await db.collection("exam_submissions").add({
+                    ...record,
+                    serverTimestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                if (syncBanner) {
+                    syncBanner.style.background = "#f0fdf4";
+                    syncBanner.style.borderColor = "#bbf7d0";
+                    syncBanner.style.color = "#166534";
+                    syncBanner.innerHTML = `☁️✅ Đã lưu an toàn kết quả bài thi vào CSDL Giáo viên (Mã lưu: <b>#${docRef.id.slice(0, 8)}</b>).`;
+                }
+            } catch (err) {
+                console.error("Lỗi Firestore:", err);
+                if (syncBanner) {
+                    syncBanner.style.background = "#fef2f2";
+                    syncBanner.style.borderColor = "#fecaca";
+                    syncBanner.style.color = "#b91c1c";
+                    syncBanner.innerHTML = `⚠️ Không thể kết nối Cloud Firebase: ${err.message || 'Mất mạng'}. Dữ liệu đã được lưu dự phòng an toàn trên thiết bị.`;
+                }
+            }
         }
 
         // RENDER LỜI GIẢI CHI TIẾT
@@ -2492,7 +2890,11 @@
         // LÀM LẠI BÀI THI (ĐẢO ĐỀ MỚI)
         function retryExam() {
             retryCount++;
-            remainingSeconds = 45 * 60;
+            remainingSeconds = examDurationSec;
+            timeSpentSec = 0;
+            tabSwitchCount = 0;
+            isTabOut = false;
+
             document.getElementById("resultScreen").style.display = "none";
             document.getElementById("solutionsContainer").style.display = "none";
             prepareExamQuestions(currentStudent.examSet);
@@ -2510,7 +2912,6 @@
         }
 
         // HỆ THỐNG CHỐNG GIAN LẬN (ANTI-CHEAT)
-        // Âm thanh Beep cảnh báo bằng Web Audio API
         function playWarningBeep() {
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -2537,7 +2938,7 @@
 
         function handleUserLeave(reason) {
             if (!isExamActive || isSubmitted) return;
-            if (isTabOut) return; // Nếu đang ở ngoài, không cộng dồn
+            if (isTabOut) return;
 
             isTabOut = true;
             tabSwitchCount++;
@@ -2553,7 +2954,6 @@
             }
         }
 
-        // Bắt sự kiện rời tab & cửa sổ
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) handleUserLeave("Chuyển sang tab khác");
             else handleUserReturn();
@@ -2565,7 +2965,6 @@
             handleUserReturn();
         });
 
-        // Chặn phím tắt DevTools, copy, paste, in ấn, view-source
         document.addEventListener("contextmenu", (e) => e.preventDefault());
         document.addEventListener("keydown", (e) => {
             if (e.key === "F12" || 
@@ -2575,6 +2974,189 @@
                 showCheatToast("⚠️ Thao tác này bị khóa theo Quy chế kiểm tra trực tuyến!");
             }
         });
+
+        // 6. QUẢN TRỊ BẢNG ĐIỂM GIÁO VIÊN (TEACHER DASHBOARD) BẢO MẬT PIN
+        function openTeacherDashboard() {
+            const isVerified = sessionStorage.getItem("QMATH_TEACHER_LOGGED") === "true";
+            if (!isVerified) {
+                const pinModal = document.getElementById("pinModal");
+                const input = document.getElementById("inputTeacherPin");
+                const err = document.getElementById("pinErrorMsg");
+                if (input) input.value = "";
+                if (err) err.style.display = "none";
+                pinModal.style.display = "flex";
+                setTimeout(() => { if (input) input.focus(); }, 100);
+                return;
+            }
+
+            const modal = document.getElementById("teacherModal");
+            if (modal) modal.style.display = "flex";
+            loadSubmissionsFromFirestore();
+        }
+
+        function closePinModal() {
+            document.getElementById("pinModal").style.display = "none";
+        }
+
+        function verifyTeacherPin() {
+            const input = document.getElementById("inputTeacherPin");
+            const err = document.getElementById("pinErrorMsg");
+            if (!input) return;
+            const val = input.value.trim();
+
+            if (val === "2026" || val === "Sang2026") {
+                sessionStorage.setItem("QMATH_TEACHER_LOGGED", "true");
+                closePinModal();
+                const modal = document.getElementById("teacherModal");
+                if (modal) modal.style.display = "flex";
+                loadSubmissionsFromFirestore();
+            } else {
+                if (err) {
+                    err.style.display = "block";
+                    err.textContent = "⚠️ Mã PIN bảo mật không chính xác, vui lòng thử lại!";
+                }
+                input.value = "";
+                input.focus();
+            }
+        }
+
+        function closeTeacherDashboard() {
+            document.getElementById("teacherModal").style.display = "none";
+        }
+
+        async function loadSubmissionsFromFirestore() {
+            const tbody = document.getElementById("dashTableBody");
+            tbody.innerHTML = `<tr><td colspan="11" style="text-align: center; color: var(--text-muted); padding: 24px;">⏳ Đang tải dữ liệu thời gian thực từ Firestore...</td></tr>`;
+
+            let dataList = [];
+
+            if (db) {
+                try {
+                    const snap = await db.collection("exam_submissions").limit(200).get();
+                    snap.forEach(doc => {
+                        dataList.push({ id: doc.id, ...doc.data() });
+                    });
+                    dataList.sort((a, b) => (b.createdAtIso || "").localeCompare(a.createdAtIso || ""));
+                } catch (e) {
+                    console.warn("Lỗi đọc Firestore, sử dụng bản lưu dự phòng:", e);
+                }
+            }
+
+            if (dataList.length === 0) {
+                try {
+                    dataList = JSON.parse(localStorage.getItem("QMATH_SUBMISSIONS_BACKUP") || "[]");
+                } catch(e) {}
+            }
+
+            allSubmissionsCache = dataList;
+            renderDashboardTable(dataList);
+        }
+
+        function renderDashboardTable(list) {
+            const tbody = document.getElementById("dashTableBody");
+            if (!list || list.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="11" style="text-align: center; color: var(--text-muted); padding: 24px;">Chưa có bài thi nào được nộp trong CSDL.</td></tr>`;
+                updateDashboardSummary(0, 0, 0, 0);
+                return;
+            }
+
+            let totalScore = 0;
+            let maxScore = 0;
+            let passCount = 0;
+
+            let html = "";
+            list.forEach((sub, i) => {
+                const sc = parseFloat(sub.score) || 0;
+                totalScore += sc;
+                if (sc > maxScore) maxScore = sc;
+                if (sc >= 5.0) passCount++;
+
+                const scoreClass = sc >= 8.0 ? "score-good" : sc >= 5.0 ? "score-mid" : "score-low";
+
+                html += `
+                    <tr>
+                        <td style="font-weight: 700; color: var(--text-muted);">${i + 1}</td>
+                        <td style="font-size: 12.5px; color: #64748b;">${sub.submittedAtStr || sub.createdAtIso?.slice(0, 16) || "—"}</td>
+                        <td style="font-weight: 800; color: #0f172a;">${sub.studentName || "—"}</td>
+                        <td><span style="background: #f1f5f9; padding: 2px 8px; border-radius: 6px; font-weight: 700;">${sub.studentClass || "—"}</span></td>
+                        <td>${sub.examSetName ? sub.examSetName.split('(')[0] : (sub.examSet || 'Đề 1')}</td>
+                        <td><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700;">${sub.examCode || "—"}</span></td>
+                        <td><span class="score-badge ${scoreClass}">${sc.toFixed(1)}</span></td>
+                        <td>${sub.p1Score !== undefined ? sub.p1Score.toFixed(1) + 'đ' : '—'} (${sub.correctCount || 0}/12)</td>
+                        <td>${sub.p2Score !== undefined ? sub.p2Score.toFixed(1) + 'đ' : '—'} (${sub.p2CorrectCount || 0}/8 ý)</td>
+                        <td style="color: ${sub.tabSwitchCount > 0 ? '#b91c1c' : '#15803d'}; font-weight: 700;">${sub.tabSwitchCount ?? 0} lần</td>
+                        <td>Lần ${sub.retryCount || 1}</td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+
+            const avg = list.length ? (totalScore / list.length).toFixed(1) : "0.0";
+            const passPct = list.length ? Math.round((passCount / list.length) * 100) : 0;
+            updateDashboardSummary(list.length, avg, maxScore.toFixed(1), `${passPct}%`);
+        }
+
+        function updateDashboardSummary(total, avg, max, passPct) {
+            document.getElementById("dashTotalSubmissions").innerText = total;
+            document.getElementById("dashAverageScore").innerText = avg;
+            document.getElementById("dashHighestScore").innerText = max;
+            document.getElementById("dashPassRate").innerText = passPct;
+        }
+
+        function filterDashboardTable() {
+            const kw = (document.getElementById("dashSearchInput").value || "").toLowerCase().trim();
+            if (!kw) {
+                renderDashboardTable(allSubmissionsCache);
+                return;
+            }
+            const filtered = allSubmissionsCache.filter(item => {
+                const name = (item.studentName || "").toLowerCase();
+                const cls = (item.studentClass || "").toLowerCase();
+                const code = (item.examCode || "").toLowerCase();
+                return name.includes(kw) || cls.includes(kw) || code.includes(kw);
+            });
+            renderDashboardTable(filtered);
+        }
+
+        // XUẤT BẢNG ĐIỂM RA FILE EXCEL (CSV UTF-8 CÓ BOM)
+        function exportSubmissionsToCSV() {
+            if (!allSubmissionsCache || allSubmissionsCache.length === 0) {
+                alert("Chưa có dữ liệu bài nộp để xuất file!");
+                return;
+            }
+
+            let csv = "﻿"; // UTF-8 BOM để Excel hiển thị tiếng Việt không bị lỗi font
+            csv += "STT,Thời gian nộp,Họ và tên,Lớp,Bộ đề,Mã đề,Tổng điểm,Điểm Phần I,Điểm Phần II,Đúng Phần I,Đúng Phần II,Số lần rời tab,Lần thi,Đánh giá\n";
+
+            allSubmissionsCache.forEach((sub, idx) => {
+                const name = `"${(sub.studentName || '').replace(/"/g, '""')}"`;
+                const cls = `"${(sub.studentClass || '').replace(/"/g, '""')}"`;
+                const examSet = `"${(sub.examSetName || sub.examSet || '').replace(/"/g, '""')}"`;
+                const code = sub.examCode || '';
+                const time = `"${sub.submittedAtStr || ''}"`;
+                const score = sub.score || 0;
+                const p1 = sub.p1Score !== undefined ? sub.p1Score : '';
+                const p2 = sub.p2Score !== undefined ? sub.p2Score : '';
+                const c1 = `${sub.correctCount || 0}/12`;
+                const c2 = `${sub.p2CorrectCount || 0}/8 ý`;
+                const tab = sub.tabSwitchCount || 0;
+                const retry = sub.retryCount || 1;
+                const evalStr = `"${sub.evaluation || ''}"`;
+
+                csv += `${idx + 1},${time},${name},${cls},${examSet},${code},${score},${p1},${p2},${c1},${c2},${tab},${retry},${evalStr}\n`;
+            });
+
+            const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `Bang_Diem_GHK1_Toan_12_${new Date().toISOString().slice(0, 10)}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
     </script>
 </body>
 </html>
