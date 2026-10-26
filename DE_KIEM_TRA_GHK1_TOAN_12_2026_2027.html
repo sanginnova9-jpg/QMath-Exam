@@ -2896,8 +2896,8 @@ Nếu chọn sai lớp, bài thi sẽ KHÔNG ĐƯỢC TÍNH ĐIỂM!`);
             const submissionRecord = {
                 studentName: currentStudent.name,
                 studentClass: currentStudent.className,
-                examSet: currentStudent.examSet,
-                examSetName: rawDatabase[currentStudent.examSet].title,
+                examSet: currentStudent.examSet || "mixed",
+                examSetName: (rawDatabase[currentStudent.examSet] ? rawDatabase[currentStudent.examSet].title : (currentStudent.examSetName || "Trộn ngẫu nhiên 2 Đề")),
                 examCode: activeExamCode,
                 score: finalScore,
                 p1Score: p1Score,
@@ -2949,16 +2949,23 @@ Nếu chọn sai lớp, bài thi sẽ KHÔNG ĐƯỢC TÍNH ĐIỂM!`);
                     syncBanner.innerHTML = "⏳ Đang kết nối và lưu dữ liệu lên CSDL Cloud Firebase...";
                 }
 
-                const docRef = await db.collection("exam_submissions").add({
+                // Chống treo: Đặt giới hạn timeout 8 giây
+                const timeoutPromise = new Promise((_, reject) => 
+                    setTimeout(() => reject(new Error("Quá thời gian kết nối máy chủ")), 8000)
+                );
+
+                const savePromise = db.collection("exam_submissions").add({
                     ...record,
                     serverTimestamp: firebase.firestore.FieldValue.serverTimestamp()
                 });
+
+                const docRef = await Promise.race([savePromise, timeoutPromise]);
 
                 if (syncBanner) {
                     syncBanner.style.background = "#f0fdf4";
                     syncBanner.style.borderColor = "#bbf7d0";
                     syncBanner.style.color = "#166534";
-                    syncBanner.innerHTML = `☁️✅ Đã lưu an toàn kết quả bài thi vào CSDL Giáo viên (Mã lưu: <b>#${docRef.id.slice(0, 8)}</b>).`;
+                    syncBanner.innerHTML = `☁️✅ <b>ĐÃ ĐỒNG BỘ THÀNH CÔNG LÊN CSDL FIREBASE!</b> (Mã lưu: <b>#${docRef.id.slice(0, 8)}</b>).`;
                 }
             } catch (err) {
                 console.error("Lỗi Firestore:", err);
