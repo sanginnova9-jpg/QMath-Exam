@@ -1281,17 +1281,8 @@
                         <option value="12B2">Lớp 12B2</option>
                         <option value="12B3">Lớp 12B3</option>
                         <option value="12B4">Lớp 12B4</option>
-                        <option value="12A8">Lớp 12A8</option>
-                        <option value="12A11">Lớp 12A11</option>
-                        <option value="12A15">Lớp 12A15</option>
-                        <option value="12A17">Lớp 12A17</option>
-                    </select>
-                </div>
-                <div class="form-row">
-                    <label for="selExamSet">Chọn Bộ đề thi:</label>
-                    <select id="selExamSet" class="form-select">
-                        <option value="de1" selected>Đề số 1 (Đề gốc 01 - Đảo ngẫu nhiên)</option>
-                        <option value="de2">Đề số 2 (Đề gốc 02 - Đảo ngẫu nhiên)</option>
+                        <option value="12B5">Lớp 12B5</option>
+                        <option value="12B6">Lớp 12B6</option>
                     </select>
                 </div>
             </div>
@@ -2402,7 +2393,7 @@
 };
 
         // BIẾN TRẠNG THÁI HỆ THỐNG
-        let currentStudent = { name: "", className: "", examSet: "de1" };
+        let currentStudent = { name: "", className: "", examSet: "mixed", examSetName: "Trộn ngẫu nhiên 2 Đề" };
         let activeExamCode = "101";
         let examQuestionsP1 = [];
         let examQuestionsP2 = [];
@@ -2438,15 +2429,23 @@
             return Math.floor(100 + Math.random() * 900).toString();
         }
 
-        // CHUẨN BỊ VÀ ĐẢO ĐỀ THI
-        function prepareExamQuestions(examSetKey) {
+        // CHUẨN BỊ VÀ ĐẢO ĐỀ THI TRỘN NGẪU NHIÊN TỪ CẢ 2 BỘ ĐỀ (ĐỀ 1 & ĐỀ 2)
+        function prepareExamQuestions() {
             activeExamCode = generateExamCode();
-            const rawSet = rawDatabase[examSetKey];
-            let p1 = JSON.parse(JSON.stringify(rawSet.part1));
-            let p2 = JSON.parse(JSON.stringify(rawSet.part2));
+            
+            // 1. Tuyển chọn 12 câu Phần I từ 2 bộ đề (Đề 1 và Đề 2)
+            // Mỗi vị trí i (từ 0 đến 11) tương ứng cùng ma trận đặc tả NB/TH,
+            // hệ thống bốc ngẫu nhiên (50/50) từ Đề 1 hoặc Đề 2
+            let p1 = [];
+            const d1_p1 = rawDatabase["de1"].part1;
+            const d2_p1 = rawDatabase["de2"].part1;
+            for (let i = 0; i < 12; i++) {
+                const pickFromDe1 = Math.random() < 0.5;
+                const sourceQ = pickFromDe1 ? d1_p1[i] : d2_p1[i];
+                p1.push(JSON.parse(JSON.stringify(sourceQ)));
+            }
 
-            // 1. Đảo câu hỏi Phần I
-            p1 = shuffleArray(p1);
+            // Đảo ngẫu nhiên các phương án A, B, C, D của từng câu
             p1.forEach((q) => {
                 const origCorrectKey = q.correct;
                 const origCorrectOpt = q.options.find(o => o.key === origCorrectKey);
@@ -2471,7 +2470,19 @@
                 }
             });
 
-            // 2. Đảo câu hỏi Phần II
+            // Đảo ngẫu nhiên thứ tự 12 câu hỏi Phần I
+            p1 = shuffleArray(p1);
+
+            // 2. Tuyển chọn 2 câu Phần II từ 2 bộ đề (Đề 1 và Đề 2)
+            // Câu 1 (Hàm phân thức hữu tỉ): bốc ngẫu nhiên từ Đề 1 hoặc Đề 2
+            // Câu 2 (Hàm số bậc ba): bốc ngẫu nhiên từ Đề 1 hoặc Đề 2
+            let p2 = [];
+            const d1_p2 = rawDatabase["de1"].part2;
+            const d2_p2 = rawDatabase["de2"].part2;
+            p2.push(JSON.parse(JSON.stringify(Math.random() < 0.5 ? d1_p2[0] : d2_p2[0])));
+            p2.push(JSON.parse(JSON.stringify(Math.random() < 0.5 ? d1_p2[1] : d2_p2[1])));
+
+            // Đảo ngẫu nhiên thứ tự 2 câu hỏi Phần II
             p2 = shuffleArray(p2);
 
             examQuestionsP1 = p1;
@@ -2502,7 +2513,7 @@ Nếu không nhập đúng tên, bài thi sẽ KHÔNG ĐƯỢC TÍNH ĐIỂM!`);
             if (!classInput) {
                 alert(`🚨 CẢNH BÁO BẮT BUỘC:
 Bạn chưa chọn LỚP HỌC!
-Vui lòng chọn đúng Lớp của bạn (12B1, 12B2, 12B4...).
+Vui lòng chọn đúng Lớp của bạn (12B1 - 12B6).
 
 Nếu chọn sai lớp, bài thi sẽ KHÔNG ĐƯỢC TÍNH ĐIỂM!`);
                 document.getElementById("selClass").focus();
@@ -2511,11 +2522,12 @@ Nếu chọn sai lớp, bài thi sẽ KHÔNG ĐƯỢC TÍNH ĐIỂM!`);
 
             currentStudent.name = nameInput;
             currentStudent.className = classInput;
-            currentStudent.examSet = document.getElementById("selExamSet").value;
+            currentStudent.examSet = "mixed";
+            currentStudent.examSetName = "Trộn ngẫu nhiên 2 Đề";
 
             document.getElementById("lblStudentDisplay").innerText = `👤 ${currentStudent.name} (${currentStudent.className})`;
 
-            prepareExamQuestions(currentStudent.examSet);
+            prepareExamQuestions();
 
             // Chuyển màn hình
             document.getElementById("startScreen").style.display = "none";
@@ -3070,7 +3082,7 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
 
             document.getElementById("resultScreen").style.display = "none";
             document.getElementById("solutionsContainer").style.display = "none";
-            prepareExamQuestions(currentStudent.examSet);
+            prepareExamQuestions();
 
             document.getElementById("topToolbar").style.display = "block";
             document.getElementById("examContainer").style.display = "block";
