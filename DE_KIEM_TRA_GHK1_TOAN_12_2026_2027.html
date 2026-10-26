@@ -175,8 +175,53 @@
             font-size: 15px;
             font-weight: 700;
             color: var(--text-muted);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
+
+        /* CẢNH BÁO ĐỎ BẮT BUỘC (RED ALERT BOX) */
+        .red-alert-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 2px solid #ef4444;
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            text-align: left;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.15);
+            animation: alertPulse 2.5s infinite ease-in-out;
+        }
+        @keyframes alertPulse {
+            0%, 100% { border-color: #ef4444; box-shadow: 0 4px 14px rgba(239, 68, 68, 0.15); }
+            50% { border-color: #b91c1c; box-shadow: 0 4px 20px rgba(185, 28, 28, 0.3); }
+        }
+        .alert-icon {
+            font-size: 28px;
+            line-height: 1;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .alert-title {
+            font-size: 14px;
+            font-weight: 900;
+            color: #991b1b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        .alert-text {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #7f1d1d;
+            line-height: 1.55;
+        }
+        .alert-text b {
+            color: #b91c1c;
+            font-weight: 900;
+            text-decoration: underline;
+        }
+
         .info-grid-spec {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -200,9 +245,70 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
+        /* CẢNH BÁO ĐỎ BẮT BUỘC (RED ALERT) */
+        .red-alert-box {
+            background: #fef2f2;
+            border: 2px solid #ef4444;
+            border-left: 8px solid #dc2626;
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.15);
+            animation: pulseAlert 2.5s infinite;
+        }
+        @keyframes pulseAlert {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 15px 4px rgba(239, 68, 68, 0.25); }
+        }
+        .red-alert-box .alert-icon {
+            font-size: 32px;
+            line-height: 1;
+            flex-shrink: 0;
+            animation: shakeIcon 2s infinite ease-in-out;
+        }
+        @keyframes shakeIcon {
+            0%, 100% { transform: rotate(0deg); }
+            10%, 30% { transform: rotate(-8deg); }
+            20%, 40% { transform: rotate(8deg); }
+            50% { transform: rotate(0deg); }
+        }
+        .red-alert-box .alert-content {
+            flex: 1;
+        }
+        .red-alert-box .alert-title {
+            color: #b91c1c;
+            font-weight: 800;
+            font-size: 15px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .red-alert-box .alert-text {
+            color: #991b1b;
+            font-size: 14.5px;
+            line-height: 1.55;
+            font-weight: 500;
+        }
+        .red-alert-box .alert-text b {
+            color: #7f1d1d;
+            font-weight: 800;
+        }
+        .red-alert-box .alert-text u {
+            text-decoration-color: #dc2626;
+            text-decoration-thickness: 2px;
+            font-weight: 700;
+        }
+
         .student-form-box {
             background: #ffffff;
-            border: 1px solid var(--border);
+            border: 1.5px solid #cbd5e1;
             border-radius: 16px;
             padding: 24px;
             text-align: left;
@@ -217,9 +323,9 @@
         }
         .form-row label {
             display: block;
-            font-size: 13px;
-            font-weight: 700;
-            color: #334155;
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #1e293b;
             margin-bottom: 6px;
         }
         .form-input, .form-select {
@@ -865,6 +971,12 @@
             box-shadow: 0 4px 14px rgba(29,78,216,0.3);
             transition: all 0.2s;
         }
+        .btn-retry:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: 0.7;
+        }
         .btn-view-solution {
             background: #ffffff;
             border: 2px solid var(--primary);
@@ -1125,6 +1237,18 @@
             <h1 class="start-main-title">ĐỀ THI GIỮA HỌC KỲ 1 TOÁN 12</h1>
             <p class="start-sub-title">Chương trình GDPT 2018 — Thời gian làm bài: 45 phút</p>
 
+            <!-- CẢNH BÁO ĐỎ BẮT BUỘC -->
+            <div class="red-alert-box">
+                <div class="alert-icon">🚨</div>
+                <div class="alert-content">
+                    <div class="alert-title">QUY ĐỊNH BẮT BUỘC DÀNH CHO THÍ SINH</div>
+                    <div class="alert-text">
+                        Thí sinh bắt buộc phải <b>chọn đúng Lớp học</b> và <b>nhập chính xác đầy đủ Họ và tên (có dấu)</b>.<br>
+                        Mọi trường hợp chọn sai lớp hoặc nhập sai tên <b>SẼ KHÔNG ĐƯỢC CÔNG NHẬN ĐIỂM SỐ</b> và bị hủy bài thi!
+                    </div>
+                </div>
+            </div>
+
             <div class="info-grid-spec">
                 <div class="info-item">
                     <div class="label">Phần I (ABCD)</div>
@@ -1146,16 +1270,17 @@
 
             <div class="student-form-box">
                 <div class="form-row">
-                    <label for="txtStudentName">Họ và tên thí sinh:</label>
+                    <label for="txtStudentName">Họ và tên thí sinh (bắt buộc nhập đầy đủ Họ và Tên có dấu):</label>
                     <input type="text" id="txtStudentName" class="form-input" placeholder="Ví dụ: Nguyễn Văn An" autocomplete="off">
                 </div>
                 <div class="form-row">
-                    <label for="selClass">Lớp học:</label>
+                    <label for="selClass">Lớp học (bắt buộc chọn đúng lớp đang học):</label>
                     <select id="selClass" class="form-select">
+                        <option value="" disabled selected>-- Vui lòng chọn đúng Lớp học của bạn --</option>
                         <option value="12B1">Lớp 12B1</option>
                         <option value="12B2">Lớp 12B2</option>
                         <option value="12B3">Lớp 12B3</option>
-                        <option value="12B4" selected>Lớp 12B4</option>
+                        <option value="12B4">Lớp 12B4</option>
                         <option value="12A8">Lớp 12A8</option>
                         <option value="12A11">Lớp 12A11</option>
                         <option value="12A15">Lớp 12A15</option>
@@ -1274,13 +1399,17 @@
                     <div class="stat-card-val" id="txtTabSwitches" style="color: var(--danger);">0 lần</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-card-title">Số lần làm lại</div>
-                    <div class="stat-card-val" id="txtRetryCount">0 lần</div>
+                    <div class="stat-card-title">Số lần thi lại</div>
+                    <div class="stat-card-val" id="txtRetryCount">Lần 1</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-title">Thời gian cộng dồn</div>
+                    <div class="stat-card-val" id="txtTotalTimeUsed" style="color: #4338ca;">00:00</div>
                 </div>
             </div>
 
             <div class="result-actions">
-                <button type="button" class="btn-retry" onclick="retryExam()">🔄 LÀM LẠI BÀI THI (ĐẢO ĐỀ MỚI)</button>
+                <button type="button" class="btn-retry" id="btnRetryExam" onclick="retryExam()">🔄 LÀM LẠI BÀI THI (ĐẢO ĐỀ MỚI - TÍNH TIẾP GIỜ CÒN LẠI)</button>
                 <button type="button" class="btn-view-solution" onclick="toggleSolutions()">📖 XEM LỜI GIẢI CHI TIẾT</button>
             </div>
 
@@ -2282,9 +2411,12 @@
         let isExamActive = false;
         let isSubmitted = false;
         let examTimer = null;
-        const examDurationSec = 45 * 60; // 45 phút
-        let remainingSeconds = examDurationSec;
-        let timeSpentSec = 0;
+
+        // QUẢN LÝ THỜI GIAN CỘNG DỒN (TỔNG 45 PHÚT KHÔNG RESET KHI LÀM LẠI)
+        const totalExamLimitSec = 45 * 60; // 45 phút = 2700 giây
+        let remainingSeconds = totalExamLimitSec; // Đếm ngược từ 45 phút
+        let totalCumulativeTimeSec = 0; // Thời gian cộng dồn thực tế tích lũy qua tất cả lần làm bài
+
         let tabSwitchCount = 0;
         let isTabOut = false;
         let retryCount = 1;
@@ -2350,17 +2482,35 @@
             document.getElementById("lblExamCodeDisplay").innerText = `🎲 Mã đề: ${activeExamCode}`;
         }
 
-        // BẮT ĐẦU THI
+        // BẮT ĐẦU THI VỚI VALIDATION BẮT BUỘC TÊN VÀ LỚP
         function startExam() {
             const nameInput = document.getElementById("txtStudentName").value.trim();
-            if (!nameInput) {
-                alert("Vui lòng nhập Họ và tên thí sinh trước khi bắt đầu làm bài!");
+            const classInput = document.getElementById("selClass").value;
+
+            // Kiểm tra Họ và tên bắt buộc có ít nhất 2 từ
+            if (!nameInput || nameInput.split(/\s+/).length < 2) {
+                alert(`🚨 CẢNH BÁO BẮT BUỘC:
+Vui lòng nhập đầy đủ cả HỌ VÀ TÊN có dấu (ít nhất 2 từ)!
+Ví dụ: Nguyễn Văn An
+
+Nếu không nhập đúng tên, bài thi sẽ KHÔNG ĐƯỢC TÍNH ĐIỂM!`);
                 document.getElementById("txtStudentName").focus();
                 return;
             }
 
+            // Kiểm tra Lớp học bắt buộc phải chọn
+            if (!classInput) {
+                alert(`🚨 CẢNH BÁO BẮT BUỘC:
+Bạn chưa chọn LỚP HỌC!
+Vui lòng chọn đúng Lớp của bạn (12B1, 12B2, 12B4...).
+
+Nếu chọn sai lớp, bài thi sẽ KHÔNG ĐƯỢC TÍNH ĐIỂM!`);
+                document.getElementById("selClass").focus();
+                return;
+            }
+
             currentStudent.name = nameInput;
-            currentStudent.className = document.getElementById("selClass").value;
+            currentStudent.className = classInput;
             currentStudent.examSet = document.getElementById("selExamSet").value;
 
             document.getElementById("lblStudentDisplay").innerText = `👤 ${currentStudent.name} (${currentStudent.className})`;
@@ -2564,26 +2714,26 @@
             document.getElementById("txtAnsweredCount").innerText = `${answeredCount}/${totalQ} câu`;
         }
 
-        // BỘ ĐẾM THỜI GIAN
+        // BỘ ĐẾM THỜI GIAN CỘNG DỒN LIÊN TỤC
         function startTimer() {
             clearInterval(examTimer);
             updateTimerDisplay();
             examTimer = setInterval(() => {
                 remainingSeconds--;
-                timeSpentSec++;
+                totalCumulativeTimeSec++;
                 updateTimerDisplay();
 
                 if (remainingSeconds <= 0) {
                     clearInterval(examTimer);
-                    alert("⏰ ĐÃ HẾT THỜI GIAN LÀM BÀI! Hệ thống tự động thu bài của bạn.");
+                    alert("⏰ ĐÃ HẾT TỔNG THỜI GIAN LÀM BÀI (45 PHÚT)! Hệ thống tự động khóa và thu bài của bạn.");
                     submitExam();
                 }
             }, 1000);
         }
 
         function updateTimerDisplay() {
-            const m = Math.floor(remainingSeconds / 60);
-            const s = remainingSeconds % 60;
+            const m = Math.floor(Math.max(0, remainingSeconds) / 60);
+            const s = Math.max(0, remainingSeconds) % 60;
             const str = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
             const box = document.getElementById("timerBox");
             const txt = document.getElementById("txtTimerDisplay");
@@ -2669,7 +2819,24 @@
             document.getElementById("txtP1Correct").innerText = `${p1CorrectCount}/${examQuestionsP1.length}`;
             document.getElementById("txtP2Correct").innerText = `${p2TotalCorrectStatements}/8 ý`;
             document.getElementById("txtTabSwitches").innerText = `${tabSwitchCount} lần`;
-            document.getElementById("txtRetryCount").innerText = `${retryCount} lần`;
+            document.getElementById("txtRetryCount").innerText = `Lần ${retryCount}`;
+
+            // Hiển thị thời gian cộng dồn thực tế
+            const usedMin = Math.floor(totalCumulativeTimeSec / 60);
+            const usedSec = totalCumulativeTimeSec % 60;
+            document.getElementById("txtTotalTimeUsed").innerText = `${usedMin}p ${usedSec.toString().padStart(2, '0')}s`;
+
+            // Kiểm tra nút làm lại có cho phép không (nếu còn thời gian > 30s)
+            const retryBtn = document.getElementById("btnRetryExam");
+            if (remainingSeconds <= 30) {
+                retryBtn.disabled = true;
+                retryBtn.innerText = "⏰ ĐÃ HẾT TỔNG THỜI GIAN LÀM BÀI (KHÔNG THỂ THI LẠI)";
+            } else {
+                retryBtn.disabled = false;
+                const remMin = Math.floor(remainingSeconds / 60);
+                const remSec = remainingSeconds % 60;
+                retryBtn.innerText = `🔄 LÀM LẠI BÀI THI (ĐẢO ĐỀ MỚI - CÒN ${remMin}P ${remSec}S)`;
+            }
 
             // Huy hiệu đánh giá sư phạm
             const evalBadge = document.getElementById("lblPedagogicalEval");
@@ -2707,9 +2874,9 @@
             // ĐÓNG GÓI BẢN GHI ĐỂ LƯU CLOUD FIREBASE
             const now = new Date();
             const dateStr = now.toLocaleString("vi-VN");
-            const timeSpentMinutes = Math.floor(timeSpentSec / 60);
-            const timeSpentRemSec = timeSpentSec % 60;
-            const timeSpentFormatted = `${timeSpentMinutes}p ${timeSpentRemSec}s`;
+            const cumMin = Math.floor(totalCumulativeTimeSec / 60);
+            const cumSec = totalCumulativeTimeSec % 60;
+            const timeSpentFormatted = `${cumMin}p ${cumSec}s (Cộng dồn)`;
 
             const submissionRecord = {
                 studentName: currentStudent.name,
@@ -2723,8 +2890,9 @@
                 correctCount: p1CorrectCount,
                 p2CorrectCount: p2TotalCorrectStatements,
                 totalQuestions: examQuestionsP1.length + examQuestionsP2.length,
-                timeSpentSec: timeSpentSec,
+                timeSpentSec: totalCumulativeTimeSec,
                 timeSpentStr: timeSpentFormatted,
+                remainingTimeSec: remainingSeconds,
                 tabSwitchCount: tabSwitchCount,
                 retryCount: retryCount,
                 evaluation: evalText,
@@ -2887,13 +3055,18 @@
             }
         }
 
-        // LÀM LẠI BÀI THI (ĐẢO ĐỀ MỚI)
+        // LÀM LẠI BÀI THI (ĐẢO ĐỀ MỚI - TÍNH TIẾP THỜI GIAN CÒN LẠI CỘNG DỒN)
         function retryExam() {
+            // Kiểm tra thời gian còn lại
+            if (remainingSeconds <= 30) {
+                alert(`⏰ THỜI GIAN LÀM BÀI ĐÃ GẦN HẾT (dưới 30 giây)!
+Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn không thể làm lại đề mới.`);
+                return;
+            }
+
             retryCount++;
-            remainingSeconds = examDurationSec;
-            timeSpentSec = 0;
-            tabSwitchCount = 0;
-            isTabOut = false;
+            // KHÔNG reset remainingSeconds và KHÔNG reset totalCumulativeTimeSec!
+            // Tiếp tục đếm ngược từ remainingSeconds còn lại!
 
             document.getElementById("resultScreen").style.display = "none";
             document.getElementById("solutionsContainer").style.display = "none";
@@ -2909,6 +3082,10 @@
 
             isExamActive = true;
             isSubmitted = false;
+
+            const remMin = Math.floor(remainingSeconds / 60);
+            const remSec = remainingSeconds % 60;
+            showCheatToast(`🔄 Làm lại lần ${retryCount}: Bạn còn ${remMin} phút ${remSec} giây (thời gian tính cộng dồn liên tục)!`);
         }
 
         // HỆ THỐNG CHỐNG GIAN LẬN (ANTI-CHEAT)
