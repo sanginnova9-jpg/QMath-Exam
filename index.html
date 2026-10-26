@@ -1059,14 +1059,87 @@
         .dash-modal-content {
             background: #ffffff;
             border-radius: 20px;
-            max-width: 1100px;
-            width: 96%;
-            max-height: 90vh;
+            max-width: 1280px;
+            width: 98%;
+            max-height: 92vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
             box-shadow: 0 25px 60px rgba(0,0,0,0.3);
             animation: modalPop 0.3s ease;
+        }
+        .badge-cheat-danger {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 13px;
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1.5px solid #f87171;
+            box-shadow: 0 2px 6px rgba(220, 38, 38, 0.15);
+        }
+        .badge-cheat-safe {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px;
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+        .badge-retry-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 13px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1.5px solid #93c5fd;
+        }
+        .badge-first-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            background: #f8fafc;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+        .btn-filter-pill {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            border: 1.5px solid #cbd5e1;
+            background: #ffffff;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-filter-pill:hover {
+            border-color: #3b82f6;
+            color: #1d4ed8;
+            background: #eff6ff;
+        }
+        .btn-filter-pill.active {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #2563eb;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
         }
         .dash-modal-header {
             background: linear-gradient(135deg, var(--primary-dark) 0%, #1e40af 100%);
@@ -1848,7 +1921,7 @@
                     </div>
                 </div>
 
-                <div class="dash-summary-row">
+                <div class="dash-summary-row" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
                     <div class="dash-stat-box">
                         <div class="dash-stat-val" id="dashTotalSubmissions">0</div>
                         <div class="dash-stat-lbl">Tổng số bài nộp</div>
@@ -1865,11 +1938,25 @@
                         <div class="dash-stat-val" id="dashPassRate" style="color: #d97706;">0%</div>
                         <div class="dash-stat-lbl">Tỉ lệ đạt (≥ 5.0)</div>
                     </div>
+                    <div class="dash-stat-box" style="background: #fff5f5; border-color: #fecaca;">
+                        <div class="dash-stat-val" id="dashViolationCount" style="color: #dc2626;">0 lần</div>
+                        <div class="dash-stat-lbl" style="color: #b91c1c;">🚨 RỜI TAB VI PHẠM</div>
+                    </div>
+                    <div class="dash-stat-box" style="background: #f5f3ff; border-color: #ddd6fe;">
+                        <div class="dash-stat-val" id="dashRetryCount" style="color: #4338ca;">0 bài</div>
+                        <div class="dash-stat-lbl" style="color: #4338ca;">🔄 SỐ LẦN THI LẠI</div>
+                    </div>
                 </div>
 
                 <!-- Toolbar lọc và xuất Excel -->
-                <div class="dash-toolbar-row">
-                    <input type="text" id="dashSearchInput" class="dash-search" placeholder="🔍 Tìm theo Họ tên hoặc Lớp học (VD: 12B4, Nguyễn...)" oninput="filterDashboardTable()">
+                <div class="dash-toolbar-row" style="flex-wrap: wrap; gap: 12px; margin-bottom: 14px;">
+                    <input type="text" id="dashSearchInput" class="dash-search" placeholder="🔍 Tìm theo Họ tên hoặc Lớp học (VD: 12B4, Nguyễn...)" oninput="applyAllDashboardFilters()" style="min-width: 280px; flex: 1;">
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                        <button type="button" class="btn-filter-pill active" id="btnFilterAll" onclick="setDashboardFilter('all')">Tất cả bài thi</button>
+                        <button type="button" class="btn-filter-pill" id="btnFilterViolation" onclick="setDashboardFilter('violation')">🚨 Có rời tab vi phạm</button>
+                        <button type="button" class="btn-filter-pill" id="btnFilterRetry" onclick="setDashboardFilter('retry')">🔄 Đã làm lại (Lần 2, 3)</button>
+                        <button type="button" class="btn-filter-pill" id="btnFilterClean" onclick="setDashboardFilter('clean')">✅ 0 lần vi phạm</button>
+                    </div>
                     <div style="display: flex; gap: 8px;">
                         <button type="button" class="btn-dash btn-dash-export" onclick="exportSubmissionsToCSV()">📥 Xuất Excel (CSV)</button>
                         <button type="button" class="btn-dash btn-dash-refresh" onclick="loadSubmissionsFromFirestore()">🔄 Làm mới</button>
@@ -1881,17 +1968,17 @@
                     <table class="dash-table">
                         <thead>
                             <tr>
-                                <th>STT</th>
-                                <th>Thời gian nộp</th>
-                                <th>Họ và tên</th>
-                                <th>Lớp</th>
-                                <th>Đề</th>
-                                <th>Mã đề</th>
-                                <th>Tổng điểm</th>
-                                <th>Phần I</th>
-                                <th>Phần II</th>
-                                <th>Rời tab</th>
-                                <th>Lần thi</th>
+                                <th style="width: 45px; text-align: center;">STT</th>
+                                <th style="min-width: 130px;">Thời gian nộp</th>
+                                <th style="min-width: 150px;">Họ và tên</th>
+                                <th style="width: 70px; text-align: center;">Lớp</th>
+                                <th style="width: 75px; text-align: center;">Mã đề</th>
+                                <th style="width: 85px; text-align: center;">Tổng điểm</th>
+                                <th style="min-width: 140px; text-align: center; background: #fff1f2; color: #9f1239;">🚨 RỜI TAB VI PHẠM</th>
+                                <th style="min-width: 140px; text-align: center; background: #f0fdf4; color: #166534;">🔄 SỐ LẦN LÀM LẠI</th>
+                                <th style="min-width: 110px;">Phần I</th>
+                                <th style="min-width: 110px;">Phần II</th>
+                                <th style="min-width: 110px;">Bộ đề</th>
                             </tr>
                         </thead>
                         <tbody id="dashTableBody">
@@ -8379,17 +8466,62 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
             renderDashboardTable(dataList);
         }
 
+        let currentFilterMode = 'all';
+
+        function setDashboardFilter(mode) {
+            currentFilterMode = mode;
+            ['btnFilterAll', 'btnFilterViolation', 'btnFilterRetry', 'btnFilterClean'].forEach(id => {
+                const b = document.getElementById(id);
+                if (b) b.classList.remove('active');
+            });
+            if (mode === 'all') document.getElementById('btnFilterAll')?.classList.add('active');
+            else if (mode === 'violation') document.getElementById('btnFilterViolation')?.classList.add('active');
+            else if (mode === 'retry') document.getElementById('btnFilterRetry')?.classList.add('active');
+            else if (mode === 'clean') document.getElementById('btnFilterClean')?.classList.add('active');
+
+            applyAllDashboardFilters();
+        }
+
+        function applyAllDashboardFilters() {
+            const kw = (document.getElementById("dashSearchInput")?.value || "").toLowerCase().trim();
+            let filtered = allSubmissionsCache || [];
+
+            // 1. Lọc theo chế độ tab
+            if (currentFilterMode === 'violation') {
+                filtered = filtered.filter(item => (item.tabSwitchCount || 0) > 0);
+            } else if (currentFilterMode === 'retry') {
+                filtered = filtered.filter(item => (item.retryCount || 1) > 1);
+            } else if (currentFilterMode === 'clean') {
+                filtered = filtered.filter(item => (item.tabSwitchCount || 0) === 0);
+            }
+
+            // 2. Lọc theo từ khóa tìm kiếm
+            if (kw) {
+                filtered = filtered.filter(item => {
+                    const name = (item.studentName || "").toLowerCase();
+                    const cls = (item.studentClass || "").toLowerCase();
+                    const code = (item.examCode || "").toLowerCase();
+                    return name.includes(kw) || cls.includes(kw) || code.includes(kw);
+                });
+            }
+
+            renderDashboardTable(filtered);
+        }
+
         function renderDashboardTable(list) {
             const tbody = document.getElementById("dashTableBody");
             if (!list || list.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="11" style="text-align: center; color: var(--text-muted); padding: 24px;">Chưa có bài thi nào được nộp trong CSDL.</td></tr>`;
-                updateDashboardSummary(0, 0, 0, 0);
+                tbody.innerHTML = `<tr><td colspan="11" style="text-align: center; color: var(--text-muted); padding: 28px; font-size: 15px;">🔍 Không tìm thấy bài thi nào phù hợp với bộ lọc hiện tại.</td></tr>`;
+                updateDashboardSummary(0, "0.0", "0.0", 0, 0, 0, 0);
                 return;
             }
 
             let totalScore = 0;
             let maxScore = 0;
             let passCount = 0;
+            let totalViolations = 0;
+            let violationStudentCount = 0;
+            let totalRetries = 0;
 
             let html = "";
             list.forEach((sub, i) => {
@@ -8398,21 +8530,47 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
                 if (sc > maxScore) maxScore = sc;
                 if (sc >= 5.0) passCount++;
 
+                const tabCount = sub.tabSwitchCount || 0;
+                if (tabCount > 0) {
+                    totalViolations += tabCount;
+                    violationStudentCount++;
+                }
+
+                const retries = sub.retryCount || 1;
+                if (retries > 1) {
+                    totalRetries += (retries - 1);
+                }
                 const scoreClass = sc >= 8.0 ? "score-good" : sc >= 5.0 ? "score-mid" : "score-low";
+
+                // Badge Rời tab vi phạm
+                let tabBadgeHtml = '';
+                if (tabCount > 0) {
+                    tabBadgeHtml = `<span class="badge-cheat-danger">🚨 <b>${tabCount}</b> lần</span>`;
+                } else {
+                    tabBadgeHtml = `<span class="badge-cheat-safe">✅ 0 lần</span>`;
+                }
+
+                // Badge Số lần làm lại
+                let retryBadgeHtml = '';
+                if (retries > 1) {
+                    retryBadgeHtml = `<span class="badge-retry-tag">🔄 Lần <b>${retries}/3</b></span>`;
+                } else {
+                    retryBadgeHtml = `<span class="badge-first-tag">Lần 1</span>`;
+                }
 
                 html += `
                     <tr>
-                        <td style="font-weight: 700; color: var(--text-muted);">${i + 1}</td>
-                        <td style="font-size: 12.5px; color: #64748b;">${sub.submittedAtStr || sub.createdAtIso?.slice(0, 16) || "—"}</td>
-                        <td style="font-weight: 800; color: #0f172a;">${sub.studentName || "—"}</td>
-                        <td><span style="background: #f1f5f9; padding: 2px 8px; border-radius: 6px; font-weight: 700;">${sub.studentClass || "—"}</span></td>
-                        <td>${sub.examSetName ? sub.examSetName.split('(')[0] : (sub.examSet || 'Đề 1')}</td>
-                        <td><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700;">${sub.examCode || "—"}</span></td>
-                        <td><span class="score-badge ${scoreClass}">${sc.toFixed(1)}</span></td>
-                        <td>${sub.p1Score !== undefined ? sub.p1Score.toFixed(1) + 'đ' : '—'} (${sub.correctCount || 0}/12)</td>
-                        <td>${sub.p2Score !== undefined ? sub.p2Score.toFixed(1) + 'đ' : '—'} (${sub.p2CorrectCount || 0}/8 ý)</td>
-                        <td style="color: ${sub.tabSwitchCount > 0 ? '#b91c1c' : '#15803d'}; font-weight: 700;">${sub.tabSwitchCount ?? 0} lần</td>
-                        <td>Lần ${sub.retryCount || 1}</td>
+                        <td style="font-weight: 700; color: var(--text-muted); text-align: center;">${i + 1}</td>
+                        <td style="font-size: 12.5px; color: #64748b; font-family: 'JetBrains Mono', monospace;">${sub.submittedAtStr || sub.createdAtIso?.slice(0, 16) || "—"}</td>
+                        <td style="font-weight: 800; color: #0f172a; font-size: 14px;">${sub.studentName || "—"}</td>
+                        <td style="text-align: center;"><span style="background: #f1f5f9; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 13px;">${sub.studentClass || "—"}</span></td>
+                        <td style="text-align: center;"><span style="font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #2563eb; background: #eff6ff; padding: 2px 6px; border-radius: 4px;">${sub.examCode || "—"}</span></td>
+                        <td style="text-align: center;"><span class="score-badge ${scoreClass}">${sc.toFixed(1)}</span></td>
+                        <td style="text-align: center;">${tabBadgeHtml}</td>
+                        <td style="text-align: center;">${retryBadgeHtml}</td>
+                        <td>${sub.p1Score !== undefined ? sub.p1Score.toFixed(1) + 'đ' : '—'} <span style="color:#64748b; font-size:12px;">(${sub.correctCount || 0}/12)</span></td>
+                        <td>${sub.p2Score !== undefined ? sub.p2Score.toFixed(1) + 'đ' : '—'} <span style="color:#64748b; font-size:12px;">(${sub.p2CorrectCount || 0}/8 ý)</span></td>
+                        <td style="font-size: 12.5px; color: #475569;">${sub.examSetName ? sub.examSetName.split('(')[0] : (sub.examSet || 'Đề 1')}</td>
                     </tr>
                 `;
             });
@@ -8421,14 +8579,23 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
 
             const avg = list.length ? (totalScore / list.length).toFixed(1) : "0.0";
             const passPct = list.length ? Math.round((passCount / list.length) * 100) : 0;
-            updateDashboardSummary(list.length, avg, maxScore.toFixed(1), `${passPct}%`);
+            updateDashboardSummary(list.length, avg, maxScore.toFixed(1), passPct, totalViolations, violationStudentCount, totalRetries);
         }
 
-        function updateDashboardSummary(total, avg, max, passPct) {
+        function updateDashboardSummary(total, avg, max, passPct, violationCount, violationStudentCount, retryCountTotal) {
             document.getElementById("dashTotalSubmissions").innerText = total;
             document.getElementById("dashAverageScore").innerText = avg;
             document.getElementById("dashHighestScore").innerText = max;
-            document.getElementById("dashPassRate").innerText = passPct;
+            document.getElementById("dashPassRate").innerText = passPct + "%";
+            
+            const elVio = document.getElementById("dashViolationCount");
+            if (elVio) {
+                elVio.innerHTML = `${violationStudentCount} bài <span style="font-size:13px; font-weight:600; color:#b91c1c;">(${violationCount} lượt)</span>`;
+            }
+            const elRetry = document.getElementById("dashRetryCount");
+            if (elRetry) {
+                elRetry.innerHTML = `${retryCountTotal} lượt <span style="font-size:13px; font-weight:600; color:#4338ca;">(Lần 2, 3)</span>`;
+            }
         }
 
         function filterDashboardTable() {
@@ -8454,7 +8621,7 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
             }
 
             let csv = "﻿"; // UTF-8 BOM để Excel hiển thị tiếng Việt không bị lỗi font
-            csv += "STT,Thời gian nộp,Họ và tên,Lớp,Bộ đề,Mã đề,Tổng điểm,Điểm Phần I,Điểm Phần II,Đúng Phần I,Đúng Phần II,Số lần rời tab,Lần thi,Đánh giá\n";
+            csv += "STT,Thời gian nộp,Họ và tên,Lớp,Mã đề,Tổng điểm,Số lần rời tab (Vi phạm),Số lần làm lại,Điểm Phần I,Điểm Phần II,Đúng Phần I,Đúng Phần II,Bộ đề,Đánh giá\n";
 
             allSubmissionsCache.forEach((sub, idx) => {
                 const name = `"${(sub.studentName || '').replace(/"/g, '""')}"`;
@@ -8471,7 +8638,7 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
                 const retry = sub.retryCount || 1;
                 const evalStr = `"${sub.evaluation || ''}"`;
 
-                csv += `${idx + 1},${time},${name},${cls},${examSet},${code},${score},${p1},${p2},${c1},${c2},${tab},${retry},${evalStr}\n`;
+                csv += `${idx + 1},${time},${name},${cls},${code},${score},${tab},${retry},${p1},${p2},${c1},${c2},${examSet},${evalStr}\n`;
             });
 
             const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
