@@ -1366,6 +1366,11 @@
 
         <!-- 5. MÀN HÌNH KẾT QUẢ -->
         <div id="resultScreen">
+            <!-- Banner cảnh báo tự động nộp bài do rời tab quá số lần -->
+            <div id="autoSubmitAlertBanner" style="display: none; background: #fef2f2; border: 2px solid #ef4444; border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; text-align: center; color: #b91c1c; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);">
+                🚨 BÀI THI ĐÃ ĐƯỢC HỆ THỐNG TỰ ĐỘNG NỘP DO VI PHẠM RỜI TAB QUÁ 3 LẦN QUY ĐỊNH!
+            </div>
+
             <div class="score-circle-container">
                 <div class="score-circle">
                     <div class="score-value" id="txtFinalScore">10.0</div>
@@ -7503,6 +7508,9 @@
         // ==========================================
         const MAX_EXAM_ATTEMPTS = 3;
         const MAX_TAB_SWITCHES = 3;
+        let isUserCurrentlyAway = false;
+        let lastLeaveTimestamp = 0;
+        let isAutoSubmittedByCheat = false;
 
         function updateToolbarBadges() {
             const attEl = document.getElementById("lblAttemptDisplay");
@@ -7522,118 +7530,51 @@
             }
         }
 
-        // XỬ LÝ SỰ KIỆN RỜI MÀN HÌNH / CHUYỂN TAB
+        // XỬ LÝ SỰ KIỆN RỜI MÀN HÌNH / CHUYỂN TAB (KHỬ ĐẾM TRÙNG X2 & AUTO SUBMIT KHI QUÁ 3 LẦN)
         function handleUserLeave(reason) {
             if (!isExamActive || isSubmitted) return;
+
+            const now = Date.now();
+            // Khử hoàn toàn lỗi đếm x2 (blur + visibilitychange đồng thời kích hoạt trong tích tắc)
+            if (isUserCurrentlyAway || (now - lastLeaveTimestamp < 1500)) {
+                return;
+            }
+            isUserCurrentlyAway = true;
+            lastLeaveTimestamp = now;
 
             tabSwitchCount++;
             playWarningBeep();
             updateToolbarBadges();
 
-            // TRƯỜNG HỢP 1: LẦN 1 HOẶC LẦN 2 -> BỎ QUA KHÔNG HỦY BÀI, CHỈ CẢNH BÁO
-            if (tabSwitchCount < MAX_TAB_SWITCHES) {
-                showCheatToast(`⚠️ CẢNH BÁO (Lần ${tabSwitchCount}/${MAX_TAB_SWITCHES}): Bạn vừa rời màn hình làm bài! Rời tab quá 3 lần bài thi sẽ bị HỦY và bắt buộc làm lại đề mới.`);
+            // TRƯỜNG HỢP 1: LẦN 1 HOẶC 2 -> BỎ QUA KHÔNG HỦY BÀI, CHỈ CẢNH BÁO
+            if (tabSwitchCount <= 2) {
+                showCheatToast(`⚠️ CẢNH BÁO (Lần ${tabSwitchCount}/${MAX_TAB_SWITCHES}): Bạn vừa rời màn hình làm bài! Rời tab quá 3 lần hệ thống sẽ TỰ ĐỘNG NỘP BÀI.`);
                 return;
             }
 
-            // TRƯỜNG HỢP 2: ĐÃ ĐẠT 3 LẦN VI PHẠM (>= 3) -> KHÓA BÀI THI, BẮT BUỘC LÀM LẠI MÃ ĐỀ MỚI
-            if (timerInterval) clearInterval(timerInterval);
-            isExamActive = false;
-
-            const modal = document.getElementById("tabViolationModal");
-            const candElem = document.getElementById("txtViolationCandidate");
-            const countElem = document.getElementById("txtViolationCount");
-            const titleElem = document.getElementById("txtViolationTitle");
-            const descElem = document.getElementById("txtViolationDesc");
-            const btnAction = document.getElementById("btnViolationAction");
-
-            if (candElem) candElem.innerText = `${currentStudent.name || "Thí sinh"} - Lớp ${currentStudent.className || "Chưa chọn"}`;
-            if (countElem) countElem.innerText = `${tabSwitchCount}/${MAX_TAB_SWITCHES} lần`;
-
-            // Nếu đã là lần thi thứ 3 -> Đình chỉ thi và tự động nộp bài
-            if (retryCount >= MAX_EXAM_ATTEMPTS) {
-                if (titleElem) titleElem.innerText = "🚫 ĐÌNH CHỈ THI - HẾT LƯỢT LÀM BÀI!";
-                if (descElem) {
-                    descElem.innerHTML = `Bạn đã vi phạm <b>chuyển tab quá 3 lần</b> và đã sử dụng hết <b>3/3 lượt làm bài</b>.<br>Hệ thống tự động nộp bài làm hiện tại và khóa quyền thi!`;
-                }
-                if (btnAction) {
-                    btnAction.innerText = "📤 NỘP BÀI THI VÀ XEM ĐIỂM";
-                    btnAction.onclick = () => {
-                        if (modal) modal.style.display = "none";
-                        submitExam();
-                    };
-                }
-            } else {
-                // Còn lượt thi -> Bắt buộc làm lại Mã đề mới
-                if (titleElem) titleElem.innerText = "🚨 VI PHẠM QUY CHẾ: CHUYỂN TAB QUÁ 3 LẦN!";
-                if (descElem) {
-                    descElem.innerHTML = `Hệ thống ghi nhận bạn đã <b>rời màn hình 3/3 lần</b>.<br>Toàn bộ câu trả lời lần này bị <b>HỦY</b>. Bạn bắt buộc phải bốc thăm <b>Mã đề mới (Lần ${retryCount + 1}/${MAX_EXAM_ATTEMPTS})</b>.<br><b style="color: #2563eb;">Thời gian làm bài tiếp tục tính CỘNG DỒN trong quỹ thời gian còn lại!</b>`;
-                }
-                if (btnAction) {
-                    btnAction.innerText = `🔄 BẮT BUỘC LÀM LẠI MÃ ĐỀ MỚI (LẦN ${retryCount + 1}/${MAX_EXAM_ATTEMPTS})`;
-                    btnAction.onclick = forceRestartExamDueToViolation;
-                }
+            // TRƯỜNG HỢP 2: LẦN 3 -> CẢNH BÁO NGHIÊM KHẮC LẦN CUỐI
+            if (tabSwitchCount === 3) {
+                showCheatToast(`🚨 CẢNH BÁO NGUY HIỂM (Lần 3/${MAX_TAB_SWITCHES}): Bạn đã rời màn hình 3 lần! Nếu rời tab thêm 1 lần nữa (vượt quá 3 lần), bài thi sẽ BỊ TỰ ĐỘNG NỘP NGAY LẬP TỨC!`);
+                return;
             }
 
-            if (modal) modal.style.display = "flex";
+            // TRƯỜNG HỢP 3: VƯỢT QUÁ SỐ LẦN QUY ĐỊNH (> 3 LẦN) -> MẶC ĐỊNH TỰ ĐỘNG NỘP BÀI NGAY LẬP TỨC!
+            if (tabSwitchCount > 3) {
+                clearInterval(examTimer);
+                isExamActive = false;
+                isAutoSubmittedByCheat = true;
+
+                showCheatToast(`🚨 ĐÃ RỜI TAB QUÁ 3 LẦN (${tabSwitchCount}/${MAX_TAB_SWITCHES})! Hệ thống tự động nộp bài làm của bạn.`);
+                
+                // Mặc định nộp bài ngay lập tức
+                submitExam();
+            }
         }
 
         function handleUserReturn() {
-            // Giữ nguyên giao diện cảnh báo
-        }
-
-        // BẮT BUỘC LÀM LẠI MÃ ĐỀ MỚI SAU KHI VI PHẠM QUÁ 3 LẦN CHUYỂN TAB
-        function forceRestartExamDueToViolation() {
-            const modal = document.getElementById("tabViolationModal");
-            if (modal) modal.style.display = "none";
-
-            // Nếu đã hết số lần làm bài -> Nộp bài
-            if (retryCount >= MAX_EXAM_ATTEMPTS) {
-                alert("🔒 Bạn đã hết số lần làm bài quy định (tối đa 3 lần)!");
-                submitExam();
-                return;
-            }
-
-            // Kiểm tra thời gian còn lại (quỹ thời gian cộng dồn)
-            if (remainingSeconds <= 15) {
-                alert("⏰ Quỹ thời gian 45 phút cộng dồn đã cạn! Hệ thống tự động nộp bài.");
-                submitExam();
-                return;
-            }
-
-            // Tăng số lần thi và reset số lần chuyển tab cho lượt thi mới
-            retryCount++;
-            tabSwitchCount = 0;
-
-            // Xóa câu trả lời cũ
-            studentAnswersP1 = {};
-            studentAnswersP2 = {};
-
-            // Bốc thăm ngẫu nhiên Mã đề mới (Đảo đề mới 100%)
-            prepareExamQuestions();
-
-            // Hiển thị giao diện làm bài
-            document.getElementById("startScreen").style.display = "none";
-            document.getElementById("resultScreen").style.display = "none";
-            document.getElementById("solutionsContainer").style.display = "none";
-            document.getElementById("topToolbar").style.display = "block";
-            document.getElementById("examContainer").style.display = "block";
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Render lại câu hỏi và bảng palette
-            renderQuestions();
-            renderPalette();
-            updateToolbarBadges();
-
-            // Kích hoạt lại bài thi và timer (THỜI GIAN CỘNG DỒN TIẾP TỤC ĐẾM TỪ remainingSeconds CÒN LẠI)
-            isExamActive = true;
-            isSubmitted = false;
-            isTabOut = false;
-            startTimer();
-
-            const remMin = Math.floor(remainingSeconds / 60);
-            const remSec = remainingSeconds % 60;
-            showCheatToast(`🔄 Làm lại Lần ${retryCount}/${MAX_EXAM_ATTEMPTS} với Mã đề mới ${generatedExamCode}! Còn ${remMin}p ${remSec}s (thời gian tính cộng dồn).`);
+            setTimeout(() => {
+                isUserCurrentlyAway = false;
+            }, 300);
         }
 
         // LÀM LẠI BÀI THI TỪ MÀN HÌNH KẾT QUẢ (TỐI ĐA 3 LẦN - MÃ ĐỀ MỚI - THỜI GIAN CỘNG DỒN)
@@ -7654,11 +7595,15 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
 
             retryCount++;
             tabSwitchCount = 0; // Reset số lần chuyển tab cho lượt mới
+            isAutoSubmittedByCheat = false;
+            isUserCurrentlyAway = false;
 
             document.getElementById("resultScreen").style.display = "none";
             document.getElementById("solutionsContainer").style.display = "none";
+            const autoBanner = document.getElementById("autoSubmitAlertBanner");
+            if (autoBanner) autoBanner.style.display = "none";
 
-            // Bốc thăm ngẫu nhiên Mã đề mới
+            // Bốc thăm ngẫu nhiên Mã đề mới 100%
             prepareExamQuestions();
 
             // Xóa câu trả lời cũ
