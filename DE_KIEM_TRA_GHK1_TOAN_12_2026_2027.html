@@ -1271,11 +1271,12 @@
             <div class="student-form-box">
                 <div class="form-row">
                     <label for="txtStudentName">Họ và tên thí sinh (bắt buộc nhập đầy đủ Họ và Tên có dấu):</label>
-                    <input type="text" id="txtStudentName" class="form-input" placeholder="Ví dụ: Nguyễn Văn An" autocomplete="off">
+                    <input type="text" id="txtStudentName" class="form-input" placeholder="Ví dụ: Nguyễn Văn An" autocomplete="off" oninput="clearInputError('txtStudentName', 'errStudentName')">
+                    <div id="errStudentName" style="color: #ef4444; font-size: 13px; font-weight: 600; margin-top: 5px; display: none;"></div>
                 </div>
                 <div class="form-row">
                     <label for="selClass">Lớp học (bắt buộc chọn đúng lớp đang học):</label>
-                    <select id="selClass" class="form-select">
+                    <select id="selClass" class="form-select" onchange="clearInputError('selClass', 'errStudentClass')">
                         <option value="" disabled selected>-- Vui lòng chọn đúng Lớp học của bạn --</option>
                         <option value="12B1">Lớp 12B1</option>
                         <option value="12B2">Lớp 12B2</option>
@@ -1284,6 +1285,7 @@
                         <option value="12B5">Lớp 12B5</option>
                         <option value="12B6">Lớp 12B6</option>
                     </select>
+                    <div id="errStudentClass" style="color: #ef4444; font-size: 13px; font-weight: 600; margin-top: 5px; display: none;"></div>
                 </div>
             </div>
 
@@ -6753,46 +6755,80 @@
             document.getElementById("lblExamCodeDisplay").innerText = `🎲 Mã đề: ${activeExamCode}`;
         }
 
-        // BẮT ĐẦU THI VỚI VALIDATION BẮT BUỘC TÊN VÀ LỚP
+                function clearInputError(inputId, errId) {
+            const input = document.getElementById(inputId);
+            const err = document.getElementById(errId);
+            if (input) input.style.border = "";
+            if (err) {
+                err.style.display = "none";
+                err.innerText = "";
+            }
+        }
+
+        // BẮT ĐẦU THI VỚI VALIDATION TRỰC QUAN KHÔNG BỊ CHẶN BỞI ALERT
         function startExam() {
-            const nameInput = document.getElementById("txtStudentName").value.trim();
-            const classInput = document.getElementById("selClass").value;
+            const nameEl = document.getElementById("txtStudentName");
+            const classEl = document.getElementById("selClass");
+            const errName = document.getElementById("errStudentName");
+            const errClass = document.getElementById("errStudentClass");
 
-            // Kiểm tra Họ và tên bắt buộc có ít nhất 2 từ
-            if (!nameInput || nameInput.split(/\s+/).length < 2) {
-                alert(`🚨 CẢNH BÁO BẮT BUỘC:
-Vui lòng nhập đầy đủ cả HỌ VÀ TÊN có dấu (ít nhất 2 từ)!
-Ví dụ: Nguyễn Văn An
+            const nameInput = nameEl ? nameEl.value.trim() : "";
+            const classInput = classEl ? classEl.value : "";
 
-Nếu không nhập đúng tên, bài thi sẽ KHÔNG ĐƯỢC TÍNH ĐIỂM!`);
-                document.getElementById("txtStudentName").focus();
-                return;
+            let hasError = false;
+
+            // Kiểm tra Họ và tên
+            if (!nameInput || nameInput.length < 2) {
+                if (nameEl) nameEl.style.border = "2px solid #ef4444";
+                if (errName) {
+                    errName.style.display = "block";
+                    errName.innerText = "⚠️ Vui lòng nhập đầy đủ Họ và tên của bạn!";
+                }
+                showCheatToast("⚠️ Vui lòng nhập Họ và tên trước khi bắt đầu!");
+                if (nameEl) nameEl.focus();
+                hasError = true;
+            } else {
+                clearInputError("txtStudentName", "errStudentName");
             }
 
-            // Kiểm tra Lớp học bắt buộc phải chọn
+            // Kiểm tra Lớp học
             if (!classInput) {
-                alert(`🚨 CẢNH BÁO BẮT BUỘC:
-Bạn chưa chọn LỚP HỌC!
-Vui lòng chọn đúng Lớp của bạn (12B1 - 12B6).
-
-Nếu chọn sai lớp, bài thi sẽ KHÔNG ĐƯỢC TÍNH ĐIỂM!`);
-                document.getElementById("selClass").focus();
-                return;
+                if (classEl) classEl.style.border = "2px solid #ef4444";
+                if (errClass) {
+                    errClass.style.display = "block";
+                    errClass.innerText = "⚠️ Vui lòng chọn Lớp học của bạn!";
+                }
+                if (!hasError) {
+                    showCheatToast("⚠️ Vui lòng chọn Lớp học của bạn!");
+                    if (classEl) classEl.focus();
+                }
+                hasError = true;
+            } else {
+                clearInputError("selClass", "errStudentClass");
             }
+
+            if (hasError) return;
 
             currentStudent.name = nameInput;
             currentStudent.className = classInput;
             currentStudent.examSet = "mixed";
             currentStudent.examSetName = "Trộn ngẫu nhiên 2 Đề";
 
-            document.getElementById("lblStudentDisplay").innerText = `👤 ${currentStudent.name} (${currentStudent.className})`;
+            const studentDisplay = document.getElementById("lblStudentDisplay");
+            if (studentDisplay) {
+                studentDisplay.innerText = `👤 ${currentStudent.name} (${currentStudent.className})`;
+            }
 
             prepareExamQuestions();
 
             // Chuyển màn hình
-            document.getElementById("startScreen").style.display = "none";
-            document.getElementById("topToolbar").style.display = "block";
-            document.getElementById("examContainer").style.display = "block";
+            const startScr = document.getElementById("startScreen");
+            const topBar = document.getElementById("topToolbar");
+            const examBox = document.getElementById("examContainer");
+
+            if (startScr) startScr.style.display = "none";
+            if (topBar) topBar.style.display = "block";
+            if (examBox) examBox.style.display = "block";
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             renderQuestions();
@@ -7444,7 +7480,7 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
             // Hiển thị modal vi phạm
             const candElem = document.getElementById("txtViolationCandidate");
             const countElem = document.getElementById("txtViolationCount");
-            if (candElem) candElem.innerText = `${currentStudentName} - Lớp ${currentStudentClass}`;
+            if (candElem) candElem.innerText = `${currentStudent.name || "Thí sinh"} - Lớp ${currentStudent.className || "Chưa chọn"}`;
             if (countElem) countElem.innerText = tabSwitchCount;
 
             const modal = document.getElementById("tabViolationModal");
