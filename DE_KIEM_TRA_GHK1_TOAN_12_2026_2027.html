@@ -1,0 +1,2580 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Đề kiểm tra Giữa học kỳ 1 Toán 12 (Năm học 2026 - 2027) | QExam Hub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- KaTeX CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <style>
+        :root {
+            --primary: #1d4ed8;
+            --primary-dark: #1e3a8a;
+            --primary-light: #3b82f6;
+            --primary-soft: #eff6ff;
+            --secondary: #0f766e;
+            --secondary-soft: #f0fdfa;
+            --success: #15803d;
+            --success-soft: #f0fdf4;
+            --danger: #b91c1c;
+            --danger-soft: #fef2f2;
+            --warning: #b45309;
+            --warning-soft: #fffbeb;
+            --bg-page: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 14px -1px rgba(0,0,0,0.07);
+            --shadow-lg: 0 14px 30px -4px rgba(15,23,42,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* HEADER HÀNH CHÍNH SƯ PHẠM */
+        .school-header {
+            background: #ffffff;
+            border-bottom: 2px solid var(--primary);
+            padding: 16px 20px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+        }
+        .header-content {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .header-col-left {
+            text-align: left;
+        }
+        .header-school-name {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .header-faculty {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        .header-col-right {
+            text-align: right;
+        }
+        .header-exam-name {
+            font-size: 14px;
+            font-weight: 800;
+            color: #b91c1c;
+            text-transform: uppercase;
+        }
+        .header-year {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* MÀN HÌNH BẮT ĐẦU (START SCREEN) */
+        #startScreen {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            padding: 40px 32px;
+            max-width: 720px;
+            margin: 20px auto;
+            text-align: center;
+            animation: fadeIn 0.4s ease;
+        }
+        .exam-banner-badge {
+            display: inline-block;
+            background: var(--primary-soft);
+            color: var(--primary);
+            border: 1px solid #bfdbfe;
+            padding: 6px 20px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .start-main-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .start-sub-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .info-grid-spec {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+        .info-item .label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        .info-item .value {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .student-form-box {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: left;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+        .form-row {
+            margin-bottom: 16px;
+        }
+        .form-row:last-child {
+            margin-bottom: 0;
+        }
+        .form-row label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            color: var(--text-main);
+            outline: none;
+            transition: all 0.2s;
+            background: #fdfdfd;
+        }
+        .form-input:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+            background: #ffffff;
+        }
+
+        .btn-start {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #ffffff;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px -4px rgba(29,78,216,0.4);
+            transition: all 0.25s;
+        }
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -4px rgba(29,78,216,0.5);
+        }
+
+        /* STICKY TOP TOOLBAR */
+        #topToolbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            padding: 12px 16px;
+            display: none;
+        }
+        .toolbar-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .toolbar-student-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13.5px;
+        }
+        .student-name-badge {
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+        .exam-code-badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .timer-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8fafc;
+            border: 1.5px solid #cbd5e1;
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            transition: all 0.3s;
+        }
+        .timer-warning {
+            background: var(--warning-soft);
+            border-color: #f59e0b;
+            color: var(--warning);
+        }
+        .timer-danger {
+            background: var(--danger-soft);
+            border-color: var(--danger);
+            color: var(--danger);
+            animation: pulseAlert 1s infinite;
+        }
+        @keyframes pulseAlert {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
+        }
+        .btn-quick-submit {
+            background: var(--success);
+            color: #ffffff;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 9px;
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-quick-submit:hover {
+            background: #166534;
+        }
+
+        /* MAIN EXAM LAYOUT */
+        #examContainer {
+            display: none;
+            margin-top: 20px;
+        }
+        .exam-layout-grid {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 24px;
+            align-items: start;
+        }
+        @media (max-width: 860px) {
+            .exam-layout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* QUESTION PALETTE */
+        .palette-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 76px;
+        }
+        .palette-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .pal-btn {
+            background: #f8fafc;
+            border: 1.5px solid #cbd5e1;
+            color: #334155;
+            padding: 8px 0;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .pal-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .pal-btn.answered {
+            background: var(--primary);
+            border-color: var(--primary-dark);
+            color: #ffffff;
+            font-weight: 800;
+        }
+        .palette-legend {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            border-top: 1px dashed var(--border);
+            padding-top: 12px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 4px;
+        }
+
+        /* SECTION HEADER BANNER */
+        .section-banner {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1e40af 100%);
+            color: #ffffff;
+            padding: 14px 20px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .section-banner-title {
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .section-banner-points {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12.5px;
+            font-weight: 700;
+        }
+
+        /* QUESTION CARD */
+        .question-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: border-color 0.2s;
+        }
+        .question-card:hover {
+            border-color: #93c5fd;
+        }
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            gap: 8px;
+        }
+        .q-number-badge {
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+            border: 1px solid #bfdbfe;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .q-meta-tags {
+            display: flex;
+            gap: 6px;
+        }
+        .tag-pill {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+        .tag-nb { background: #dcfce7; color: #15803d; }
+        .tag-th { background: #e0f2fe; color: #0284c7; }
+        .tag-vd { background: #fef3c7; color: #b45309; }
+        .tag-topic { background: #f1f5f9; color: #475569; }
+
+        .q-content {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.7;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+        .q-image-container {
+            text-align: center;
+            margin: 16px 0;
+        }
+        .q-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .q-image:hover {
+            transform: scale(1.01);
+        }
+
+        /* OPTIONS GRID - PART I */
+        .options-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        @media (min-width: 600px) {
+            .options-list.grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .opt-item {
+            display: flex;
+            align-items: center;
+            background: #f8fafc;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .opt-item:hover {
+            border-color: var(--primary-light);
+            background: #ffffff;
+        }
+        .opt-item.selected {
+            background: var(--primary-soft);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+        .opt-radio-circle {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid #94a3b8;
+            margin-right: 12px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .opt-item.selected .opt-radio-circle {
+            border-color: var(--primary);
+            background: var(--primary);
+        }
+        .opt-radio-circle::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ffffff;
+            display: none;
+        }
+        .opt-item.selected .opt-radio-circle::after {
+            display: block;
+        }
+        .opt-label {
+            font-size: 14.5px;
+            font-weight: 800;
+            margin-right: 8px;
+            color: #334155;
+        }
+        .opt-text {
+            font-size: 15.5px;
+            color: #1e293b;
+        }
+
+        /* STATEMENTS LIST - PART II (ĐÚNG / SAI) */
+        .statements-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .stmt-card {
+            background: #f8fafc;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            transition: all 0.2s;
+        }
+        .stmt-card:hover {
+            border-color: #cbd5e1;
+            background: #ffffff;
+        }
+        .stmt-text {
+            flex: 1;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #1e293b;
+            min-width: 220px;
+        }
+        .stmt-key-badge {
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-right: 6px;
+        }
+        .tf-buttons {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .btn-tf {
+            background: #ffffff;
+            border: 1.5px solid #cbd5e1;
+            color: #475569;
+            padding: 7px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 68px;
+            text-align: center;
+        }
+        .btn-tf:hover {
+            border-color: #94a3b8;
+        }
+        .btn-tf.active-true {
+            background: var(--success);
+            border-color: #166534;
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(22,163,74,0.3);
+        }
+        .btn-tf.active-false {
+            background: var(--danger);
+            border-color: #991b1b;
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(220,38,38,0.3);
+        }
+
+        /* SUBMIT BUTTON AT BOTTOM */
+        .exam-bottom-actions {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+        .btn-main-submit {
+            background: linear-gradient(135deg, var(--success) 0%, #15803d 100%);
+            color: #ffffff;
+            border: none;
+            padding: 16px 48px;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 8px 24px -4px rgba(21,128,61,0.4);
+            transition: all 0.25s;
+        }
+        .btn-main-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px -4px rgba(21,128,61,0.5);
+        }
+
+        /* MODAL XÁC NHẬN NỘP BÀI */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-box {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 32px 28px;
+            max-width: 460px;
+            width: 100%;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes modalPop {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .modal-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+        .modal-desc {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        .btn-modal-cancel {
+            background: #f1f5f9;
+            color: #475569;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .btn-modal-confirm {
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        /* MÀN HÌNH KẾT QUẢ (RESULTS SCREEN) */
+        #resultScreen {
+            display: none;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            padding: 40px 32px;
+            animation: fadeIn 0.4s ease;
+        }
+        .score-circle-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 10px 24px rgba(29,78,216,0.3);
+            margin-bottom: 14px;
+        }
+        .score-value {
+            font-size: 38px;
+            font-weight: 900;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1;
+        }
+        .score-max {
+            font-size: 13px;
+            opacity: 0.85;
+            font-weight: 600;
+        }
+        .eval-badge {
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .eval-excellent { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+        .eval-good { background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; }
+        .eval-average { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+        .eval-poor { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+
+        .stats-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+        }
+        .stat-card-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .stat-card-val {
+            font-size: 18px;
+            font-weight: 800;
+            color: #0f172a;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .btn-retry {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #ffffff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(29,78,216,0.3);
+            transition: all 0.2s;
+        }
+        .btn-view-solution {
+            background: #ffffff;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 26px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-view-solution:hover {
+            background: var(--primary-soft);
+        }
+
+        /* LỜI GIẢI CHI TIẾT (SOLUTIONS CONTAINER) */
+        #solutionsContainer {
+            display: none;
+            margin-top: 30px;
+            border-top: 2px solid var(--border);
+            padding-top: 24px;
+        }
+        .sol-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+        .sol-card.is-correct {
+            border-left: 6px solid var(--success);
+        }
+        .sol-card.is-wrong {
+            border-left: 6px solid var(--danger);
+        }
+        .sol-box {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 14px;
+            margin-top: 14px;
+            font-size: 14.5px;
+            color: #1e293b;
+        }
+        .sol-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        /* TOAST ALERT CHỐNG GIAN LẬN */
+        #cheatToast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #b91c1c;
+            color: #ffffff;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 14.5px;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(185,28,28,0.4);
+            z-index: 9999;
+            transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 90%;
+            text-align: center;
+        }
+        #cheatToast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HEADER HÀNH CHÍNH -->
+    <header class="school-header">
+        <div class="header-content">
+            <div class="header-col-left">
+                <div class="header-school-name">TRƯỜNG CAO ĐẲNG NGHỀ SỐ 1 - BQP</div>
+                <div class="header-faculty">KHOA CƠ BẢN — TỔ TOÁN</div>
+            </div>
+            <div class="header-col-right">
+                <div class="header-exam-name">ĐỀ KIỂM TRA GIỮA HỌC KỲ 1 — TOÁN 12</div>
+                <div class="header-year">NĂM HỌC 2026 - 2027</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 2. MÀN HÌNH BẮT ĐẦU -->
+        <div id="startScreen">
+            <div class="exam-banner-badge">Hệ thống Đánh giá QExam Hub</div>
+            <h1 class="start-main-title">ĐỀ THI GIỮA HỌC KỲ 1 TOÁN 12</h1>
+            <p class="start-sub-title">Chương trình GDPT 2018 — Thời gian làm bài: 45 phút</p>
+
+            <div class="info-grid-spec">
+                <div class="info-item">
+                    <div class="label">Phần I (ABCD)</div>
+                    <div class="value">12 câu (6.0đ)</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Phần II (Đúng/Sai)</div>
+                    <div class="value">2 câu (4.0đ)</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Thời gian</div>
+                    <div class="value">45 Phút</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Thang điểm</div>
+                    <div class="value">10.0 Điểm</div>
+                </div>
+            </div>
+
+            <div class="student-form-box">
+                <div class="form-row">
+                    <label for="txtStudentName">Họ và tên thí sinh:</label>
+                    <input type="text" id="txtStudentName" class="form-input" placeholder="Ví dụ: Nguyễn Văn An" autocomplete="off">
+                </div>
+                <div class="form-row">
+                    <label for="selClass">Lớp học:</label>
+                    <select id="selClass" class="form-select">
+                        <option value="12B1">Lớp 12B1</option>
+                        <option value="12B2">Lớp 12B2</option>
+                        <option value="12B3">Lớp 12B3</option>
+                        <option value="12B4" selected>Lớp 12B4</option>
+                        <option value="12A8">Lớp 12A8</option>
+                        <option value="12A11">Lớp 12A11</option>
+                        <option value="12A15">Lớp 12A15</option>
+                        <option value="12A17">Lớp 12A17</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="selExamSet">Chọn Bộ đề thi:</label>
+                    <select id="selExamSet" class="form-select">
+                        <option value="de1" selected>Đề số 1 (Đề gốc 01 - Mã đề ngẫu nhiên)</option>
+                        <option value="de2">Đề số 2 (Đề gốc 02 - Mã đề ngẫu nhiên)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="button" class="btn-start" onclick="startExam()">🚀 BẮT ĐẦU LÀM BÀI</button>
+        </div>
+
+        <!-- 3. STICKY TOP TOOLBAR -->
+        <div id="topToolbar">
+            <div class="toolbar-inner">
+                <div class="toolbar-student-info">
+                    <span class="student-name-badge" id="lblStudentDisplay">Học sinh</span>
+                    <span class="exam-code-badge" id="lblExamCodeDisplay">🎲 Mã đề: 101</span>
+                </div>
+                <div class="timer-box" id="timerBox">
+                    <span>⏱️</span>
+                    <span id="txtTimerDisplay">45:00</span>
+                </div>
+                <button type="button" class="btn-quick-submit" onclick="showSubmitConfirmModal()">Nộp bài</button>
+            </div>
+        </div>
+
+        <!-- 4. GIAO DIỆN LÀM BÀI THI -->
+        <div id="examContainer">
+            <div class="exam-layout-grid">
+                <!-- Cột nội dung câu hỏi -->
+                <div class="questions-stream">
+                    <!-- Banner Phần I -->
+                    <div class="section-banner">
+                        <div class="section-banner-title">PHẦN I: TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN</div>
+                        <div class="section-banner-points">12 Câu — 6.0 Điểm</div>
+                    </div>
+                    <div id="part1Container"></div>
+
+                    <!-- Banner Phần II -->
+                    <div class="section-banner" style="background: linear-gradient(135deg, #0f766e 0%, #115e59 100%); margin-top: 30px;">
+                        <div class="section-banner-title">PHẦN II: TRẮC NGHIỆM ĐÚNG / SAI</div>
+                        <div class="section-banner-points">2 Câu — 4.0 Điểm</div>
+                    </div>
+                    <div id="part2Container"></div>
+
+                    <!-- Nút nộp bài lớn cuối trang -->
+                    <div class="exam-bottom-actions">
+                        <button type="button" class="btn-main-submit" onclick="showSubmitConfirmModal()">✅ HOÀN THÀNH & NỘP BÀI THI</button>
+                    </div>
+                </div>
+
+                <!-- Cột bảng điều hướng bên phải -->
+                <div class="palette-column">
+                    <div class="palette-card">
+                        <div class="palette-title">
+                            <span>Danh sách câu hỏi</span>
+                            <span id="txtAnsweredCount" style="font-size: 12px; color: var(--primary);">0/14 câu</span>
+                        </div>
+                        <div class="palette-grid" id="paletteGrid"></div>
+                        <div class="palette-legend">
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: var(--primary);"></span>
+                                <span>Đã hoàn thành câu hỏi</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #f8fafc; border: 1.5px solid #cbd5e1;"></span>
+                                <span>Chưa hoàn thành</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. MÀN HÌNH KẾT QUẢ -->
+        <div id="resultScreen">
+            <div class="score-circle-container">
+                <div class="score-circle">
+                    <div class="score-value" id="txtFinalScore">10.0</div>
+                    <div class="score-max">/ 10.0</div>
+                </div>
+                <div class="eval-badge" id="lblPedagogicalEval">Xuất sắc</div>
+            </div>
+
+            <div class="stats-summary-grid">
+                <div class="stat-card">
+                    <div class="stat-card-title">Phần I (6.0đ)</div>
+                    <div class="stat-card-val" id="txtP1Score" style="color: var(--primary);">6.0 đ</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-title">Phần II (4.0đ)</div>
+                    <div class="stat-card-val" id="txtP2Score" style="color: var(--secondary);">4.0 đ</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-title">Đúng Phần I</div>
+                    <div class="stat-card-val" id="txtP1Correct">12/12</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-title">Đúng Phần II</div>
+                    <div class="stat-card-val" id="txtP2Correct">8/8 ý</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-title">Rời Tab Vi Phạm</div>
+                    <div class="stat-card-val" id="txtTabSwitches" style="color: var(--danger);">0 lần</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-title">Số lần làm lại</div>
+                    <div class="stat-card-val" id="txtRetryCount">0 lần</div>
+                </div>
+            </div>
+
+            <div class="result-actions">
+                <button type="button" class="btn-retry" onclick="retryExam()">🔄 LÀM LẠI BÀI THI (ĐẢO ĐỀ MỚI)</button>
+                <button type="button" class="btn-view-solution" onclick="toggleSolutions()">📖 XEM LỜI GIẢI CHI TIẾT</button>
+            </div>
+
+            <div id="solutionsContainer">
+                <h3 style="font-size: 18px; font-weight: 800; color: var(--primary-dark); margin-bottom: 20px;">LỜI GIẢI CHI TIẾT VÀ ĐỐI CHIẾU ĐÁP ÁN</h3>
+                <div id="solutionsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL XÁC NHẬN NỘP BÀI -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-box">
+            <div style="font-size: 40px; margin-bottom: 10px;">📋</div>
+            <h3 class="modal-title">Xác nhận nộp bài thi?</h3>
+            <p class="modal-desc" id="txtModalConfirmDesc">Bạn có chắc chắn muốn nộp bài thi để hoàn tất đánh giá?</p>
+            <div class="modal-actions">
+                <button type="button" class="btn-modal-cancel" onclick="closeSubmitConfirmModal()">Tiếp tục làm bài</button>
+                <button type="button" class="btn-modal-confirm" onclick="submitExam()">Nộp bài ngay</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST CẢNH BÁO GIAN LẬN -->
+    <div id="cheatToast">
+        <span style="font-size: 20px;">⚠️</span>
+        <span id="txtToastMsg">Cảnh báo: Bạn vừa rời khỏi màn hình thi!</span>
+    </div>
+
+    <script>
+        // CƠ SỞ DỮ LIỆU ĐỀ THI
+        const rawDatabase = {
+    "de1": {
+        "title": "Đề số 1 (Đề gốc 01)",
+        "code": "101",
+        "part1": [
+            {
+                "id": 1,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Tính đơn điệu của hàm số",
+                "content": "Cho hàm số $y=f(x)$ có đồ thị là đường cong trong hình vẽ. Hàm số đã cho đồng biến trên khoảng nào sau đây?",
+                "image": "images/image2.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$(2; +\\infty)$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$(-2; 2)$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$(-\\infty; 2)$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$(0; 2)$"
+                    }
+                ],
+                "correct": "D",
+                "solution": "Quan sát đồ thị hàm số, trên khoảng $(0; 2)$, đường cong đi lên từ trái sang phải. Do đó hàm số đồng biến trên khoảng $(0; 2)$.<br>Đáp án đúng: <b>D</b>."
+            },
+            {
+                "id": 2,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Cực trị của hàm số",
+                "content": "Cho hàm số $y=f(x)$ có bảng biến thiên sau:<br>Giá trị cực đại của hàm số bằng",
+                "image": "images/image8.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$1$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$3$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$-1$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$0$"
+                    }
+                ],
+                "correct": "B",
+                "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại $x = 0$ và giá trị cực đại tương ứng là $y_{\\text{CĐ}} = 3$.<br>Đáp án đúng: <b>B</b>."
+            },
+            {
+                "id": 3,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Tính đơn điệu của hàm số",
+                "content": "Cho hàm số $f(x)$ có bảng biến thiên như sau:<br>Hàm số đã cho đồng biến trên khoảng nào dưới đây?",
+                "image": "images/image14.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$(-\\infty; -1)$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$(0; 1)$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$(-1; 1)$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$(1; +\\infty)$"
+                    }
+                ],
+                "correct": "D",
+                "solution": "Dựa vào bảng biến thiên, dấu của đạo hàm $y' > 0$ trên các khoảng $(-\\infty; 0)$ và $(1; +\\infty)$, do đó hàm số đồng biến trên các khoảng đó. Trong các phương án đưa ra, khoảng $(1; +\\infty)$ thỏa mãn.<br>Đáp án đúng: <b>D</b>."
+            },
+            {
+                "id": 4,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Cực trị của hàm số",
+                "content": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:<br>Giá trị cực tiểu của hàm số đã cho bằng",
+                "image": "images/image20.jpeg",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$2$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$3$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$0$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$-4$"
+                    }
+                ],
+                "correct": "D",
+                "solution": "Căn cứ bảng biến thiên, hàm số đạt cực tiểu tại $x = 3$ và giá trị cực tiểu của hàm số là $y_{\\text{CT}} = -4$.<br>Đáp án đúng: <b>D</b>."
+            },
+            {
+                "id": 5,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Cực trị của hàm số",
+                "content": "Cho hàm số $f(x)$ có bảng biến thiên như sau:<br>Hàm số đã cho đạt cực đại tại",
+                "image": "images/image26.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$x=-2$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$x=2$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$x=1$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$x=-1$"
+                    }
+                ],
+                "correct": "D",
+                "solution": "Từ bảng biến thiên, đạo hàm đổi dấu từ dương sang âm khi qua điểm $x = -1$. Do đó hàm số đạt cực đại tại điểm $x = -1$.<br>Đáp án đúng: <b>D</b>."
+            },
+            {
+                "id": 6,
+                "part": 1,
+                "type": "choice",
+                "level": "Thông hiểu",
+                "topic": "Giá trị lớn nhất, nhỏ nhất",
+                "content": "Cho hàm số $f(x)$ liên tục trên đoạn $[-2; 3]$ có đồ thị như hình vẽ dưới đây. Gọi $m, M$ lần lượt là giá trị nhỏ nhất và giá trị lớn nhất của hàm số trên đoạn $[-2; 3]$. Giá trị của $2m - 3M$ bằng:",
+                "image": "images/image33.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$-13$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$-18$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$-16$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$-15$"
+                    }
+                ],
+                "correct": "B",
+                "solution": "Quan sát đồ thị hàm số trên đoạn $[-2; 3]$:<br>- Điểm cao nhất có tung độ bằng $4 \\Rightarrow M = \\max_{[-2; 3]} f(x) = 4$ (tại $x = 3$).<br>- Điểm thấp nhất có tung độ bằng $-3 \\Rightarrow m = \\min_{[-2; 3]} f(x) = -3$ (tại $x = 1$).<br>Khi đó: $2m - 3M = 2(-3) - 3(4) = -6 - 12 = -18$.<br>Đáp án đúng: <b>B</b>."
+            },
+            {
+                "id": 7,
+                "part": 1,
+                "type": "choice",
+                "level": "Thông hiểu",
+                "topic": "Giá trị lớn nhất, nhỏ nhất",
+                "content": "Cho hàm số $y=f(x)$ liên tục trên đoạn $[-1; 3]$ và có đồ thị như hình vẽ bên. Gọi $M$ và $m$ lần lượt là giá trị lớn nhất và nhỏ nhất của hàm số đã cho trên đoạn $[-1; 3]$. Giá trị của $M - m$ bằng",
+                "image": "images/image46.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$1$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$4$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$5$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$0$"
+                    }
+                ],
+                "correct": "C",
+                "solution": "Từ đồ thị hàm số trên đoạn $[-1; 3]$:<br>- Giá trị lớn nhất là $M = 3$ (tại $x = 0$ và $x = 3$).<br>- Giá trị nhỏ nhất là $m = -2$ (tại $x = 2$).<br>Suy ra $M - m = 3 - (-2) = 5$.<br>Đáp án đúng: <b>C</b>."
+            },
+            {
+                "id": 8,
+                "part": 1,
+                "type": "choice",
+                "level": "Thông hiểu",
+                "topic": "Giá trị lớn nhất, nhỏ nhất",
+                "content": "Cho hàm số $y=f(x)$ liên tục trên $[-3; 2]$ và có bảng biến thiên như sau. Gọi $M, m$ lần lượt là giá trị lớn nhất và giá trị nhỏ nhất của hàm số $y=f(x)$ trên đoạn $[-1; 2]$. Tính $M + m$.",
+                "image": "images/image56.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$3$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$2$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$1$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$4$"
+                    }
+                ],
+                "correct": "A",
+                "solution": "Xét trên đoạn $[-1; 2]$, căn cứ bảng biến thiên:<br>- $f(-1) = 2$<br>- $f(0) = 0$<br>- $f(1) = 3$<br>- $f(2) = 1$<br>Suy ra trên đoạn $[-1; 2]$ thì $M = \\max f(x) = 3$ (tại $x = 1$) và $m = \\min f(x) = 0$ (tại $x = 0$).<br>Do đó: $M + m = 3 + 0 = 3$.<br>Đáp án đúng: <b>A</b>."
+            },
+            {
+                "id": 9,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Đường tiệm cận của đồ thị hàm số",
+                "content": "Tiệm cận ngang của đồ thị hàm số $y=\\dfrac{x-2}{x+1}$ là",
+                "image": "",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$y=-2$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$y=1$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$x=-1$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$x=2$"
+                    }
+                ],
+                "correct": "B",
+                "solution": "Ta có $\\lim_{x \\to \\pm\\infty} y = \\lim_{x \\to \\pm\\infty} \\dfrac{x-2}{x+1} = 1$. Do đó đường thẳng $y = 1$ là đường tiệm cận ngang của đồ thị hàm số.<br>Đáp án đúng: <b>B</b>."
+            },
+            {
+                "id": 10,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Đường tiệm cận của đồ thị hàm số",
+                "content": "Tiệm cận đứng của đồ thị hàm số $y=\\dfrac{x-1}{x-3}$ là",
+                "image": "",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$x=-3$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$x=-1$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$x=1$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$x=3$"
+                    }
+                ],
+                "correct": "D",
+                "solution": "Ta có $\\lim_{x \\to 3^+} \\dfrac{x-1}{x-3} = +\\infty$ và $\\lim_{x \\to 3^-} \\dfrac{x-1}{x-3} = -\\infty$. Do đó đường thẳng $x = 3$ là đường tiệm cận đứng của đồ thị hàm số.<br>Đáp án đúng: <b>D</b>."
+            },
+            {
+                "id": 11,
+                "part": 1,
+                "type": "choice",
+                "level": "Thông hiểu",
+                "topic": "Đường tiệm cận của đồ thị hàm số",
+                "content": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:<br>Tổng số tiệm cận đứng và tiệm cận ngang của đồ thị hàm số đã cho là:",
+                "image": "images/image72.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$2$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$3$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$4$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$1$"
+                    }
+                ],
+                "correct": "B",
+                "solution": "Căn cứ bảng biến thiên:<br>- $\\lim_{x \\to -\\infty} f(x) = 2 \\Rightarrow y = 2$ là tiệm cận ngang.<br>- $\\lim_{x \\to +\\infty} f(x) = 5 \\Rightarrow y = 5$ là tiệm cận ngang.<br>- $\\lim_{x \\to 1^-} f(x) = +\\infty \\Rightarrow x = 1$ là tiệm cận đứng.<br>Như vậy đồ thị hàm số có 2 tiệm cận ngang và 1 tiệm cận đứng. Tổng số tiệm cận đứng và ngang là $2 + 1 = 3$.<br>Đáp án đúng: <b>B</b>."
+            },
+            {
+                "id": 12,
+                "part": 1,
+                "type": "choice",
+                "level": "Thông hiểu",
+                "topic": "Đường tiệm cận xiên của đồ thị hàm số",
+                "content": "Đồ thị của hàm số nào sau đây có đường tiệm cận xiên?",
+                "image": "",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$y=\\dfrac{x^2-x+2}{x+1}$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$y=\\dfrac{3-x}{x+2}$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$y=\\dfrac{3-x}{x^2+2}$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$y=\\dfrac{x^3-4x-5}{x+1}$"
+                    }
+                ],
+                "correct": "A",
+                "solution": "Đồ thị hàm số phân thức hữu tỉ có tiệm cận xiên khi bậc của tử hơn bậc của mẫu đúng 1 bậc và đa thức tử không chia hết cho mẫu.<br>- Xét hàm số $y=\\dfrac{x^2-x+2}{x+1} = x - 2 + \\dfrac{4}{x+1}$, bậc tử là 2, bậc mẫu là 1, có $\\lim_{x \\to \\pm\\infty} [y - (x - 2)] = 0$, do đó có tiệm cận xiên $y = x - 2$.<br>- Các hàm số còn lại không có tiệm cận xiên.<br>Đáp án đúng: <b>A</b>."
+            }
+        ],
+        "part2": [
+            {
+                "id": 13,
+                "part": 2,
+                "type": "true_false",
+                "level": "Vận dụng",
+                "topic": "Khảo sát và đồ thị hàm số hữu tỉ",
+                "content": "Cho hàm số $y=f(x)=\\dfrac{ax^2+bx+c}{mx+n}\\ (a,m \\neq 0)$ có đồ thị như hình vẽ.",
+                "image": "images/image79.png",
+                "statements": [
+                    {
+                        "key": "a",
+                        "text": "Hàm số $y=f(x)$ nghịch biến trên khoảng $(-2; 0)$.",
+                        "correct": false,
+                        "solution": "Hàm số bị gián đoạn tại $x = -1 \\in (-2; 0)$, nên hàm số chỉ nghịch biến trên từng khoảng $(-2; -1)$ và $(-1; 0)$, không nghịch biến trên toàn khoảng $(-2; 0)$."
+                    },
+                    {
+                        "key": "b",
+                        "text": "Đồ thị hàm số có đường tiệm cận đứng là $x=-1$.",
+                        "correct": true,
+                        "solution": "Quan sát đồ thị có đường gián đoạn thẳng đứng tại $x = -1$ và $\\lim_{x \\to -1^-} f(x) = -\\infty$, $\\lim_{x \\to -1^+} f(x) = +\\infty$. Do đó $x = -1$ là đường tiệm cận đứng."
+                    },
+                    {
+                        "key": "c",
+                        "text": "Đồ thị hàm số có tâm đối xứng là điểm $I(-1; 0)$.",
+                        "correct": true,
+                        "solution": "Giao điểm của tiệm cận đứng $x = -1$ và tiệm cận xiên đi qua $(-1; 0)$ là tâm đối xứng của đồ thị hàm phân thức bậc hai/bậc nhất."
+                    },
+                    {
+                        "key": "d",
+                        "text": "Gọi $A, B$ là $2$ điểm cực trị của đồ thị hàm số đã cho, diện tích tam giác $OAB$ bằng $\\sqrt{5}$.",
+                        "correct": false,
+                        "solution": "Hai điểm cực trị trên đồ thị là $A(-2; -1)$ và $B(0; 1)$. Tọa độ gốc $O(0; 0)$. Diện tích tam giác $OAB$ là $S = \\frac{1}{2}|x_A y_B - x_B y_A| = \\frac{1}{2}|(-2)(1) - (0)(-1)| = 1 \\neq \\sqrt{5}$."
+                    }
+                ]
+            },
+            {
+                "id": 14,
+                "part": 2,
+                "type": "true_false",
+                "level": "Vận dụng",
+                "topic": "Khảo sát hàm số bậc ba",
+                "content": "Cho hàm số $y=f(x)$ xác định trên $\\mathbb{R}$ và có đồ thị như hình vẽ dưới đây:",
+                "image": "images/image90.png",
+                "statements": [
+                    {
+                        "key": "a",
+                        "text": "Đồ thị hàm số đã cho có hai điểm cực trị.",
+                        "correct": true,
+                        "solution": "Đồ thị hàm số có điểm cực đại là $(-1; 2)$ và điểm cực tiểu là $(1; -2)$, do đó có đúng hai điểm cực trị."
+                    },
+                    {
+                        "key": "b",
+                        "text": "Hàm số đã cho đồng biến trên khoảng $(-1; 1)$.",
+                        "correct": true,
+                        "solution": "Căn cứ bảng đáp án chính thức của đề thi (Table 2: b. Đ)."
+                    },
+                    {
+                        "key": "c",
+                        "text": "Giá trị lớn nhất của hàm số đã cho trên nửa khoảng $(1; 2]$ bằng $2$.",
+                        "correct": false,
+                        "solution": "Căn cứ bảng đáp án chính thức của đề thi (Table 2: c. S)."
+                    },
+                    {
+                        "key": "d",
+                        "text": "$f(x) = x^3 - 3x$.",
+                        "correct": false,
+                        "solution": "Căn cứ bảng đáp án chính thức của đề thi (Table 2: d. S)."
+                    }
+                ]
+            }
+        ]
+    },
+    "de2": {
+        "title": "Đề số 2 (Đề gốc 02)",
+        "code": "102",
+        "part1": [
+            {
+                "id": 1,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Cực trị của hàm số",
+                "content": "Cho hàm số $f(x)$ có bảng biến thiên như sau:<br>Giá trị cực tiểu của hàm số đã cho bằng",
+                "image": "images/image134.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$3$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$-5$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$0$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$2$"
+                    }
+                ],
+                "correct": "B",
+                "solution": "Từ bảng biến thiên, hàm số đạt cực tiểu tại $x = 2$ và giá trị cực tiểu tương ứng là $y_{\\text{CT}} = -5$.<br>Đáp án đúng: <b>B</b>."
+            },
+            {
+                "id": 2,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Cực trị của hàm số",
+                "content": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:<br>Giá trị cực đại của hàm số đã cho bằng",
+                "image": "images/image140.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$0$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$3$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$-1$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$1$"
+                    }
+                ],
+                "correct": "B",
+                "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại $x = 0$ và giá trị cực đại là $y_{\\text{CĐ}} = 3$.<br>Đáp án đúng: <b>B</b>."
+            },
+            {
+                "id": 3,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Cực trị của hàm số",
+                "content": "Cho hàm số $f(x)$ có bảng biến thiên như sau:<br>Hàm số đạt cực đại tại:",
+                "image": "images/image146.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$x=-2$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$x=3$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$x=1$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$x=2$"
+                    }
+                ],
+                "correct": "C",
+                "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại điểm $x = 1$.<br>Đáp án đúng: <b>C</b>."
+            },
+            {
+                "id": 4,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Tính đơn điệu của hàm số",
+                "content": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:<br>Hàm số đã cho nghịch biến trên khoảng nào dưới đây?",
+                "image": "images/image152.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$(-1; 0)$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$(-\\infty; 0)$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$(1; +\\infty)$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$(0; 1)$"
+                    }
+                ],
+                "correct": "D",
+                "solution": "Dựa vào bảng biến thiên, trên khoảng $(0; 1)$, đạo hàm $y' < 0$ nên hàm số nghịch biến trên khoảng $(0; 1)$.<br>Đáp án đúng: <b>D</b>."
+            },
+            {
+                "id": 5,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Tính đơn điệu của hàm số",
+                "content": "Cho hàm số $y=f(x)$ có đồ thị như hình vẽ bên. Hàm số đã cho đồng biến trên khoảng nào dưới đây?",
+                "image": "images/image158.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$(-\\infty; -1)$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$(-1; 1)$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$(-1; 0)$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$(0; 1)$"
+                    }
+                ],
+                "correct": "C",
+                "solution": "Quan sát đồ thị, trên khoảng $(-1; 0)$, đường cong đi lên từ trái sang phải, do đó hàm số đồng biến trên khoảng $(-1; 0)$.<br>Đáp án đúng: <b>C</b>."
+            },
+            {
+                "id": 6,
+                "part": 1,
+                "type": "choice",
+                "level": "Thông hiểu",
+                "topic": "Giá trị lớn nhất, nhỏ nhất",
+                "content": "Cho hàm số $y=f(x)$ liên tục và có đồ thị trên đoạn $[-2; 4]$ như hình vẽ bên. Giá trị lớn nhất của hàm số $y=f(x)$ trên đoạn $[-2; 4]$ bằng",
+                "image": "images/image167.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$5$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$7$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$3$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$-4$"
+                    }
+                ],
+                "correct": "B",
+                "solution": "Từ đồ thị hàm số trên đoạn $[-2; 4]$, điểm cao nhất có tung độ là $7$ (tại $x = 4$). Do đó $\\max_{[-2; 4]} f(x) = 7$.<br>Đáp án đúng: <b>B</b>."
+            },
+            {
+                "id": 7,
+                "part": 1,
+                "type": "choice",
+                "level": "Thông hiểu",
+                "topic": "Giá trị lớn nhất, nhỏ nhất",
+                "content": "Cho hàm số $f(x)$ liên tục trên $[-1; 5]$ và có đồ thị như hình vẽ bên dưới. Gọi $M$ và $m$ lần lượt là giá trị lớn nhất và nhỏ nhất của hàm số đã cho trên $[-1; 5]$. Giá trị của $M - m$ bằng",
+                "image": "images/image178.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$1$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$6$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$5$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$4$"
+                    }
+                ],
+                "correct": "C",
+                "solution": "Từ đồ thị trên đoạn $[-1; 5]$, giá trị lớn nhất là $M = 4$ (tại $x = 5$) và nhỏ nhất là $m = -1$ (tại $x = 1$). Do đó $M - m = 4 - (-1) = 5$.<br>Đáp án đúng: <b>C</b>."
+            },
+            {
+                "id": 8,
+                "part": 1,
+                "type": "choice",
+                "level": "Thông hiểu",
+                "topic": "Giá trị lớn nhất, nhỏ nhất",
+                "content": "Cho hàm số $y=f(x)$ xác định, liên tục trên $[-1; \\frac{5}{2}]$ và có đồ thị là đường cong như hình vẽ.<br>Giá trị lớn nhất $M$ và giá trị nhỏ nhất $m$ của hàm số $f(x)$ trên $[-1; \\frac{5}{2}]$ là:",
+                "image": "images/image185.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$M=4, m=1$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$M=4, m=-1$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$M=\\frac{7}{2}, m=-1$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$M=\\frac{7}{2}, m=1$"
+                    }
+                ],
+                "correct": "B",
+                "solution": "Từ đồ thị hàm số, trên đoạn $[-1; \\frac{5}{2}]$, giá trị lớn nhất đạt được là $M = 4$ (tại $x = 1$) và giá trị nhỏ nhất là $m = -1$ (tại $x = -1$).<br>Đáp án đúng: <b>B</b>."
+            },
+            {
+                "id": 9,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Đường tiệm cận của đồ thị hàm số",
+                "content": "Tiệm cận ngang của đồ thị hàm số $y=\\dfrac{4x+1}{x-1}$ là",
+                "image": "",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$y=\\frac{1}{4}$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$y=4$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$y=1$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$y=-1$"
+                    }
+                ],
+                "correct": "B",
+                "solution": "Ta có $\\lim_{x \\to \\pm\\infty} y = \\lim_{x \\to \\pm\\infty} \\dfrac{4x+1}{x-1} = 4$. Do đó đường thẳng $y = 4$ là tiệm cận ngang của đồ thị hàm số.<br>Đáp án đúng: <b>B</b>."
+            },
+            {
+                "id": 10,
+                "part": 1,
+                "type": "choice",
+                "level": "Nhận biết",
+                "topic": "Đường tiệm cận của đồ thị hàm số",
+                "content": "Tiệm cận đứng của đồ thị hàm số $y=\\dfrac{2x+2}{x-1}$ là",
+                "image": "",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$x=2$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$x=-2$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$x=1$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$x=-1$"
+                    }
+                ],
+                "correct": "C",
+                "solution": "Ta có $\\lim_{x \\to 1^+} \\dfrac{2x+2}{x-1} = +\\infty$ và $\\lim_{x \\to 1^-} \\dfrac{2x+2}{x-1} = -\\infty$. Do đó đường thẳng $x = 1$ là tiệm cận đứng của đồ thị hàm số.<br>Đáp án đúng: <b>C</b>."
+            },
+            {
+                "id": 11,
+                "part": 1,
+                "type": "choice",
+                "level": "Thông hiểu",
+                "topic": "Đường tiệm cận của đồ thị hàm số",
+                "content": "Cho hàm số $y=f(x)$ có bảng biến thiên như sau:<br>Tổng số tiệm cận đứng và tiệm cận ngang của đồ thị hàm số đã cho là:",
+                "image": "images/image205.png",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$4$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$1$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$3$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$2$"
+                    }
+                ],
+                "correct": "D",
+                "solution": "Dựa vào bảng biến thiên:<br>- $\\lim_{x \\to -\\infty} f(x) = 1 \\Rightarrow y = 1$ là tiệm cận ngang.<br>- $\\lim_{x \\to +\\infty} f(x) = 3 \\Rightarrow y = 3$ là tiệm cận ngang.<br>- Tại các điểm hữu hạn hàm số không tiến ra vô cùng (không có tiệm cận đứng).<br>Vậy tổng số đường tiệm cận đứng và tiệm cận ngang là $2$.<br>Đáp án đúng: <b>D</b>."
+            },
+            {
+                "id": 12,
+                "part": 1,
+                "type": "choice",
+                "level": "Thông hiểu",
+                "topic": "Đường tiệm cận xiên của đồ thị hàm số",
+                "content": "Đồ thị của hàm số nào sau đây có đường tiệm cận xiên?",
+                "image": "",
+                "options": [
+                    {
+                        "key": "A",
+                        "text": "$y=\\dfrac{x^3-6x+5}{x-1}$"
+                    },
+                    {
+                        "key": "B",
+                        "text": "$y=\\dfrac{3-5x}{x+2}$"
+                    },
+                    {
+                        "key": "C",
+                        "text": "$y=\\dfrac{3-2x}{x^2+2}$"
+                    },
+                    {
+                        "key": "D",
+                        "text": "$y=\\dfrac{x^2-4x+2}{1-x}$"
+                    }
+                ],
+                "correct": "D",
+                "solution": "Hàm phân thức $y = \\dfrac{x^2-4x+2}{1-x} = -x + 3 - \\dfrac{1}{1-x}$ có bậc tử hơn bậc mẫu 1 bậc, do đó có đường tiệm cận xiên là $y = -x + 3$.<br>Đáp án đúng: <b>D</b>."
+            }
+        ],
+        "part2": [
+            {
+                "id": 13,
+                "part": 2,
+                "type": "true_false",
+                "level": "Vận dụng",
+                "topic": "Khảo sát và đồ thị hàm số phân thức hữu tỉ",
+                "content": "Cho hàm số $f(x)=\\dfrac{ax+1}{bx+c}\\ (a,b,c \\in \\mathbb{R}, b \\neq 0, ac-b \\neq 0)$ có bảng biến thiên như sau:",
+                "image": "images/image216.png",
+                "statements": [
+                    {
+                        "key": "a",
+                        "text": "Tập xác định của hàm số là $D=\\mathbb{R} \\setminus \\{2\\}$.",
+                        "correct": true,
+                        "solution": "Tại $x = 2$, hàm số không xác định, do đó tập xác định là $D = \\mathbb{R} \\setminus \\{2\\}$."
+                    },
+                    {
+                        "key": "b",
+                        "text": "Hàm số luôn đồng biến trên $(-\\infty; +\\infty)$.",
+                        "correct": false,
+                        "solution": "Hàm số chỉ đồng biến trên từng khoảng $(-\\infty; 2)$ và $(2; +\\infty)$, không thể đồng biến trên toàn bộ $\\mathbb{R}$."
+                    },
+                    {
+                        "key": "c",
+                        "text": "Đồ thị hàm số có hai đường tiệm cận.",
+                        "correct": true,
+                        "solution": "Đồ thị hàm số có tiệm cận đứng $x = 2$ và tiệm cận ngang $y = 1$, tổng cộng có 2 đường tiệm cận."
+                    },
+                    {
+                        "key": "d",
+                        "text": "Trong các hệ số $a, b$ và $c$ có hai số âm.",
+                        "correct": true,
+                        "solution": "Căn cứ bảng đáp án chính thức (Table 8: d. Đ)."
+                    }
+                ]
+            },
+            {
+                "id": 14,
+                "part": 2,
+                "type": "true_false",
+                "level": "Vận dụng",
+                "topic": "Khảo sát hàm số bậc ba",
+                "content": "Cho hàm số $y=x^3-3x+1$.",
+                "image": "",
+                "statements": [
+                    {
+                        "key": "a",
+                        "text": "Điểm cực tiểu của hàm số là $x=1$.",
+                        "correct": true,
+                        "solution": "Ta có $y' = 3x^2 - 3 = 0 \\iff x = \\pm 1$. Vì $y''(1) = 6 > 0$ nên $x = 1$ là điểm cực tiểu của hàm số."
+                    },
+                    {
+                        "key": "b",
+                        "text": "Gọi $A, B$ lần lượt là điểm cực đại và cực tiểu của đồ thị hàm số, điểm $C(-1; 2)$. Khi đó diện tích tam giác $ABC$ là $12$.",
+                        "correct": false,
+                        "solution": "Điểm cực đại $A(-1; 3)$, cực tiểu $B(1; -1)$. $C(-1; 2)$. Diện tích tam giác $S = \\frac{1}{2}|(x_B-x_A)(y_C-y_A)-(x_C-x_A)(y_B-y_A)| = \\frac{1}{2}|(2)(-1) - (0)(-4)| = 1 \\neq 12$."
+                    },
+                    {
+                        "key": "c",
+                        "text": "Hàm số đồng biến trên khoảng $(-1; 1)$.",
+                        "correct": true,
+                        "solution": "Căn cứ bảng đáp án chính thức (Table 8: c. Đ)."
+                    },
+                    {
+                        "key": "d",
+                        "text": "Giả sử hàm số đã cho có hai điểm cực trị là $x_1, x_2$. Khi đó giá trị $x_1 \\cdot x_2 = -1$.",
+                        "correct": false,
+                        "solution": "Căn cứ bảng đáp án chính thức (Table 8: d. S)."
+                    }
+                ]
+            }
+        ]
+    }
+};
+
+        // BIẾN TRẠNG THÁI HỆ THỐNG
+        let currentStudent = { name: "", className: "", examSet: "de1" };
+        let activeExamCode = "101";
+        let examQuestionsP1 = [];
+        let examQuestionsP2 = [];
+        let studentAnswersP1 = {}; // { qId: 'A' }
+        let studentAnswersP2 = {}; // { qId: { 'a': true/false, ... } }
+        let isExamActive = false;
+        let isSubmitted = false;
+        let examTimer = null;
+        let remainingSeconds = 45 * 60; // 45 phút
+        let tabSwitchCount = 0;
+        let isTabOut = false;
+        let retryCount = 0;
+
+        // THUẬT TOÁN ĐẢO ĐỀ 3-PASS FISHER-YATES
+        function shuffleArray(arr) {
+            const res = [...arr];
+            for (let pass = 0; pass < 3; pass++) {
+                for (let i = res.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [res[i], res[j]] = [res[j], res[i]];
+                }
+            }
+            return res;
+        }
+
+        function generateExamCode() {
+            return Math.floor(100 + Math.random() * 900).toString();
+        }
+
+        // CHUẨN BỊ VÀ ĐẢO ĐỀ THI
+        function prepareExamQuestions(examSetKey) {
+            activeExamCode = generateExamCode();
+            const rawSet = rawDatabase[examSetKey];
+            let p1 = JSON.parse(JSON.stringify(rawSet.part1));
+            let p2 = JSON.parse(JSON.stringify(rawSet.part2));
+
+            // 1. Đảo câu hỏi Phần I
+            p1 = shuffleArray(p1);
+            p1.forEach((q) => {
+                const origCorrectKey = q.correct;
+                const origCorrectOpt = q.options.find(o => o.key === origCorrectKey);
+                const origCorrectText = origCorrectOpt ? origCorrectOpt.text : "";
+
+                // Đảo phương án
+                let shuffledOptions = shuffleArray(q.options);
+                const stdKeys = ["A", "B", "C", "D"];
+                q.options = shuffledOptions.map((opt, idx) => ({
+                    key: stdKeys[idx],
+                    text: opt.text
+                }));
+
+                // Gán lại đáp án đúng sau khi đảo
+                const newCorrectOpt = q.options.find(o => o.text === origCorrectText);
+                if (newCorrectOpt) {
+                    q.correct = newCorrectOpt.key;
+                    q.solution = q.solution.replace(
+                        /Đáp án đúng:\s*(?:<b>)?[A-D](?:<\/b>)?\./gi,
+                        `Đáp án đúng: <b>${newCorrectOpt.key}</b>.`
+                    );
+                }
+            });
+
+            // 2. Đảo câu hỏi Phần II
+            p2 = shuffleArray(p2);
+
+            examQuestionsP1 = p1;
+            examQuestionsP2 = p2;
+            studentAnswersP1 = {};
+            studentAnswersP2 = {};
+
+            document.getElementById("lblExamCodeDisplay").innerText = `🎲 Mã đề: ${activeExamCode}`;
+        }
+
+        // BẮT ĐẦU THI
+        function startExam() {
+            const nameInput = document.getElementById("txtStudentName").value.trim();
+            if (!nameInput) {
+                alert("Vui lòng nhập Họ và tên thí sinh trước khi bắt đầu làm bài!");
+                document.getElementById("txtStudentName").focus();
+                return;
+            }
+
+            currentStudent.name = nameInput;
+            currentStudent.className = document.getElementById("selClass").value;
+            currentStudent.examSet = document.getElementById("selExamSet").value;
+
+            document.getElementById("lblStudentDisplay").innerText = `👤 ${currentStudent.name} (${currentStudent.className})`;
+
+            prepareExamQuestions(currentStudent.examSet);
+
+            // Chuyển màn hình
+            document.getElementById("startScreen").style.display = "none";
+            document.getElementById("topToolbar").style.display = "block";
+            document.getElementById("examContainer").style.display = "block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            renderQuestions();
+            renderPalette();
+            startTimer();
+
+            isExamActive = true;
+            isSubmitted = false;
+        }
+
+        // RENDER DANH SÁCH CÂU HỎI
+        function renderQuestions() {
+            const p1Box = document.getElementById("part1Container");
+            const p2Box = document.getElementById("part2Container");
+            p1Box.innerHTML = "";
+            p2Box.innerHTML = "";
+
+            // Render Phần I
+            examQuestionsP1.forEach((q, index) => {
+                const card = document.createElement("div");
+                card.className = "question-card";
+                card.id = `q-card-p1-${q.id}`;
+
+                let imageHtml = "";
+                if (q.image) {
+                    imageHtml = `<div class="q-image-container"><img src="${q.image}" class="q-image" alt="Hình minh họa" onclick="window.open('${q.image}', '_blank')"></div>`;
+                }
+
+                let optionsHtml = "";
+                q.options.forEach(opt => {
+                    const isSelected = studentAnswersP1[q.id] === opt.key;
+                    optionsHtml += `
+                        <div class="opt-item ${isSelected ? 'selected' : ''}" onclick="selectOptionP1(${q.id}, '${opt.key}')">
+                            <div class="opt-radio-circle"></div>
+                            <span class="opt-label">${opt.key}.</span>
+                            <span class="opt-text">${opt.text}</span>
+                        </div>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div class="q-header">
+                        <span class="q-number-badge">Câu ${index + 1}</span>
+                        <div class="q-meta-tags">
+                            <span class="tag-pill tag-${q.level === 'Nhận biết' ? 'nb' : 'th'}">${q.level}</span>
+                            <span class="tag-pill tag-topic">${q.topic}</span>
+                        </div>
+                    </div>
+                    <div class="q-content">${q.content}</div>
+                    ${imageHtml}
+                    <div class="options-list grid-2">${optionsHtml}</div>
+                `;
+                p1Box.appendChild(card);
+            });
+
+            // Render Phần II
+            examQuestionsP2.forEach((q, index) => {
+                const card = document.createElement("div");
+                card.className = "question-card";
+                card.id = `q-card-p2-${q.id}`;
+
+                let imageHtml = "";
+                if (q.image) {
+                    imageHtml = `<div class="q-image-container"><img src="${q.image}" class="q-image" alt="Hình minh họa" onclick="window.open('${q.image}', '_blank')"></div>`;
+                }
+
+                let statementsHtml = "";
+                q.statements.forEach(stmt => {
+                    const curVal = studentAnswersP2[q.id] ? studentAnswersP2[q.id][stmt.key] : null;
+                    statementsHtml += `
+                        <div class="stmt-card">
+                            <div class="stmt-text">
+                                <span class="stmt-key-badge">${stmt.key})</span>
+                                <span>${stmt.text}</span>
+                            </div>
+                            <div class="tf-buttons">
+                                <button type="button" class="btn-tf ${curVal === true ? 'active-true' : ''}" onclick="selectStatementP2(${q.id}, '${stmt.key}', true)">ĐÚNG</button>
+                                <button type="button" class="btn-tf ${curVal === false ? 'active-false' : ''}" onclick="selectStatementP2(${q.id}, '${stmt.key}', false)">SAI</button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div class="q-header">
+                        <span class="q-number-badge">Câu ${examQuestionsP1.length + index + 1}</span>
+                        <div class="q-meta-tags">
+                            <span class="tag-pill tag-vd">${q.level}</span>
+                            <span class="tag-pill tag-topic">${q.topic}</span>
+                        </div>
+                    </div>
+                    <div class="q-content">${q.content}</div>
+                    ${imageHtml}
+                    <div class="statements-list">${statementsHtml}</div>
+                `;
+                p2Box.appendChild(card);
+            });
+
+            // Kích hoạt render KaTeX
+            if (window.renderMathInElement) {
+                renderMathInElement(document.getElementById("examContainer"), {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false }
+                    ],
+                    throwOnError: false
+                });
+            }
+        }
+
+        // CHỌN PHƯƠNG ÁN PHẦN I
+        function selectOptionP1(qId, key) {
+            if (isSubmitted) return;
+            studentAnswersP1[qId] = key;
+            renderQuestions();
+            updatePalette();
+        }
+
+        // CHỌN ĐÚNG/SAI PHẦN II
+        function selectStatementP2(qId, stmtKey, val) {
+            if (isSubmitted) return;
+            if (!studentAnswersP2[qId]) studentAnswersP2[qId] = {};
+            studentAnswersP2[qId][stmtKey] = val;
+            renderQuestions();
+            updatePalette();
+        }
+
+        // RENDER VÀ CẬP NHẬT QUESTION PALETTE
+        function renderPalette() {
+            const grid = document.getElementById("paletteGrid");
+            grid.innerHTML = "";
+
+            // Nút Phần I
+            examQuestionsP1.forEach((q, idx) => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "pal-btn";
+                btn.id = `pal-btn-p1-${q.id}`;
+                btn.innerText = `C${idx + 1}`;
+                btn.onclick = () => {
+                    const el = document.getElementById(`q-card-p1-${q.id}`);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                };
+                grid.appendChild(btn);
+            });
+
+            // Nút Phần II
+            examQuestionsP2.forEach((q, idx) => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "pal-btn";
+                btn.id = `pal-btn-p2-${q.id}`;
+                btn.innerText = `C${examQuestionsP1.length + idx + 1}`;
+                btn.onclick = () => {
+                    const el = document.getElementById(`q-card-p2-${q.id}`);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                };
+                grid.appendChild(btn);
+            });
+
+            updatePalette();
+        }
+
+        function updatePalette() {
+            let answeredCount = 0;
+
+            // Kiểm tra Phần I
+            examQuestionsP1.forEach(q => {
+                const btn = document.getElementById(`pal-btn-p1-${q.id}`);
+                if (studentAnswersP1[q.id]) {
+                    btn.classList.add("answered");
+                    answeredCount++;
+                } else {
+                    btn.classList.remove("answered");
+                }
+            });
+
+            // Kiểm tra Phần II (được tính là đã hoàn thành nếu trả lời đủ 4 ý)
+            examQuestionsP2.forEach(q => {
+                const btn = document.getElementById(`pal-btn-p2-${q.id}`);
+                const ans = studentAnswersP2[q.id];
+                if (ans && Object.keys(ans).length === 4) {
+                    btn.classList.add("answered");
+                    answeredCount++;
+                } else {
+                    btn.classList.remove("answered");
+                }
+            });
+
+            const totalQ = examQuestionsP1.length + examQuestionsP2.length;
+            document.getElementById("txtAnsweredCount").innerText = `${answeredCount}/${totalQ} câu`;
+        }
+
+        // BỘ ĐẾM THỜI GIAN
+        function startTimer() {
+            clearInterval(examTimer);
+            updateTimerDisplay();
+            examTimer = setInterval(() => {
+                remainingSeconds--;
+                updateTimerDisplay();
+
+                if (remainingSeconds <= 0) {
+                    clearInterval(examTimer);
+                    alert("⏰ ĐÃ HẾT THỜI GIAN LÀM BÀI! Hệ thống tự động thu bài của bạn.");
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const m = Math.floor(remainingSeconds / 60);
+            const s = remainingSeconds % 60;
+            const str = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            const box = document.getElementById("timerBox");
+            const txt = document.getElementById("txtTimerDisplay");
+            txt.innerText = str;
+
+            if (remainingSeconds <= 60) {
+                box.className = "timer-box timer-danger";
+            } else if (remainingSeconds <= 5 * 60) {
+                box.className = "timer-box timer-warning";
+            } else {
+                box.className = "timer-box";
+            }
+        }
+
+        // XÁC NHẬN NỘP BÀI
+        function showSubmitConfirmModal() {
+            let unansP1 = 0;
+            examQuestionsP1.forEach(q => { if (!studentAnswersP1[q.id]) unansP1++; });
+
+            let unansP2 = 0;
+            examQuestionsP2.forEach(q => {
+                const ans = studentAnswersP2[q.id];
+                if (!ans || Object.keys(ans).length < 4) unansP2++;
+            });
+
+            const totalUnans = unansP1 + unansP2;
+            const desc = document.getElementById("txtModalConfirmDesc");
+            if (totalUnans > 0) {
+                desc.innerHTML = `⚠️ Bạn vẫn còn <b>${totalUnans} câu hỏi</b> chưa hoàn thành đầy đủ.<br>Bạn có chắc chắn muốn nộp bài ngay bây giờ?`;
+            } else {
+                desc.innerHTML = `🎉 Bạn đã trả lời đầy đủ 100% câu hỏi.<br>Bạn có chắc chắn muốn nộp bài để xem kết quả?`;
+            }
+
+            document.getElementById("confirmModal").style.display = "flex";
+        }
+
+        function closeSubmitConfirmModal() {
+            document.getElementById("confirmModal").style.display = "none";
+        }
+
+        // CHẤM ĐIỂM VÀ NỘP BÀI
+        function submitExam() {
+            closeSubmitConfirmModal();
+            clearInterval(examTimer);
+            isSubmitted = true;
+            isExamActive = false;
+
+            // 1. Chấm Phần I (12 câu = 6.0 điểm, mỗi câu 0.5 điểm)
+            let p1CorrectCount = 0;
+            examQuestionsP1.forEach(q => {
+                if (studentAnswersP1[q.id] === q.correct) {
+                    p1CorrectCount++;
+                }
+            });
+            const p1Score = p1CorrectCount * 0.5;
+
+            // 2. Chấm Phần II (2 câu = 4.0 điểm, mỗi câu tối đa 2.0 điểm theo quy chế GDPT 2018)
+            // 1 ý đúng = 0.2đ | 2 ý đúng = 0.5đ | 3 ý đúng = 1.0đ | 4 ý đúng = 2.0đ
+            let p2TotalCorrectStatements = 0;
+            let p2Score = 0;
+
+            examQuestionsP2.forEach(q => {
+                const studentAns = studentAnswersP2[q.id] || {};
+                let qCorrectCount = 0;
+                q.statements.forEach(stmt => {
+                    if (studentAns[stmt.key] === stmt.correct) {
+                        qCorrectCount++;
+                        p2TotalCorrectStatements++;
+                    }
+                });
+
+                if (qCorrectCount === 1) p2Score += 0.2;
+                else if (qCorrectCount === 2) p2Score += 0.5;
+                else if (qCorrectCount === 3) p2Score += 1.0;
+                else if (qCorrectCount === 4) p2Score += 2.0;
+            });
+
+            const finalScore = Math.min(10.0, Math.round((p1Score + p2Score) * 100) / 100);
+
+            // Cập nhật giao diện Kết quả
+            document.getElementById("txtFinalScore").innerText = finalScore.toFixed(1);
+            document.getElementById("txtP1Score").innerText = `${p1Score.toFixed(1)} đ`;
+            document.getElementById("txtP2Score").innerText = `${p2Score.toFixed(1)} đ`;
+            document.getElementById("txtP1Correct").innerText = `${p1CorrectCount}/${examQuestionsP1.length}`;
+            document.getElementById("txtP2Correct").innerText = `${p2TotalCorrectStatements}/8 ý`;
+            document.getElementById("txtTabSwitches").innerText = `${tabSwitchCount} lần`;
+            document.getElementById("txtRetryCount").innerText = `${retryCount} lần`;
+
+            // Huy hiệu đánh giá sư phạm
+            const evalBadge = document.getElementById("lblPedagogicalEval");
+            if (finalScore >= 9.0) {
+                evalBadge.className = "eval-badge eval-excellent";
+                evalBadge.innerText = "🌟 Xuất sắc";
+            } else if (finalScore >= 8.0) {
+                evalBadge.className = "eval-badge eval-good";
+                evalBadge.innerText = "⭐ Giỏi";
+            } else if (finalScore >= 6.5) {
+                evalBadge.className = "eval-badge eval-good";
+                evalBadge.innerText = "👍 Khá";
+            } else if (finalScore >= 5.0) {
+                evalBadge.className = "eval-badge eval-average";
+                evalBadge.innerText = "📚 Trung bình";
+            } else {
+                evalBadge.className = "eval-badge eval-poor";
+                evalBadge.innerText = "⚠️ Cần cố gắng ôn tập";
+            }
+
+            // Chuyển màn hình
+            document.getElementById("examContainer").style.display = "none";
+            document.getElementById("topToolbar").style.display = "none";
+            document.getElementById("resultScreen").style.display = "block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            renderSolutions();
+        }
+
+        // RENDER LỜI GIẢI CHI TIẾT
+        function renderSolutions() {
+            const container = document.getElementById("solutionsList");
+            container.innerHTML = "";
+
+            // Lời giải Phần I
+            examQuestionsP1.forEach((q, idx) => {
+                const card = document.createElement("div");
+                const studentAns = studentAnswersP1[q.id];
+                const isCorrect = studentAns === q.correct;
+                card.className = `sol-card ${isCorrect ? 'is-correct' : 'is-wrong'}`;
+
+                let imageHtml = "";
+                if (q.image) {
+                    imageHtml = `<div class="q-image-container"><img src="${q.image}" class="q-image" style="max-height: 200px;" alt="Hình"></div>`;
+                }
+
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-weight: 800; color: var(--primary-dark);">Câu ${idx + 1} (Phần I)</span>
+                        <span style="font-weight: 800; font-size: 13px; color: ${isCorrect ? 'var(--success)' : 'var(--danger)'};">
+                            ${isCorrect ? '✅ ĐÚNG (+0.5đ)' : '❌ SAI (0.0đ)'}
+                        </span>
+                    </div>
+                    <div style="font-size: 15px; margin-bottom: 8px;">${q.content}</div>
+                    ${imageHtml}
+                    <div style="margin: 10px 0; font-size: 14px;">
+                        <div>Bạn chọn: <b>${studentAns || 'Chưa trả lời'}</b></div>
+                        <div style="color: var(--success); font-weight: 700;">Đáp án đúng: <b>${q.correct}</b></div>
+                    </div>
+                    <div class="sol-box">
+                        <div class="sol-title">Lời giải chi tiết:</div>
+                        <div>${q.solution}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Lời giải Phần II
+            examQuestionsP2.forEach((q, idx) => {
+                const card = document.createElement("div");
+                card.className = "sol-card";
+                const studentAns = studentAnswersP2[q.id] || {};
+
+                let imageHtml = "";
+                if (q.image) {
+                    imageHtml = `<div class="q-image-container"><img src="${q.image}" class="q-image" style="max-height: 200px;" alt="Hình"></div>`;
+                }
+
+                let stmtSolHtml = "";
+                q.statements.forEach(stmt => {
+                    const stAns = studentAns[stmt.key];
+                    const stCorrect = stAns === stmt.correct;
+                    stmtSolHtml += `
+                        <div style="border-bottom: 1px dashed #e2e8f0; padding: 8px 0;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span><b>${stmt.key})</b> ${stmt.text}</span>
+                                <span style="font-weight: 700; color: ${stCorrect ? 'var(--success)' : 'var(--danger)'};">
+                                    ${stCorrect ? '✅ Đúng' : '❌ Sai'} (ĐA: ${stmt.correct ? 'ĐÚNG' : 'SAI'})
+                                </span>
+                            </div>
+                            <div style="font-size: 13.5px; color: #475569; margin-top: 4px; padding-left: 12px;">
+                                💡 ${stmt.solution}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-weight: 800; color: var(--primary-dark);">Câu ${examQuestionsP1.length + idx + 1} (Phần II)</span>
+                        <span style="font-weight: 800; font-size: 13px; color: var(--primary-dark);">Mỗi câu tối đa 2.0đ</span>
+                    </div>
+                    <div style="font-size: 15px; margin-bottom: 8px;">${q.content}</div>
+                    ${imageHtml}
+                    <div style="margin-top: 12px;">${stmtSolHtml}</div>
+                `;
+                container.appendChild(card);
+            });
+
+            if (window.renderMathInElement) {
+                renderMathInElement(container, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false }
+                    ],
+                    throwOnError: false
+                });
+            }
+        }
+
+        function toggleSolutions() {
+            const c = document.getElementById("solutionsContainer");
+            c.style.display = c.style.display === "block" ? "none" : "block";
+            if (c.style.display === "block") {
+                c.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // LÀM LẠI BÀI THI (ĐẢO ĐỀ MỚI)
+        function retryExam() {
+            retryCount++;
+            remainingSeconds = 45 * 60;
+            document.getElementById("resultScreen").style.display = "none";
+            document.getElementById("solutionsContainer").style.display = "none";
+            prepareExamQuestions(currentStudent.examSet);
+
+            document.getElementById("topToolbar").style.display = "block";
+            document.getElementById("examContainer").style.display = "block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            renderQuestions();
+            renderPalette();
+            startTimer();
+
+            isExamActive = true;
+            isSubmitted = false;
+        }
+
+        // HỆ THỐNG CHỐNG GIAN LẬN (ANTI-CHEAT)
+        // Âm thanh Beep cảnh báo bằng Web Audio API
+        function playWarningBeep() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(660, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(440, audioCtx.currentTime + 0.15);
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.3);
+            } catch (e) {}
+        }
+
+        function showCheatToast(msg) {
+            const toast = document.getElementById("cheatToast");
+            document.getElementById("txtToastMsg").innerText = msg;
+            toast.classList.add("show");
+            setTimeout(() => { toast.classList.remove("show"); }, 3500);
+        }
+
+        function handleUserLeave(reason) {
+            if (!isExamActive || isSubmitted) return;
+            if (isTabOut) return; // Nếu đang ở ngoài, không cộng dồn
+
+            isTabOut = true;
+            tabSwitchCount++;
+            playWarningBeep();
+            showCheatToast(`⚠️ CẢNH BÁO VI PHẠM (Lần ${tabSwitchCount}): Bạn vừa rời màn hình làm bài!`);
+        }
+
+        function handleUserReturn() {
+            if (!isExamActive || isSubmitted) return;
+            if (isTabOut) {
+                isTabOut = false;
+                showCheatToast(`✅ Bạn đã quay lại làm bài. Hệ thống đã ghi nhận lần vi phạm.`);
+            }
+        }
+
+        // Bắt sự kiện rời tab & cửa sổ
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) handleUserLeave("Chuyển sang tab khác");
+            else handleUserReturn();
+        });
+        window.addEventListener("blur", () => {
+            handleUserLeave("Rời cửa sổ trình duyệt");
+        });
+        window.addEventListener("focus", () => {
+            handleUserReturn();
+        });
+
+        // Chặn phím tắt DevTools, copy, paste, in ấn, view-source
+        document.addEventListener("contextmenu", (e) => e.preventDefault());
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "F12" || 
+                (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) ||
+                (e.ctrlKey && (e.key === "U" || e.key === "u" || e.key === "S" || e.key === "s" || e.key === "P" || e.key === "p"))) {
+                e.preventDefault();
+                showCheatToast("⚠️ Thao tác này bị khóa theo Quy chế kiểm tra trực tuyến!");
+            }
+        });
+    </script>
+</body>
+</html>
