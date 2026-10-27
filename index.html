@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -1059,87 +1059,14 @@
         .dash-modal-content {
             background: #ffffff;
             border-radius: 20px;
-            max-width: 1280px;
-            width: 98%;
-            max-height: 92vh;
+            max-width: 1100px;
+            width: 96%;
+            max-height: 90vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
             box-shadow: 0 25px 60px rgba(0,0,0,0.3);
             animation: modalPop 0.3s ease;
-        }
-        .badge-cheat-danger {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-weight: 800;
-            font-size: 13px;
-            background: #fef2f2;
-            color: #dc2626;
-            border: 1.5px solid #f87171;
-            box-shadow: 0 2px 6px rgba(220, 38, 38, 0.15);
-        }
-        .badge-cheat-safe {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 13px;
-            background: #f0fdf4;
-            color: #16a34a;
-            border: 1px solid #bbf7d0;
-        }
-        .badge-retry-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-weight: 800;
-            font-size: 13px;
-            background: #eff6ff;
-            color: #1d4ed8;
-            border: 1.5px solid #93c5fd;
-        }
-        .badge-first-tag {
-            display: inline-flex;
-            align-items: center;
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 13px;
-            background: #f8fafc;
-            color: #64748b;
-            border: 1px solid #e2e8f0;
-        }
-        .btn-filter-pill {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 700;
-            border: 1.5px solid #cbd5e1;
-            background: #ffffff;
-            color: #475569;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .btn-filter-pill:hover {
-            border-color: #3b82f6;
-            color: #1d4ed8;
-            background: #eff6ff;
-        }
-        .btn-filter-pill.active {
-            background: #2563eb;
-            color: #ffffff;
-            border-color: #2563eb;
-            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
         }
         .dash-modal-header {
             background: linear-gradient(135deg, var(--primary-dark) 0%, #1e40af 100%);
@@ -1280,341 +1207,6 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-    
-        /* ==============================================================
-           BỘ TỐI ƯU GIAO DIỆN DI ĐỘNG (MOBILE-FIRST RESPONSIVE PERFECTION)
-           Hỗ trợ màn hình từ 320px đến 768px (iPhone SE, Pro Max, Android)
-           ============================================================== */
-        
-        /* Ngăn ngừa iOS tự động phóng to khi chạm vào ô nhập liệu */
-        input[type="text"], input[type="password"], select, input[type="datetime-local"] {
-            font-size: 16px !important;
-        }
-
-        /* Chống tràn công thức KaTeX trên thiết bị di động */
-        .katex-display {
-            overflow-x: auto;
-            overflow-y: hidden;
-            -webkit-overflow-scrolling: touch;
-            padding: 4px 0;
-            max-width: 100%;
-        }
-        .katex {
-            font-size: 1.05em;
-            max-width: 100%;
-        }
-
-        @media (max-width: 768px) {
-            /* 1. Header trường học */
-            .top-header {
-                padding: 10px 12px;
-                margin-bottom: 12px;
-            }
-            .header-content {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-            .header-school-name {
-                font-size: 12px;
-            }
-            .header-faculty {
-                font-size: 11px;
-            }
-            .header-col-right {
-                width: 100%;
-                justify-content: space-between;
-                align-items: center;
-                border-top: 1px dashed #e2e8f0;
-                padding-top: 6px;
-            }
-            .header-exam-name {
-                font-size: 12.5px;
-            }
-            .btn-teacher-portal {
-                padding: 5px 10px;
-                font-size: 11.5px;
-                border-radius: 6px;
-            }
-
-            /* 2. Màn hình bắt đầu (#startScreen) */
-            #startScreen {
-                padding: 20px 14px;
-                margin: 10px 8px;
-                border-radius: 16px;
-            }
-            .exam-icon-hero {
-                font-size: 40px;
-                margin-bottom: 8px;
-            }
-            .main-exam-title {
-                font-size: 18px;
-                line-height: 1.35;
-            }
-            .sub-exam-title {
-                font-size: 13px;
-                margin-bottom: 16px;
-            }
-            .info-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-                padding: 10px;
-                margin-bottom: 16px;
-            }
-            .info-item .label {
-                font-size: 10px;
-            }
-            .info-item .value {
-                font-size: 14px;
-            }
-            .red-alert-box {
-                padding: 12px 14px;
-                gap: 10px;
-                margin-bottom: 16px;
-            }
-            .red-alert-box .alert-icon {
-                font-size: 24px;
-            }
-            .red-alert-box .alert-title {
-                font-size: 13.5px;
-            }
-            .red-alert-box .alert-text {
-                font-size: 13px;
-            }
-            .student-form-box {
-                padding: 14px;
-                margin-bottom: 18px;
-            }
-            .form-row label {
-                font-size: 13px;
-            }
-            .form-input, .form-select {
-                padding: 12px 14px;
-                font-size: 15px;
-                border-radius: 10px;
-            }
-            .btn-start {
-                padding: 14px;
-                font-size: 16px;
-                border-radius: 12px;
-                min-height: 48px;
-            }
-
-            /* 3. Sticky Top Toolbar siêu gọn gàng trên mobile */
-            #topToolbar {
-                padding: 8px 10px;
-            }
-            .toolbar-inner {
-                flex-direction: column;
-                gap: 8px;
-            }
-            .toolbar-student-info {
-                width: 100%;
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: flex-start;
-                gap: 6px;
-                font-size: 12px;
-            }
-            .student-name-badge {
-                max-width: 150px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                font-size: 12.5px;
-            }
-            .exam-code-badge {
-                font-size: 11px;
-                padding: 2px 7px;
-                border-radius: 5px;
-            }
-            /* Hàng điều khiển gồm Đồng hồ và Nút Nộp bài */
-            .toolbar-bottom-row {
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                gap: 8px;
-            }
-            .timer-box {
-                padding: 6px 12px;
-                font-size: 14px;
-                border-radius: 8px;
-                gap: 6px;
-            }
-            .timer-box #txtTimerDisplay {
-                font-size: 16px;
-                font-weight: 800;
-            }
-            .btn-quick-submit {
-                padding: 8px 16px;
-                font-size: 13.5px;
-                font-weight: 800;
-                border-radius: 8px;
-                min-height: 38px;
-            }
-
-            /* 4. Khung bài thi và Palette */
-            .exam-layout-grid {
-                grid-template-columns: 1fr;
-                gap: 14px;
-            }
-            .palette-card {
-                position: static;
-                margin-top: 14px;
-                padding: 14px;
-                border-radius: 14px;
-            }
-            .palette-grid {
-                grid-template-columns: repeat(7, 1fr);
-                gap: 6px;
-            }
-            .pal-btn {
-                padding: 10px 0;
-                font-size: 13px;
-                min-height: 40px;
-                border-radius: 8px;
-            }
-
-            /* 5. Thẻ câu hỏi và các lựa chọn đáp án */
-            .question-card {
-                padding: 16px 12px;
-                margin-bottom: 14px;
-                border-radius: 14px;
-            }
-            .q-header {
-                margin-bottom: 10px;
-            }
-            .q-number-badge {
-                font-size: 12.5px;
-                padding: 3px 10px;
-            }
-            .q-content {
-                font-size: 15px;
-                line-height: 1.6;
-                margin-bottom: 14px;
-            }
-            .q-image {
-                max-width: 100%;
-                max-height: 240px;
-            }
-            .options-list {
-                gap: 8px;
-            }
-            .options-list.grid-2 {
-                grid-template-columns: 1fr !important;
-            }
-            .opt-item {
-                padding: 12px 12px;
-                border-radius: 10px;
-                min-height: 46px;
-            }
-            .opt-radio-circle {
-                width: 20px;
-                height: 20px;
-                margin-right: 10px;
-            }
-            .opt-label {
-                font-size: 14px;
-                margin-right: 6px;
-            }
-            .opt-text {
-                font-size: 15px;
-                line-height: 1.45;
-                word-break: break-word;
-            }
-
-            /* Phần II: Đúng / Sai */
-            .stmt-card {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-                padding: 12px;
-            }
-            .stmt-text {
-                min-width: 100%;
-                font-size: 14.5px;
-            }
-            .tf-buttons {
-                width: 100%;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-            }
-            .btn-tf {
-                padding: 10px 0;
-                font-size: 14px;
-                min-height: 42px;
-                width: 100%;
-                text-align: center;
-            }
-
-            /* 6. Màn hình kết quả (#resultScreen) */
-            #resultScreen {
-                padding: 24px 14px;
-                margin: 10px 8px;
-                border-radius: 16px;
-            }
-            .score-circle {
-                width: 130px;
-                height: 130px;
-            }
-            .score-value {
-                font-size: 40px;
-            }
-            .stats-summary-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-            }
-            .stat-card {
-                padding: 12px 10px;
-            }
-            .stat-card-title {
-                font-size: 11px;
-            }
-            .stat-card-val {
-                font-size: 18px;
-            }
-            .results-actions {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .btn-retry, .btn-solutions {
-                width: 100%;
-                padding: 13px;
-                font-size: 14.5px;
-            }
-
-            /* 7. Modal Quản lý Giáo viên & Cài đặt Lịch thi */
-            .dash-modal-content {
-                width: 96vw !important;
-                max-height: 94vh !important;
-                padding: 16px 12px !important;
-                border-radius: 16px !important;
-            }
-            .dash-summary-row {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 8px !important;
-            }
-            .dash-stat-box {
-                padding: 10px !important;
-            }
-            .dash-stat-val {
-                font-size: 20px !important;
-            }
-            .dash-toolbar-row {
-                flex-direction: column !important;
-                gap: 10px !important;
-            }
-            .dash-search {
-                width: 100% !important;
-            }
-            .dash-table-wrap {
-                max-height: 360px !important;
-            }
-        }
-
     </style>
 </head>
 <body>
@@ -1679,12 +1271,11 @@
             <div class="student-form-box">
                 <div class="form-row">
                     <label for="txtStudentName">Họ và tên thí sinh (bắt buộc nhập đầy đủ Họ và Tên có dấu):</label>
-                    <input type="text" id="txtStudentName" class="form-input" placeholder="Ví dụ: Nguyễn Văn An" autocomplete="off" oninput="clearInputError('txtStudentName', 'errStudentName')">
-                    <div id="errStudentName" style="color: #ef4444; font-size: 13px; font-weight: 600; margin-top: 5px; display: none;"></div>
+                    <input type="text" id="txtStudentName" class="form-input" placeholder="Ví dụ: Nguyễn Văn An" autocomplete="off">
                 </div>
                 <div class="form-row">
                     <label for="selClass">Lớp học (bắt buộc chọn đúng lớp đang học):</label>
-                    <select id="selClass" class="form-select" onchange="clearInputError('selClass', 'errStudentClass')">
+                    <select id="selClass" class="form-select">
                         <option value="" disabled selected>-- Vui lòng chọn đúng Lớp học của bạn --</option>
                         <option value="12B1">Lớp 12B1</option>
                         <option value="12B2">Lớp 12B2</option>
@@ -1693,15 +1284,7 @@
                         <option value="12B5">Lớp 12B5</option>
                         <option value="12B6">Lớp 12B6</option>
                     </select>
-                    <div id="errStudentClass" style="color: #ef4444; font-size: 13px; font-weight: 600; margin-top: 5px; display: none;"></div>
                 </div>
-            </div>
-
-                        <!-- KHUNG THÔNG BÁO LỊCH THI TRỰC TUYẾN -->
-            <div id="scheduleBanner" style="display: none; border-radius: 14px; padding: 18px 20px; margin-bottom: 22px; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.06); transition: all 0.3s ease;">
-                <div id="scheduleTitle" style="font-size: 16px; font-weight: 700; margin-bottom: 6px;"></div>
-                <div id="scheduleCountdown" style="font-size: 26px; font-weight: 800; font-family: monospace; letter-spacing: 1.5px; margin: 8px 0;"></div>
-                <div id="scheduleDetails" style="font-size: 13.5px; opacity: 0.9;"></div>
             </div>
 
             <button type="button" class="btn-start" onclick="startExam()">🚀 BẮT ĐẦU LÀM BÀI</button>
@@ -1713,16 +1296,12 @@
                 <div class="toolbar-student-info">
                     <span class="student-name-badge" id="lblStudentDisplay">Học sinh</span>
                     <span class="exam-code-badge" id="lblExamCodeDisplay">🎲 Mã đề: 101</span>
-                    <span class="exam-code-badge" id="lblAttemptDisplay" style="background: #e0f2fe; color: #0369a1; border-color: #bae6fd;">🎯 Lần: 1/3</span>
-                    <span class="exam-code-badge" id="lblTabSwitchDisplay" style="background: #f0fdf4; color: #15803d; border-color: #bbf7d0;">⚠️ Tab: 0/3</span>
                 </div>
-                <div class="toolbar-bottom-row" style="display: flex; align-items: center; gap: 8px; justify-content: flex-end;">
-                    <div class="timer-box" id="timerBox">
-                        <span>⏱️</span>
-                        <span id="txtTimerDisplay">45:00</span>
-                    </div>
-                    <button type="button" class="btn-quick-submit" onclick="showSubmitConfirmModal()">Nộp bài</button>
+                <div class="timer-box" id="timerBox">
+                    <span>⏱️</span>
+                    <span id="txtTimerDisplay">45:00</span>
                 </div>
+                <button type="button" class="btn-quick-submit" onclick="showSubmitConfirmModal()">Nộp bài</button>
             </div>
         </div>
 
@@ -1776,11 +1355,6 @@
 
         <!-- 5. MÀN HÌNH KẾT QUẢ -->
         <div id="resultScreen">
-            <!-- Banner cảnh báo tự động nộp bài do rời tab quá số lần -->
-            <div id="autoSubmitAlertBanner" style="display: none; background: #fef2f2; border: 2px solid #ef4444; border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; text-align: center; color: #b91c1c; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);">
-                🚨 BÀI THI ĐÃ ĐƯỢC HỆ THỐNG TỰ ĐỘNG NỘP DO VI PHẠM RỜI TAB QUÁ 3 LẦN QUY ĐỊNH!
-            </div>
-
             <div class="score-circle-container">
                 <div class="score-circle">
                     <div class="score-value" id="txtFinalScore">10.0</div>
@@ -1874,54 +1448,7 @@
             </div>
             <div class="dash-modal-body">
                 <!-- Thống kê tổng quan -->
-                
-                <!-- KHỐI CÀI ĐẶT LỊCH THI TRỰC TUYẾN -->
-                <div class="dash-schedule-box" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 2px solid #cbd5e1; border-radius: 16px; padding: 20px 24px; margin-bottom: 24px; box-shadow: 0 4px 14px rgba(0,0,0,0.04);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <span style="font-size: 24px;">⏰</span>
-                            <div>
-                                <h4 style="margin: 0; font-size: 17px; font-weight: 700; color: #1e293b;">CÀI ĐẶT LỊCH THI TRỰC TUYẾN (REAL-TIME CLOUD)</h4>
-                                <span style="font-size: 13px; color: #64748b;">Học sinh chỉ được vào làm bài đúng khung giờ quy định</span>
-                            </div>
-                        </div>
-                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; background: #fff; padding: 8px 16px; border-radius: 20px; border: 1.5px solid #cbd5e1; font-weight: 700;">
-                            <input type="checkbox" id="chkEnableSchedule" onchange="toggleScheduleForm()" style="width: 18px; height: 18px; cursor: pointer; accent-color: #2563eb;">
-                            <span id="lblEnableScheduleText" style="font-size: 14px; color: #475569;">Đang tắt lịch thi (Thi tự do)</span>
-                        </label>
-                    </div>
-
-                    <div id="scheduleFormArea" style="opacity: 0.5; pointer-events: none; transition: all 0.3s ease;">
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px;">
-                            <div style="background: #fff; padding: 14px 16px; border-radius: 12px; border: 1.5px solid #e2e8f0;">
-                                <label style="display: block; font-size: 13.5px; font-weight: 700; color: #0284c7; margin-bottom: 6px;">🕒 Thời gian Bắt đầu mở đề:</label>
-                                <input type="datetime-local" id="inputScheduleStart" style="width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 14px; font-weight: 600; font-family: inherit;">
-                            </div>
-                            <div style="background: #fff; padding: 14px 16px; border-radius: 12px; border: 1.5px solid #e2e8f0;">
-                                <label style="display: block; font-size: 13.5px; font-weight: 700; color: #dc2626; margin-bottom: 6px;">⏳ Thời gian Đóng cổng thi:</label>
-                                <input type="datetime-local" id="inputScheduleEnd" style="width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 14px; font-weight: 600; font-family: inherit;">
-                            </div>
-                        </div>
-
-                        <!-- Các nút cài đặt nhanh -->
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; align-items: center;">
-                            <span style="font-size: 13px; font-weight: 600; color: #64748b;">⚡ Thiết lập nhanh:</span>
-                            <button type="button" class="btn-dash" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 6px 12px; font-size: 12.5px;" onclick="setQuickSchedule('now_45')">Mở ngay + 45 phút</button>
-                            <button type="button" class="btn-dash" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 6px 12px; font-size: 12.5px;" onclick="setQuickSchedule('now_60')">Mở ngay + 60 phút</button>
-                            <button type="button" class="btn-dash" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 6px 12px; font-size: 12.5px;" onclick="setQuickSchedule('tonight')">Tối nay 19:30 - 20:30</button>
-                            <button type="button" class="btn-dash" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 6px 12px; font-size: 12.5px;" onclick="setQuickSchedule('tomorrow_morning')">Sáng mai 07:30 - 08:30</button>
-                        </div>
-
-                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-                            <button type="button" class="btn-dash" onclick="saveExamSchedule()" style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; padding: 12px 24px; font-size: 14.5px; font-weight: 700; border-radius: 10px; box-shadow: 0 4px 12px rgba(37,99,235,0.3);">
-                                💾 LƯU CÀI ĐẶT LỊCH THI (ĐỒNG BỘ TOÀN HỆ THỐNG)
-                            </button>
-                            <span id="txtScheduleSaveStatus" style="font-size: 13.5px; font-weight: 600; color: #16a34a; display: none;"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dash-summary-row" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+                <div class="dash-summary-row">
                     <div class="dash-stat-box">
                         <div class="dash-stat-val" id="dashTotalSubmissions">0</div>
                         <div class="dash-stat-lbl">Tổng số bài nộp</div>
@@ -1938,25 +1465,11 @@
                         <div class="dash-stat-val" id="dashPassRate" style="color: #d97706;">0%</div>
                         <div class="dash-stat-lbl">Tỉ lệ đạt (≥ 5.0)</div>
                     </div>
-                    <div class="dash-stat-box" style="background: #fff5f5; border-color: #fecaca;">
-                        <div class="dash-stat-val" id="dashViolationCount" style="color: #dc2626;">0 lần</div>
-                        <div class="dash-stat-lbl" style="color: #b91c1c;">🚨 RỜI TAB VI PHẠM</div>
-                    </div>
-                    <div class="dash-stat-box" style="background: #f5f3ff; border-color: #ddd6fe;">
-                        <div class="dash-stat-val" id="dashRetryCount" style="color: #4338ca;">0 bài</div>
-                        <div class="dash-stat-lbl" style="color: #4338ca;">🔄 SỐ LẦN THI LẠI</div>
-                    </div>
                 </div>
 
                 <!-- Toolbar lọc và xuất Excel -->
-                <div class="dash-toolbar-row" style="flex-wrap: wrap; gap: 12px; margin-bottom: 14px;">
-                    <input type="text" id="dashSearchInput" class="dash-search" placeholder="🔍 Tìm theo Họ tên hoặc Lớp học (VD: 12B4, Nguyễn...)" oninput="applyAllDashboardFilters()" style="min-width: 280px; flex: 1;">
-                    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-                        <button type="button" class="btn-filter-pill active" id="btnFilterAll" onclick="setDashboardFilter('all')">Tất cả bài thi</button>
-                        <button type="button" class="btn-filter-pill" id="btnFilterViolation" onclick="setDashboardFilter('violation')">🚨 Có rời tab vi phạm</button>
-                        <button type="button" class="btn-filter-pill" id="btnFilterRetry" onclick="setDashboardFilter('retry')">🔄 Đã làm lại (Lần 2, 3)</button>
-                        <button type="button" class="btn-filter-pill" id="btnFilterClean" onclick="setDashboardFilter('clean')">✅ 0 lần vi phạm</button>
-                    </div>
+                <div class="dash-toolbar-row">
+                    <input type="text" id="dashSearchInput" class="dash-search" placeholder="🔍 Tìm theo Họ tên hoặc Lớp học (VD: 12B4, Nguyễn...)" oninput="filterDashboardTable()">
                     <div style="display: flex; gap: 8px;">
                         <button type="button" class="btn-dash btn-dash-export" onclick="exportSubmissionsToCSV()">📥 Xuất Excel (CSV)</button>
                         <button type="button" class="btn-dash btn-dash-refresh" onclick="loadSubmissionsFromFirestore()">🔄 Làm mới</button>
@@ -1968,17 +1481,17 @@
                     <table class="dash-table">
                         <thead>
                             <tr>
-                                <th style="width: 45px; text-align: center;">STT</th>
-                                <th style="min-width: 130px;">Thời gian nộp</th>
-                                <th style="min-width: 150px;">Họ và tên</th>
-                                <th style="width: 70px; text-align: center;">Lớp</th>
-                                <th style="width: 75px; text-align: center;">Mã đề</th>
-                                <th style="width: 85px; text-align: center;">Tổng điểm</th>
-                                <th style="min-width: 140px; text-align: center; background: #fff1f2; color: #9f1239;">🚨 RỜI TAB VI PHẠM</th>
-                                <th style="min-width: 140px; text-align: center; background: #f0fdf4; color: #166534;">🔄 SỐ LẦN LÀM LẠI</th>
-                                <th style="min-width: 110px;">Phần I</th>
-                                <th style="min-width: 110px;">Phần II</th>
-                                <th style="min-width: 110px;">Bộ đề</th>
+                                <th>STT</th>
+                                <th>Thời gian nộp</th>
+                                <th>Họ và tên</th>
+                                <th>Lớp</th>
+                                <th>Đề</th>
+                                <th>Mã đề</th>
+                                <th>Tổng điểm</th>
+                                <th>Phần I</th>
+                                <th>Phần II</th>
+                                <th>Rời tab</th>
+                                <th>Lần thi</th>
                             </tr>
                         </thead>
                         <tbody id="dashTableBody">
@@ -2938,11 +2451,11 @@
                     },
                     {
                         "key": "D",
-                        "text": "$-5$"
+                        "text": "$0$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, giá trị cực đại của hàm số là $y=5$ (đạt tại $x=-2$).<br>Đáp án đúng: <b>A</b>."
+                "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại điểm $x = -2$ và <b>giá trị cực đại</b> tương ứng của hàm số là $y_{CĐ} = 5$.<br><i>Lưu ý sai lầm:</i> $y = -2$ là giá trị cực tiểu; còn $x = -2$ là điểm cực đại chứ không phải giá trị cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 3,
@@ -2955,23 +2468,23 @@
                 "options": [
                     {
                         "key": "A",
-                        "text": "$x=0$"
+                        "text": "$x = 3$"
                     },
                     {
                         "key": "B",
-                        "text": "$x = 4$"
+                        "text": "$x = 0$"
                     },
                     {
                         "key": "C",
-                        "text": "$x = -5$"
+                        "text": "$x = 4$"
                     },
                     {
                         "key": "D",
-                        "text": "$x=4$"
+                        "text": "$x = -1$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, đạo hàm đổi dấu khi qua điểm $x=0$, do đó hàm số đạt cực trị tại $x=0$.<br>Đáp án đúng: <b>A</b>."
+                "solution": "Dựa vào bảng biến thiên, ta thấy đạo hàm $f'(x)$ đổi dấu từ dương $(+)$ sang âm $(-)$ khi qua điểm $x = 3$. Do đó hàm số đã cho đạt cực đại tại điểm $x = 3$ (với giá trị cực đại tương ứng là $y_{CĐ} = 4$).<br><i>Lưu ý sai lầm:</i> $x = 0$ là điểm cực tiểu; còn $y = 4$ là giá trị cực đại chứ không phải điểm cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 4,
@@ -3357,23 +2870,23 @@
                 "options": [
                     {
                         "key": "A",
-                        "text": "$-4$"
+                        "text": "$6$"
                     },
                     {
                         "key": "B",
-                        "text": "$-2$"
+                        "text": "$-4$"
                     },
                     {
                         "key": "C",
-                        "text": "$1$"
+                        "text": "$3$"
                     },
                     {
                         "key": "D",
-                        "text": "$-5$"
+                        "text": "$-1$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, giá trị cực đại của hàm số là $y=-4$ (đạt tại $x=-2$).<br>Đáp án đúng: <b>A</b>."
+                "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại điểm $x = 3$ và <b>giá trị cực đại</b> tương ứng của hàm số là $y_{CĐ} = 6$.<br><i>Lưu ý sai lầm:</i> $y = -4$ là giá trị cực tiểu; còn $x = 3$ là điểm cực đại chứ không phải giá trị cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 3,
@@ -3386,23 +2899,23 @@
                 "options": [
                     {
                         "key": "A",
-                        "text": "$x=-2$"
+                        "text": "$x = -2$"
                     },
                     {
                         "key": "B",
-                        "text": "$x = 4$"
+                        "text": "$x = 2$"
                     },
                     {
                         "key": "C",
-                        "text": "$x = -5$"
+                        "text": "$x = 3$"
                     },
                     {
                         "key": "D",
-                        "text": "$x=4$"
+                        "text": "$x = -3$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, đạo hàm đổi dấu khi qua điểm $x=-2$, do đó hàm số đạt cực trị tại $x=-2$.<br>Đáp án đúng: <b>A</b>."
+                "solution": "Dựa vào bảng biến thiên, ta thấy đạo hàm $f'(x)$ đổi dấu từ dương $(+)$ sang âm $(-)$ khi qua điểm $x = -2$. Do đó hàm số đã cho đạt cực đại tại điểm $x = -2$ (với giá trị cực đại tương ứng là $y_{CĐ} = 3$).<br><i>Lưu ý sai lầm:</i> $x = 2$ là điểm cực tiểu; còn $y = 3$ là giá trị cực đại chứ không phải điểm cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 4,
@@ -3792,19 +3305,19 @@
                     },
                     {
                         "key": "B",
-                        "text": "$-2$"
+                        "text": "$-1$"
                     },
                     {
                         "key": "C",
-                        "text": "$1$"
+                        "text": "$0$"
                     },
                     {
                         "key": "D",
-                        "text": "$-5$"
+                        "text": "$2$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, giá trị cực đại của hàm số là $y=3$ (đạt tại $x=-2$).<br>Đáp án đúng: <b>A</b>."
+                "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại điểm $x = 0$ và <b>giá trị cực đại</b> tương ứng của hàm số là $y_{CĐ} = 3$.<br><i>Lưu ý sai lầm:</i> $y = -1$ là giá trị cực tiểu; còn $x = 0$ là điểm cực đại chứ không phải giá trị cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 3,
@@ -3817,23 +3330,23 @@
                 "options": [
                     {
                         "key": "A",
-                        "text": "$x=1$"
+                        "text": "$x = 1$"
                     },
                     {
                         "key": "B",
-                        "text": "$x = 4$"
+                        "text": "$x = -1$"
                     },
                     {
                         "key": "C",
-                        "text": "$x = 5$"
+                        "text": "$x = 2$"
                     },
                     {
                         "key": "D",
-                        "text": "$x=4$"
+                        "text": "$x = -2$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, đạo hàm đổi dấu khi qua điểm $x=1$, do đó hàm số đạt cực trị tại $x=1$.<br>Đáp án đúng: <b>A</b>."
+                "solution": "Dựa vào bảng biến thiên, ta thấy đạo hàm $f'(x)$ đổi dấu từ dương $(+)$ sang âm $(-)$ khi qua điểm $x = 1$. Do đó hàm số đã cho đạt cực đại tại điểm $x = 1$ (với giá trị cực đại tương ứng là $y_{CĐ} = 2$).<br><i>Lưu ý sai lầm:</i> $x = -1$ là điểm cực tiểu; còn $y = 2$ là giá trị cực đại chứ không phải điểm cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 4,
@@ -4219,23 +3732,23 @@
                 "options": [
                     {
                         "key": "A",
-                        "text": "$1$"
+                        "text": "$4$"
                     },
                     {
                         "key": "B",
-                        "text": "$-2$"
+                        "text": "$1$"
                     },
                     {
                         "key": "C",
-                        "text": "$8$"
+                        "text": "$0$"
                     },
                     {
                         "key": "D",
-                        "text": "$-5$"
+                        "text": "$-3$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, giá trị cực đại của hàm số là $y=1$ (đạt tại $x=-2$).<br>Đáp án đúng: <b>A</b>."
+                "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại điểm $x = 0$ và <b>giá trị cực đại</b> tương ứng của hàm số là $y_{CĐ} = 4$.<br><i>Lưu ý sai lầm:</i> $y = 1$ là giá trị cực tiểu; còn $x = 0$ là điểm cực đại chứ không phải giá trị cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 3,
@@ -4248,23 +3761,23 @@
                 "options": [
                     {
                         "key": "A",
-                        "text": "$x=3$"
+                        "text": "$x = 1$"
                     },
                     {
                         "key": "B",
-                        "text": "$x = 6$"
+                        "text": "$x = 3$"
                     },
                     {
                         "key": "C",
-                        "text": "$x = 4$"
+                        "text": "$x = 5$"
                     },
                     {
                         "key": "D",
-                        "text": "$x=4$"
+                        "text": "$x = 0$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, đạo hàm đổi dấu khi qua điểm $x=3$, do đó hàm số đạt cực trị tại $x=3$.<br>Đáp án đúng: <b>A</b>."
+                "solution": "Dựa vào bảng biến thiên, ta thấy đạo hàm $f'(x)$ đổi dấu từ dương $(+)$ sang âm $(-)$ khi qua điểm $x = 1$. Do đó hàm số đã cho đạt cực đại tại điểm $x = 1$ (với giá trị cực đại tương ứng là $y_{CĐ} = 5$).<br><i>Lưu ý sai lầm:</i> $x = 3$ là điểm cực tiểu; còn $y = 5$ là giá trị cực đại chứ không phải điểm cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 4,
@@ -4654,19 +4167,19 @@
                     },
                     {
                         "key": "B",
-                        "text": "$-2$"
+                        "text": "$0$"
                     },
                     {
                         "key": "C",
-                        "text": "$1$"
+                        "text": "$-1$"
                     },
                     {
                         "key": "D",
-                        "text": "$-5$"
+                        "text": "$2$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, giá trị cực đại của hàm số là $y=7$ (đạt tại $x=-2$).<br>Đáp án đúng: <b>A</b>."
+                "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại điểm $x = -1$ và <b>giá trị cực đại</b> tương ứng của hàm số là $y_{CĐ} = 7$.<br><i>Lưu ý sai lầm:</i> $y = 0$ là giá trị cực tiểu; còn $x = -1$ là điểm cực đại chứ không phải giá trị cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 3,
@@ -4679,23 +4192,23 @@
                 "options": [
                     {
                         "key": "A",
-                        "text": "$x=1$"
+                        "text": "$x = 1$"
                     },
                     {
                         "key": "B",
-                        "text": "$x = 4$"
+                        "text": "$x = -2$"
                     },
                     {
                         "key": "C",
-                        "text": "$x = 5$"
+                        "text": "$x = 3$"
                     },
                     {
                         "key": "D",
-                        "text": "$x=4$"
+                        "text": "$x = -5$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, đạo hàm đổi dấu khi qua điểm $x=1$, do đó hàm số đạt cực trị tại $x=1$.<br>Đáp án đúng: <b>A</b>."
+                "solution": "Dựa vào bảng biến thiên, ta thấy đạo hàm $f'(x)$ đổi dấu từ dương $(+)$ sang âm $(-)$ khi qua điểm $x = 1$. Do đó hàm số đã cho đạt cực đại tại điểm $x = 1$ (với giá trị cực đại tương ứng là $y_{CĐ} = 3$).<br><i>Lưu ý sai lầm:</i> $x = -2$ là điểm cực tiểu; còn $y = 3$ là giá trị cực đại chứ không phải điểm cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 4,
@@ -5085,19 +4598,19 @@
                     },
                     {
                         "key": "B",
-                        "text": "$-2$"
+                        "text": "$-3$"
                     },
                     {
                         "key": "C",
-                        "text": "$1$"
+                        "text": "$4$"
                     },
                     {
                         "key": "D",
-                        "text": "$-5$"
+                        "text": "$1$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, giá trị cực đại của hàm số là $y=5$ (đạt tại $x=-2$).<br>Đáp án đúng: <b>A</b>."
+                "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại điểm $x = 4$ và <b>giá trị cực đại</b> tương ứng của hàm số là $y_{CĐ} = 5$.<br><i>Lưu ý sai lầm:</i> $y = -3$ là giá trị cực tiểu; còn $x = 4$ là điểm cực đại chứ không phải giá trị cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 3,
@@ -5110,23 +4623,23 @@
                 "options": [
                     {
                         "key": "A",
-                        "text": "$x=2$"
+                        "text": "$x = 0$"
                     },
                     {
                         "key": "B",
-                        "text": "$x = 4$"
+                        "text": "$x = 2$"
                     },
                     {
                         "key": "C",
-                        "text": "$x = -5$"
+                        "text": "$x = 6$"
                     },
                     {
                         "key": "D",
-                        "text": "$x=4$"
+                        "text": "$x = 7$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, đạo hàm đổi dấu khi qua điểm $x=2$, do đó hàm số đạt cực trị tại $x=2$.<br>Đáp án đúng: <b>A</b>."
+                "solution": "Dựa vào bảng biến thiên, ta thấy đạo hàm $f'(x)$ đổi dấu từ dương $(+)$ sang âm $(-)$ khi qua điểm $x = 0$. Do đó hàm số đã cho đạt cực đại tại điểm $x = 0$ (với giá trị cực đại tương ứng là $y_{CĐ} = 6$).<br><i>Lưu ý sai lầm:</i> $x = 2$ là điểm cực tiểu; còn $y = 6$ là giá trị cực đại chứ không phải điểm cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 4,
@@ -5516,19 +5029,19 @@
                     },
                     {
                         "key": "B",
-                        "text": "$-2$"
+                        "text": "$-3$"
                     },
                     {
                         "key": "C",
-                        "text": "$1$"
+                        "text": "$-2$"
                     },
                     {
                         "key": "D",
-                        "text": "$-5$"
+                        "text": "$1$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, giá trị cực đại của hàm số là $y=4$ (đạt tại $x=-2$).<br>Đáp án đúng: <b>A</b>."
+                "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại điểm $x = -2$ và <b>giá trị cực đại</b> tương ứng của hàm số là $y_{CĐ} = 4$.<br><i>Lưu ý sai lầm:</i> $y = -3$ là giá trị cực tiểu; còn $x = -2$ là điểm cực đại chứ không phải giá trị cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 3,
@@ -5541,23 +5054,23 @@
                 "options": [
                     {
                         "key": "A",
-                        "text": "$x=-1$"
+                        "text": "$x = 2$"
                     },
                     {
                         "key": "B",
-                        "text": "$x = 4$"
+                        "text": "$x = -1$"
                     },
                     {
                         "key": "C",
-                        "text": "$x = 6$"
+                        "text": "$x = 5$"
                     },
                     {
                         "key": "D",
-                        "text": "$x=4$"
+                        "text": "$x = 0$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, đạo hàm đổi dấu khi qua điểm $x=-1$, do đó hàm số đạt cực trị tại $x=-1$.<br>Đáp án đúng: <b>A</b>."
+                "solution": "Dựa vào bảng biến thiên, ta thấy đạo hàm $f'(x)$ đổi dấu từ dương $(+)$ sang âm $(-)$ khi qua điểm $x = 2$. Do đó hàm số đã cho đạt cực đại tại điểm $x = 2$ (với giá trị cực đại tương ứng là $y_{CĐ} = 5$).<br><i>Lưu ý sai lầm:</i> $x = -1$ là điểm cực tiểu; còn $y = 5$ là giá trị cực đại chứ không phải điểm cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 4,
@@ -5951,15 +5464,15 @@
                     },
                     {
                         "key": "C",
-                        "text": "$1$"
+                        "text": "$3$"
                     },
                     {
                         "key": "D",
-                        "text": "$-5$"
+                        "text": "$0$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, giá trị cực đại của hàm số là $y=7$ (đạt tại $x=-2$).<br>Đáp án đúng: <b>A</b>."
+                "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại điểm $x = 3$ và <b>giá trị cực đại</b> tương ứng của hàm số là $y_{CĐ} = 7$.<br><i>Lưu ý sai lầm:</i> $y = -2$ là giá trị cực tiểu; còn $x = 3$ là điểm cực đại chứ không phải giá trị cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 3,
@@ -5972,23 +5485,23 @@
                 "options": [
                     {
                         "key": "A",
-                        "text": "$x=1$"
+                        "text": "$x = -3$"
                     },
                     {
                         "key": "B",
-                        "text": "$x = 4$"
+                        "text": "$x = 1$"
                     },
                     {
                         "key": "C",
-                        "text": "$x = 5$"
+                        "text": "$x = 3$"
                     },
                     {
                         "key": "D",
-                        "text": "$x=4$"
+                        "text": "$x = -4$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, đạo hàm đổi dấu khi qua điểm $x=1$, do đó hàm số đạt cực trị tại $x=1$.<br>Đáp án đúng: <b>A</b>."
+                "solution": "Dựa vào bảng biến thiên, ta thấy đạo hàm $f'(x)$ đổi dấu từ dương $(+)$ sang âm $(-)$ khi qua điểm $x = -3$. Do đó hàm số đã cho đạt cực đại tại điểm $x = -3$ (với giá trị cực đại tương ứng là $y_{CĐ} = 3$).<br><i>Lưu ý sai lầm:</i> $x = 1$ là điểm cực tiểu; còn $y = 3$ là giá trị cực đại chứ không phải điểm cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 4,
@@ -6378,19 +5891,19 @@
                     },
                     {
                         "key": "B",
-                        "text": "$-2$"
+                        "text": "$-1$"
                     },
                     {
                         "key": "C",
-                        "text": "$1$"
+                        "text": "$-2$"
                     },
                     {
                         "key": "D",
-                        "text": "$-5$"
+                        "text": "$2$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, giá trị cực đại của hàm số là $y=6$ (đạt tại $x=-2$).<br>Đáp án đúng: <b>A</b>."
+                "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại điểm $x = -2$ và <b>giá trị cực đại</b> tương ứng của hàm số là $y_{CĐ} = 6$.<br><i>Lưu ý sai lầm:</i> $y = -1$ là giá trị cực tiểu; còn $x = -2$ là điểm cực đại chứ không phải giá trị cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 3,
@@ -6403,11 +5916,11 @@
                 "options": [
                     {
                         "key": "A",
-                        "text": "$x=3$"
+                        "text": "$x = 3$"
                     },
                     {
                         "key": "B",
-                        "text": "$x = 6$"
+                        "text": "$x = -1$"
                     },
                     {
                         "key": "C",
@@ -6415,11 +5928,11 @@
                     },
                     {
                         "key": "D",
-                        "text": "$x=4$"
+                        "text": "$x = -3$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, đạo hàm đổi dấu khi qua điểm $x=3$, do đó hàm số đạt cực trị tại $x=3$.<br>Đáp án đúng: <b>A</b>."
+                "solution": "Dựa vào bảng biến thiên, ta thấy đạo hàm $f'(x)$ đổi dấu từ dương $(+)$ sang âm $(-)$ khi qua điểm $x = 3$. Do đó hàm số đã cho đạt cực đại tại điểm $x = 3$ (với giá trị cực đại tương ứng là $y_{CĐ} = 4$).<br><i>Lưu ý sai lầm:</i> $x = -1$ là điểm cực tiểu; còn $y = 4$ là giá trị cực đại chứ không phải điểm cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 4,
@@ -6809,7 +6322,7 @@
                     },
                     {
                         "key": "B",
-                        "text": "$-2$"
+                        "text": "$-4$"
                     },
                     {
                         "key": "C",
@@ -6817,11 +6330,11 @@
                     },
                     {
                         "key": "D",
-                        "text": "$-5$"
+                        "text": "$-1$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, giá trị cực đại của hàm số là $y=5$ (đạt tại $x=-2$).<br>Đáp án đúng: <b>A</b>."
+                "solution": "Từ bảng biến thiên, hàm số đạt cực đại tại điểm $x = 1$ và <b>giá trị cực đại</b> tương ứng của hàm số là $y_{CĐ} = 5$.<br><i>Lưu ý sai lầm:</i> $y = -4$ là giá trị cực tiểu; còn $x = 1$ là điểm cực đại chứ không phải giá trị cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 3,
@@ -6834,7 +6347,7 @@
                 "options": [
                     {
                         "key": "A",
-                        "text": "$x=0$"
+                        "text": "$x = 0$"
                     },
                     {
                         "key": "B",
@@ -6842,15 +6355,15 @@
                     },
                     {
                         "key": "C",
-                        "text": "$x = -5$"
+                        "text": "$x = 7$"
                     },
                     {
                         "key": "D",
-                        "text": "$x=4$"
+                        "text": "$x = -2$"
                     }
                 ],
                 "correct": "A",
-                "solution": "Từ bảng biến thiên, đạo hàm đổi dấu khi qua điểm $x=0$, do đó hàm số đạt cực trị tại $x=0$.<br>Đáp án đúng: <b>A</b>."
+                "solution": "Dựa vào bảng biến thiên, ta thấy đạo hàm $f'(x)$ đổi dấu từ dương $(+)$ sang âm $(-)$ khi qua điểm $x = 0$. Do đó hàm số đã cho đạt cực đại tại điểm $x = 0$ (với giá trị cực đại tương ứng là $y_{CĐ} = 7$).<br><i>Lưu ý sai lầm:</i> $x = 4$ là điểm cực tiểu; còn $y = 7$ là giá trị cực đại chứ không phải điểm cực đại.<br>Đáp án đúng: <b>A</b>."
             },
             {
                 "id": 4,
@@ -7290,80 +6803,46 @@
             document.getElementById("lblExamCodeDisplay").innerText = `🎲 Mã đề: ${activeExamCode}`;
         }
 
-                function clearInputError(inputId, errId) {
-            const input = document.getElementById(inputId);
-            const err = document.getElementById(errId);
-            if (input) input.style.border = "";
-            if (err) {
-                err.style.display = "none";
-                err.innerText = "";
-            }
-        }
-
-        // BẮT ĐẦU THI VỚI VALIDATION TRỰC QUAN KHÔNG BỊ CHẶN BỞI ALERT
+        // BẮT ĐẦU THI VỚI VALIDATION BẮT BUỘC TÊN VÀ LỚP
         function startExam() {
-            const nameEl = document.getElementById("txtStudentName");
-            const classEl = document.getElementById("selClass");
-            const errName = document.getElementById("errStudentName");
-            const errClass = document.getElementById("errStudentClass");
+            const nameInput = document.getElementById("txtStudentName").value.trim();
+            const classInput = document.getElementById("selClass").value;
 
-            const nameInput = nameEl ? nameEl.value.trim() : "";
-            const classInput = classEl ? classEl.value : "";
+            // Kiểm tra Họ và tên bắt buộc có ít nhất 2 từ
+            if (!nameInput || nameInput.split(/\s+/).length < 2) {
+                alert(`🚨 CẢNH BÁO BẮT BUỘC:
+Vui lòng nhập đầy đủ cả HỌ VÀ TÊN có dấu (ít nhất 2 từ)!
+Ví dụ: Nguyễn Văn An
 
-            let hasError = false;
-
-            // Kiểm tra Họ và tên
-            if (!nameInput || nameInput.length < 2) {
-                if (nameEl) nameEl.style.border = "2px solid #ef4444";
-                if (errName) {
-                    errName.style.display = "block";
-                    errName.innerText = "⚠️ Vui lòng nhập đầy đủ Họ và tên của bạn!";
-                }
-                showCheatToast("⚠️ Vui lòng nhập Họ và tên trước khi bắt đầu!");
-                if (nameEl) nameEl.focus();
-                hasError = true;
-            } else {
-                clearInputError("txtStudentName", "errStudentName");
+Nếu không nhập đúng tên, bài thi sẽ KHÔNG ĐƯỢC TÍNH ĐIỂM!`);
+                document.getElementById("txtStudentName").focus();
+                return;
             }
 
-            // Kiểm tra Lớp học
+            // Kiểm tra Lớp học bắt buộc phải chọn
             if (!classInput) {
-                if (classEl) classEl.style.border = "2px solid #ef4444";
-                if (errClass) {
-                    errClass.style.display = "block";
-                    errClass.innerText = "⚠️ Vui lòng chọn Lớp học của bạn!";
-                }
-                if (!hasError) {
-                    showCheatToast("⚠️ Vui lòng chọn Lớp học của bạn!");
-                    if (classEl) classEl.focus();
-                }
-                hasError = true;
-            } else {
-                clearInputError("selClass", "errStudentClass");
-            }
+                alert(`🚨 CẢNH BÁO BẮT BUỘC:
+Bạn chưa chọn LỚP HỌC!
+Vui lòng chọn đúng Lớp của bạn (12B1 - 12B6).
 
-            if (hasError) return;
+Nếu chọn sai lớp, bài thi sẽ KHÔNG ĐƯỢC TÍNH ĐIỂM!`);
+                document.getElementById("selClass").focus();
+                return;
+            }
 
             currentStudent.name = nameInput;
             currentStudent.className = classInput;
             currentStudent.examSet = "mixed";
             currentStudent.examSetName = "Trộn ngẫu nhiên 2 Đề";
 
-            const studentDisplay = document.getElementById("lblStudentDisplay");
-            if (studentDisplay) {
-                studentDisplay.innerText = `👤 ${currentStudent.name} (${currentStudent.className})`;
-            }
+            document.getElementById("lblStudentDisplay").innerText = `👤 ${currentStudent.name} (${currentStudent.className})`;
 
             prepareExamQuestions();
 
             // Chuyển màn hình
-            const startScr = document.getElementById("startScreen");
-            const topBar = document.getElementById("topToolbar");
-            const examBox = document.getElementById("examContainer");
-
-            if (startScr) startScr.style.display = "none";
-            if (topBar) topBar.style.display = "block";
-            if (examBox) examBox.style.display = "block";
+            document.getElementById("startScreen").style.display = "none";
+            document.getElementById("topToolbar").style.display = "block";
+            document.getElementById("examContainer").style.display = "block";
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             renderQuestions();
@@ -7375,18 +6854,6 @@
         }
 
         // RENDER DANH SÁCH CÂU HỎI
-        
-        // Helper tự động chuẩn hóa công thức KaTeX
-        function formatMathText(str) {
-            if (!str) return '';
-            str = String(str).trim();
-            if (str.includes('$')) return str;
-            if (str.includes('\\') || /^[\(\[][^,;]+[;,][^\)\]]+[\)\]]$/.test(str)) {
-                return '$' + str + '$';
-            }
-            return str;
-        }
-
         function renderQuestions() {
             const p1Box = document.getElementById("part1Container");
             const p2Box = document.getElementById("part2Container");
@@ -7401,7 +6868,7 @@
 
                 let imageHtml = "";
                 if (q.image) {
-                    imageHtml = `<div class="q-image-container"><img src="${q.image}" class="q-image" alt="Hình minh họa" onclick="openImageLightbox('${q.image}')"></div>`;
+                    imageHtml = `<div class="q-image-container"><img src="${q.image}" class="q-image" alt="Hình minh họa" onclick="window.open('${q.image}', '_blank')"></div>`;
                 }
 
                 let optionsHtml = "";
@@ -7411,7 +6878,7 @@
                         <div class="opt-item ${isSelected ? 'selected' : ''}" onclick="selectOptionP1(${q.id}, '${opt.key}')">
                             <div class="opt-radio-circle"></div>
                             <span class="opt-label">${opt.key}.</span>
-                            <span class="opt-text">${formatMathText(opt.text)}</span>
+                            <span class="opt-text">${opt.text}</span>
                         </div>
                     `;
                 });
@@ -7439,7 +6906,7 @@
 
                 let imageHtml = "";
                 if (q.image) {
-                    imageHtml = `<div class="q-image-container"><img src="${q.image}" class="q-image" alt="Hình minh họa" onclick="openImageLightbox('${q.image}')"></div>`;
+                    imageHtml = `<div class="q-image-container"><img src="${q.image}" class="q-image" alt="Hình minh họa" onclick="window.open('${q.image}', '_blank')"></div>`;
                 }
 
                 let statementsHtml = "";
@@ -7674,21 +7141,7 @@
             document.getElementById("txtP1Correct").innerText = `${p1CorrectCount}/${examQuestionsP1.length}`;
             document.getElementById("txtP2Correct").innerText = `${p2TotalCorrectStatements}/8 ý`;
             document.getElementById("txtTabSwitches").innerText = `${tabSwitchCount} lần`;
-            document.getElementById("txtRetryCount").innerText = `Lần ${retryCount}/3 (Còn lại: ${Math.max(0, 3 - retryCount)} lần)`;
-            const btnRetry = document.getElementById("btnRetryExam");
-            if (btnRetry) {
-                if (retryCount >= 3 || remainingSeconds <= 30) {
-                    btnRetry.disabled = true;
-                    btnRetry.style.opacity = "0.5";
-                    btnRetry.style.cursor = "not-allowed";
-                    btnRetry.innerHTML = "🔒 ĐÃ DÙNG HẾT 3 LƯỢT LÀM BÀI (HOẶC HẾT THỜI GIAN)";
-                } else {
-                    btnRetry.disabled = false;
-                    btnRetry.style.opacity = "1";
-                    btnRetry.style.cursor = "pointer";
-                    btnRetry.innerHTML = `🔄 LÀM LẠI MÃ ĐỀ MỚI (LẦN ${retryCount + 1}/3 - TÍNH TIẾP GIỜ CÒN LẠI)`;
-                }
-            }
+            document.getElementById("txtRetryCount").innerText = `Lần ${retryCount}/3 (Làm lại: ${retryCount - 1}/2)`;
 
             // Hiển thị thời gian cộng dồn thực tế
             const usedMin = Math.floor(totalCumulativeTimeSec / 60);
@@ -7935,7 +7388,45 @@
         }
 
         // LÀM LẠI BÀI THI (ĐẢO ĐỀ MỚI - TỐI ĐA THÊM 2 LẦN - TÍNH TIẾP THỜI GIAN CÒN LẠI CỘNG DỒN)
-        
+        function retryExam() {
+            // Kiểm tra giới hạn số lần làm lại tối đa 2 lần
+            if (retryCount >= 3) {
+                alert(`🔒 BẠN ĐÃ HẾT LƯỢT LÀM LẠI!
+Quy định bài thi chỉ cho phép làm lại tối đa thêm 2 lần.`);
+                return;
+            }
+
+            // Kiểm tra thời gian còn lại
+            if (remainingSeconds <= 30) {
+                alert(`⏰ THỜI GIAN LÀM BÀI ĐÃ GẦN HẾT (dưới 30 giây)!
+Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn không thể làm lại đề mới.`);
+                return;
+            }
+
+            retryCount++;
+            // KHÔNG reset remainingSeconds và KHÔNG reset totalCumulativeTimeSec!
+            // Tiếp tục đếm ngược từ remainingSeconds còn lại!
+
+            document.getElementById("resultScreen").style.display = "none";
+            document.getElementById("solutionsContainer").style.display = "none";
+            prepareExamQuestions();
+
+            document.getElementById("topToolbar").style.display = "block";
+            document.getElementById("examContainer").style.display = "block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            renderQuestions();
+            renderPalette();
+            startTimer();
+
+            isExamActive = true;
+            isSubmitted = false;
+
+            const remMin = Math.floor(remainingSeconds / 60);
+            const remSec = remainingSeconds % 60;
+            showCheatToast(`🔄 Làm lại lần ${retryCount}: Bạn còn ${remMin} phút ${remSec} giây (thời gian tính cộng dồn liên tục)!`);
+        }
+
         // HỆ THỐNG CHỐNG GIAN LẬN (ANTI-CHEAT)
         function playWarningBeep() {
             try {
@@ -7961,146 +7452,23 @@
             setTimeout(() => { toast.classList.remove("show"); }, 3500);
         }
 
-        // LIGHTBOX PHÓNG TO HÌNH ẢNH TRONG TRANG (KHÔNG CHUYỂN TAB)
-        function openImageLightbox(src) {
-            const modal = document.getElementById("imageLightboxModal");
-            const img = document.getElementById("lightboxImg");
-            if (modal && img) {
-                img.src = src;
-                modal.style.display = "flex";
-            }
-        }
-        function closeImageLightbox() {
-            const modal = document.getElementById("imageLightboxModal");
-            if (modal) modal.style.display = "none";
-        }
-
-        // XỬ LÝ VI PHẠM RỜI MÀN HÌNH / CHUYỂN TAB -> BẮT BUỘC LÀM LẠI
-        
-        // ==========================================
-        // QUY CHẾ THI: TỐI ĐA 3 LẦN LÀM BÀI - CHUYỂN TAB TỐI ĐA 3 LẦN - THỜI GIAN CỘNG DỒN
-        // ==========================================
-        const MAX_EXAM_ATTEMPTS = 3;
-        const MAX_TAB_SWITCHES = 3;
-        let isUserCurrentlyAway = false;
-        let lastLeaveTimestamp = 0;
-        let isAutoSubmittedByCheat = false;
-
-        function updateToolbarBadges() {
-            const attEl = document.getElementById("lblAttemptDisplay");
-            const tabEl = document.getElementById("lblTabSwitchDisplay");
-            if (attEl) attEl.innerText = `🎯 Lần thi: ${retryCount}/${MAX_EXAM_ATTEMPTS}`;
-            if (tabEl) {
-                tabEl.innerText = `⚠️ Rời tab: ${tabSwitchCount}/${MAX_TAB_SWITCHES}`;
-                if (tabSwitchCount === 0) {
-                    tabEl.style.background = "#f0fdf4"; tabEl.style.color = "#15803d"; tabEl.style.borderColor = "#bbf7d0";
-                } else if (tabSwitchCount === 1) {
-                    tabEl.style.background = "#fef3c7"; tabEl.style.color = "#b45309"; tabEl.style.borderColor = "#fde68a";
-                } else if (tabSwitchCount === 2) {
-                    tabEl.style.background = "#ffedd5"; tabEl.style.color = "#c2410c"; tabEl.style.borderColor = "#fed7aa";
-                } else {
-                    tabEl.style.background = "#fee2e2"; tabEl.style.color = "#b91c1c"; tabEl.style.borderColor = "#fecaca";
-                }
-            }
-        }
-
-        // XỬ LÝ SỰ KIỆN RỜI MÀN HÌNH / CHUYỂN TAB (KHỬ ĐẾM TRÙNG X2 & AUTO SUBMIT KHI QUÁ 3 LẦN)
         function handleUserLeave(reason) {
             if (!isExamActive || isSubmitted) return;
+            if (isTabOut) return;
 
-            const now = Date.now();
-            // Khử hoàn toàn lỗi đếm x2 (blur + visibilitychange đồng thời kích hoạt trong tích tắc)
-            if (isUserCurrentlyAway || (now - lastLeaveTimestamp < 1500)) {
-                return;
-            }
-            isUserCurrentlyAway = true;
-            lastLeaveTimestamp = now;
-
+            isTabOut = true;
             tabSwitchCount++;
             playWarningBeep();
-            updateToolbarBadges();
-
-            // TRƯỜNG HỢP 1: LẦN 1 HOẶC 2 -> BỎ QUA KHÔNG HỦY BÀI, CHỈ CẢNH BÁO
-            if (tabSwitchCount <= 2) {
-                showCheatToast(`⚠️ CẢNH BÁO (Lần ${tabSwitchCount}/${MAX_TAB_SWITCHES}): Bạn vừa rời màn hình làm bài! Rời tab quá 3 lần hệ thống sẽ TỰ ĐỘNG NỘP BÀI.`);
-                return;
-            }
-
-            // TRƯỜNG HỢP 2: LẦN 3 -> CẢNH BÁO NGHIÊM KHẮC LẦN CUỐI
-            if (tabSwitchCount === 3) {
-                showCheatToast(`🚨 CẢNH BÁO NGUY HIỂM (Lần 3/${MAX_TAB_SWITCHES}): Bạn đã rời màn hình 3 lần! Nếu rời tab thêm 1 lần nữa (vượt quá 3 lần), bài thi sẽ BỊ TỰ ĐỘNG NỘP NGAY LẬP TỨC!`);
-                return;
-            }
-
-            // TRƯỜNG HỢP 3: VƯỢT QUÁ SỐ LẦN QUY ĐỊNH (> 3 LẦN) -> MẶC ĐỊNH TỰ ĐỘNG NỘP BÀI NGAY LẬP TỨC!
-            if (tabSwitchCount > 3) {
-                clearInterval(examTimer);
-                isExamActive = false;
-                isAutoSubmittedByCheat = true;
-
-                showCheatToast(`🚨 ĐÃ RỜI TAB QUÁ 3 LẦN (${tabSwitchCount}/${MAX_TAB_SWITCHES})! Hệ thống tự động nộp bài làm của bạn.`);
-                
-                // Mặc định nộp bài ngay lập tức
-                submitExam();
-            }
+            showCheatToast(`⚠️ CẢNH BÁO VI PHẠM (Lần ${tabSwitchCount}): Bạn vừa rời màn hình làm bài!`);
         }
 
         function handleUserReturn() {
-            setTimeout(() => {
-                isUserCurrentlyAway = false;
-            }, 300);
-        }
-
-        // LÀM LẠI BÀI THI TỪ MÀN HÌNH KẾT QUẢ (TỐI ĐA 3 LẦN - MÃ ĐỀ MỚI - THỜI GIAN CỘNG DỒN)
-        function retryExam() {
-            // Kiểm tra giới hạn số lần làm bài tối đa 3 lần
-            if (retryCount >= MAX_EXAM_ATTEMPTS) {
-                alert(`🔒 BẠN ĐÃ HẾT LƯỢT LÀM LẠI!
-Quy định bài thi chỉ cho phép tối đa 3 lần làm bài.`);
-                return;
+            if (!isExamActive || isSubmitted) return;
+            if (isTabOut) {
+                isTabOut = false;
+                showCheatToast(`✅ Bạn đã quay lại làm bài. Hệ thống đã ghi nhận lần vi phạm.`);
             }
-
-            // Kiểm tra thời gian còn lại
-            if (remainingSeconds <= 30) {
-                alert(`⏰ THỜI GIAN LÀM BÀI ĐÃ GẦN HẾT (dưới 30 giây)!
-Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn không thể làm lại đề mới.`);
-                return;
-            }
-
-            retryCount++;
-            tabSwitchCount = 0; // Reset số lần chuyển tab cho lượt mới
-            isAutoSubmittedByCheat = false;
-            isUserCurrentlyAway = false;
-
-            document.getElementById("resultScreen").style.display = "none";
-            document.getElementById("solutionsContainer").style.display = "none";
-            const autoBanner = document.getElementById("autoSubmitAlertBanner");
-            if (autoBanner) autoBanner.style.display = "none";
-
-            // Bốc thăm ngẫu nhiên Mã đề mới 100%
-            prepareExamQuestions();
-
-            // Xóa câu trả lời cũ
-            studentAnswersP1 = {};
-            studentAnswersP2 = {};
-
-            document.getElementById("topToolbar").style.display = "block";
-            document.getElementById("examContainer").style.display = "block";
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            renderQuestions();
-            renderPalette();
-            updateToolbarBadges();
-            startTimer();
-
-            isExamActive = true;
-            isSubmitted = false;
-
-            const remMin = Math.floor(remainingSeconds / 60);
-            const remSec = remainingSeconds % 60;
-            showCheatToast(`🔄 Bắt đầu làm lại Lần ${retryCount}/${MAX_EXAM_ATTEMPTS} với Mã đề mới ${generatedExamCode}! Quỹ thời gian còn ${remMin}p ${remSec}s.`);
         }
-
 
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) handleUserLeave("Chuyển sang tab khác");
@@ -8123,324 +7491,8 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
             }
         });
 
-        // ==========================================
-        // HỆ THỐNG QUẢN LÝ LỊCH THI TRỰC TUYẾN (EXAM SCHEDULING)
-        // ==========================================
-        let examScheduleConfig = {
-            enabled: false,
-            startTime: "", // ISO string YYYY-MM-DDTHH:mm
-            endTime: ""    // ISO string YYYY-MM-DDTHH:mm
-        };
-        let scheduleTickerInterval = null;
-
-        // Khởi tạo và đồng bộ Lịch thi
-        function initExamSchedule() {
-            // 1. Tải cache từ localStorage để phản hồi tức thì
-            try {
-                const cached = localStorage.getItem("QMATH_EXAM_SCHEDULE");
-                if (cached) {
-                    examScheduleConfig = JSON.parse(cached);
-                }
-            } catch (e) {
-                console.warn("Không đọc được cache lịch thi:", e);
-            }
-
-            // 2. Đồng bộ thời gian thực từ Cloud Firestore
-            if (typeof db !== 'undefined' && db) {
-                try {
-                    db.collection("exam_settings").doc("schedule").onSnapshot((doc) => {
-                        if (doc.exists) {
-                            const data = doc.data();
-                            examScheduleConfig = {
-                                enabled: !!data.enabled,
-                                startTime: data.startTime || "",
-                                endTime: data.endTime || ""
-                            };
-                            localStorage.setItem("QMATH_EXAM_SCHEDULE", JSON.stringify(examScheduleConfig));
-                            updateScheduleUI();
-                            syncScheduleToTeacherForm();
-                        }
-                    }, (err) => {
-                        console.warn("Lỗi realtime Firestore schedule:", err);
-                    });
-                } catch (err) {
-                    console.warn("Firestore schedule listener error:", err);
-                }
-            }
-
-            // 3. Khởi chạy bộ đếm kiểm tra mỗi giây
-            if (scheduleTickerInterval) clearInterval(scheduleTickerInterval);
-            scheduleTickerInterval = setInterval(updateScheduleUI, 1000);
-            updateScheduleUI();
-            syncScheduleToTeacherForm();
-        }
-
-        // Đồng bộ dữ liệu lên Form trong Dashboard Giáo viên
-        function syncScheduleToTeacherForm() {
-            const chk = document.getElementById("chkEnableSchedule");
-            const inputStart = document.getElementById("inputScheduleStart");
-            const inputEnd = document.getElementById("inputScheduleEnd");
-            if (chk) {
-                chk.checked = examScheduleConfig.enabled;
-                toggleScheduleForm();
-            }
-            if (inputStart && examScheduleConfig.startTime) {
-                inputStart.value = examScheduleConfig.startTime.slice(0, 16);
-            }
-            if (inputEnd && examScheduleConfig.endTime) {
-                inputEnd.value = examScheduleConfig.endTime.slice(0, 16);
-            }
-        }
-
-        // Bật/Tắt form cài đặt lịch thi
-        function toggleScheduleForm() {
-            const chk = document.getElementById("chkEnableSchedule");
-            const area = document.getElementById("scheduleFormArea");
-            const lbl = document.getElementById("lblEnableScheduleText");
-            if (!chk || !area) return;
-
-            if (chk.checked) {
-                area.style.opacity = "1";
-                area.style.pointerEvents = "auto";
-                if (lbl) {
-                    lbl.innerText = "🟢 ĐANG BẬT LỊCH THI";
-                    lbl.style.color = "#16a34a";
-                }
-            } else {
-                area.style.opacity = "0.5";
-                area.style.pointerEvents = "none";
-                if (lbl) {
-                    lbl.innerText = "⚪ Đang tắt lịch thi (Thi tự do)";
-                    lbl.style.color = "#64748b";
-                }
-            }
-        }
-
-        // Các nút thiết lập nhanh
-        function setQuickSchedule(mode) {
-            const now = new Date();
-            const pad = (n) => String(n).padStart(2, '0');
-            const formatForInput = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-
-            const inputStart = document.getElementById("inputScheduleStart");
-            const inputEnd = document.getElementById("inputScheduleEnd");
-            if (!inputStart || !inputEnd) return;
-
-            if (mode === "now_45") {
-                const end = new Date(now.getTime() + 45 * 60 * 1000);
-                inputStart.value = formatForInput(now);
-                inputEnd.value = formatForInput(end);
-            } else if (mode === "now_60") {
-                const end = new Date(now.getTime() + 60 * 60 * 1000);
-                inputStart.value = formatForInput(now);
-                inputEnd.value = formatForInput(end);
-            } else if (mode === "tonight") {
-                const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 19, 30, 0);
-                const end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 20, 30, 0);
-                inputStart.value = formatForInput(start);
-                inputEnd.value = formatForInput(end);
-            } else if (mode === "tomorrow_morning") {
-                const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-                const start = new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 7, 30, 0);
-                const end = new Date(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 8, 30, 0);
-                inputStart.value = formatForInput(start);
-                inputEnd.value = formatForInput(end);
-            }
-            showCheatToast("⚡ Đã điền nhanh khung giờ. Nhớ bấm [LƯU CÀI ĐẶT LỊCH THI] để áp dụng!");
-        }
-
-        // Lưu cấu hình Lịch thi lên Cloud Firestore và Local
-        async function saveExamSchedule() {
-            const chk = document.getElementById("chkEnableSchedule");
-            const inputStart = document.getElementById("inputScheduleStart");
-            const inputEnd = document.getElementById("inputScheduleEnd");
-            const statusTxt = document.getElementById("txtScheduleSaveStatus");
-
-            const isEnabled = chk ? chk.checked : false;
-            let startVal = inputStart ? inputStart.value : "";
-            let endVal = inputEnd ? inputEnd.value : "";
-
-            if (isEnabled) {
-                if (!startVal || !endVal) {
-                    alert("⚠️ Vui lòng chọn đầy đủ Thời gian Bắt đầu và Thời gian Đóng cổng thi!");
-                    return;
-                }
-                const startDate = new Date(startVal);
-                const endDate = new Date(endVal);
-                if (endDate <= startDate) {
-                    alert("⚠️ Thời gian đóng cổng thi phải lớn hơn thời gian bắt đầu mở đề!");
-                    return;
-                }
-            }
-
-            examScheduleConfig = {
-                enabled: isEnabled,
-                startTime: startVal,
-                endTime: endVal
-            };
-
-            localStorage.setItem("QMATH_EXAM_SCHEDULE", JSON.stringify(examScheduleConfig));
-
-            if (statusTxt) {
-                statusTxt.style.display = "inline";
-                statusTxt.innerText = "⏳ Đang lưu lên Cloud...";
-            }
-
-            if (typeof db !== 'undefined' && db) {
-                try {
-                    await db.collection("exam_settings").doc("schedule").set({
-                        ...examScheduleConfig,
-                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                    if (statusTxt) {
-                        statusTxt.style.color = "#16a34a";
-                        statusTxt.innerText = "✅ Đã lưu và đồng bộ lịch thi tới toàn bộ học sinh!";
-                        setTimeout(() => { statusTxt.style.display = "none"; }, 4000);
-                    }
-                } catch (err) {
-                    console.error("Lỗi lưu lịch thi Firestore:", err);
-                    if (statusTxt) {
-                        statusTxt.style.color = "#d97706";
-                        statusTxt.innerText = "⚠️ Đã lưu trên máy này (Chưa thể đồng bộ Cloud do mất mạng).";
-                    }
-                }
-            } else {
-                if (statusTxt) {
-                    statusTxt.style.color = "#16a34a";
-                    statusTxt.innerText = "✅ Đã lưu lịch thi trên máy cục bộ!";
-                    setTimeout(() => { statusTxt.style.display = "none"; }, 4000);
-                }
-            }
-
-            updateScheduleUI();
-        }
-
-        // Định dạng thời gian thân thiện (DD/MM/YYYY HH:mm)
-        function formatReadableDateTime(isoStr) {
-            if (!isoStr) return "";
-            const d = new Date(isoStr);
-            const pad = (n) => String(n).padStart(2, '0');
-            return `${pad(d.getHours())}:${pad(d.getMinutes())} ngày ${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}`;
-        }
-
-        // Cập nhật giao diện Trạng thái Lịch thi ngoài màn hình chính
-        function updateScheduleUI() {
-            const banner = document.getElementById("scheduleBanner");
-            const titleEl = document.getElementById("scheduleTitle");
-            const countdownEl = document.getElementById("scheduleCountdown");
-            const detailsEl = document.getElementById("scheduleDetails");
-            const startBtn = document.querySelector(".btn-start");
-
-            if (!banner || !startBtn) return;
-
-            // Nếu không bật lịch thi -> Thi tự do bình thường
-            if (!examScheduleConfig.enabled || !examScheduleConfig.startTime || !examScheduleConfig.endTime) {
-                banner.style.display = "none";
-                startBtn.disabled = false;
-                startBtn.style.opacity = "1";
-                startBtn.style.cursor = "pointer";
-                startBtn.style.background = "";
-                startBtn.innerHTML = "🚀 BẮT ĐẦU LÀM BÀI";
-                return;
-            }
-
-            const now = new Date().getTime();
-            const startTime = new Date(examScheduleConfig.startTime).getTime();
-            const endTime = new Date(examScheduleConfig.endTime).getTime();
-
-            banner.style.display = "block";
-
-            // TRƯỜNG HỢP 1: CHƯA ĐẾN GIỜ THI
-            if (now < startTime) {
-                const diffMs = startTime - now;
-                const hours = Math.floor(diffMs / (1000 * 60 * 60));
-                const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-                const secs = Math.floor((diffMs % (1000 * 60)) / 1000);
-                const pad = (n) => String(n).padStart(2, '0');
-
-                banner.style.background = "#eff6ff";
-                banner.style.border = "2px dashed #3b82f6";
-                banner.style.color = "#1e40af";
-
-                titleEl.innerHTML = "⏳ KỲ THI CHƯA MỞ - ĐỀ THI SẼ TỰ ĐỘNG MỞ SAU:";
-                titleEl.style.color = "#1d4ed8";
-
-                countdownEl.innerHTML = `⏱️ ${pad(hours)} : ${pad(mins)} : ${pad(secs)}`;
-                countdownEl.style.color = "#2563eb";
-
-                detailsEl.innerHTML = `📅 <b>Mở đề lúc:</b> ${formatReadableDateTime(examScheduleConfig.startTime)} &nbsp;|&nbsp; <b>Đóng cổng:</b> ${formatReadableDateTime(examScheduleConfig.endTime)}`;
-
-                // Khóa nút bắt đầu
-                startBtn.disabled = true;
-                startBtn.style.opacity = "0.55";
-                startBtn.style.cursor = "not-allowed";
-                startBtn.style.background = "linear-gradient(135deg, #64748b, #475569)";
-                startBtn.innerHTML = `⏳ CHƯA ĐẾN GIỜ LÀM BÀI (${pad(hours)}:${pad(mins)}:${pad(secs)})`;
-            }
-            // TRƯỜNG HỢP 2: TRONG KHUNG GIỜ THI
-            else if (now >= startTime && now <= endTime) {
-                const diffMs = endTime - now;
-                const hours = Math.floor(diffMs / (1000 * 60 * 60));
-                const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-                const secs = Math.floor((diffMs % (1000 * 60)) / 1000);
-                const pad = (n) => String(n).padStart(2, '0');
-
-                banner.style.background = "#f0fdf4";
-                banner.style.border = "2px solid #22c55e";
-                banner.style.color = "#15803d";
-
-                titleEl.innerHTML = "🟢 CỔNG THI ĐANG MỞ - HÃY NHANH CHÓNG VÀO LÀM BÀI!";
-                titleEl.style.color = "#15803d";
-
-                countdownEl.innerHTML = `⏳ CÒN LẠI: ${pad(hours)} : ${pad(mins)} : ${pad(secs)}`;
-                countdownEl.style.color = "#16a34a";
-
-                detailsEl.innerHTML = `🚨 <b>Hạn chót đóng cổng thi:</b> ${formatReadableDateTime(examScheduleConfig.endTime)}. Sau thời gian này hệ thống sẽ ngừng nhận bài!`;
-
-                // Mở nút bắt đầu
-                startBtn.disabled = false;
-                startBtn.style.opacity = "1";
-                startBtn.style.cursor = "pointer";
-                startBtn.style.background = "";
-                startBtn.innerHTML = "🚀 BẮT ĐẦU LÀM BÀI";
-            }
-            // TRƯỜNG HỢP 3: ĐÃ HẾT GIỜ THI
-            else {
-                banner.style.background = "#fef2f2";
-                banner.style.border = "2px solid #ef4444";
-                banner.style.color = "#991b1b";
-
-                titleEl.innerHTML = "🔴 KỲ THI ĐÃ CHÍNH THỨC KẾT THÚC";
-                titleEl.style.color = "#b91c1c";
-
-                countdownEl.innerHTML = "🔒 CỔNG THI ĐÃ ĐÓNG";
-                countdownEl.style.color = "#dc2626";
-
-                detailsEl.innerHTML = `Đề thi đã đóng lúc <b>${formatReadableDateTime(examScheduleConfig.endTime)}</b>. Nếu có lý do đặc biệt, vui lòng liên hệ Thầy cô giáo bộ môn!`;
-
-                // Khóa nút bắt đầu
-                startBtn.disabled = true;
-                startBtn.style.opacity = "0.55";
-                startBtn.style.cursor = "not-allowed";
-                startBtn.style.background = "#ef4444";
-                startBtn.innerHTML = "🔒 ĐÃ HẾT HẠN LÀM BÀI";
-
-                // Nếu học sinh đang làm bài thi mà chạm mốc đóng cổng: Tự động nộp bài ngay
-                if (isExamActive && !isSubmitted) {
-                    showCheatToast("⏰ ĐÃ ĐẾN GIỜ ĐÓNG CỔNG THI! Hệ thống tự động nộp bài làm của bạn.");
-                    submitExam();
-                }
-            }
-        }
-
         // 6. QUẢN TRỊ BẢNG ĐIỂM GIÁO VIÊN (TEACHER DASHBOARD) BẢO MẬT PIN
         function openTeacherDashboard() {
-            try {
-                if (typeof syncScheduleToTeacherForm === 'function') syncScheduleToTeacherForm();
-            } catch (e) {
-                console.warn(e);
-            }
-
             const isVerified = sessionStorage.getItem("QMATH_TEACHER_LOGGED") === "true";
             if (!isVerified) {
                 const pinModal = document.getElementById("pinModal");
@@ -8448,7 +7500,7 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
                 const err = document.getElementById("pinErrorMsg");
                 if (input) input.value = "";
                 if (err) err.style.display = "none";
-                if (pinModal) pinModal.style.display = "flex";
+                pinModal.style.display = "flex";
                 setTimeout(() => { if (input) input.focus(); }, 100);
                 return;
             }
@@ -8516,62 +7568,17 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
             renderDashboardTable(dataList);
         }
 
-        let currentFilterMode = 'all';
-
-        function setDashboardFilter(mode) {
-            currentFilterMode = mode;
-            ['btnFilterAll', 'btnFilterViolation', 'btnFilterRetry', 'btnFilterClean'].forEach(id => {
-                const b = document.getElementById(id);
-                if (b) b.classList.remove('active');
-            });
-            if (mode === 'all') document.getElementById('btnFilterAll')?.classList.add('active');
-            else if (mode === 'violation') document.getElementById('btnFilterViolation')?.classList.add('active');
-            else if (mode === 'retry') document.getElementById('btnFilterRetry')?.classList.add('active');
-            else if (mode === 'clean') document.getElementById('btnFilterClean')?.classList.add('active');
-
-            applyAllDashboardFilters();
-        }
-
-        function applyAllDashboardFilters() {
-            const kw = (document.getElementById("dashSearchInput")?.value || "").toLowerCase().trim();
-            let filtered = allSubmissionsCache || [];
-
-            // 1. Lọc theo chế độ tab
-            if (currentFilterMode === 'violation') {
-                filtered = filtered.filter(item => (item.tabSwitchCount || 0) > 0);
-            } else if (currentFilterMode === 'retry') {
-                filtered = filtered.filter(item => (item.retryCount || 1) > 1);
-            } else if (currentFilterMode === 'clean') {
-                filtered = filtered.filter(item => (item.tabSwitchCount || 0) === 0);
-            }
-
-            // 2. Lọc theo từ khóa tìm kiếm
-            if (kw) {
-                filtered = filtered.filter(item => {
-                    const name = (item.studentName || "").toLowerCase();
-                    const cls = (item.studentClass || "").toLowerCase();
-                    const code = (item.examCode || "").toLowerCase();
-                    return name.includes(kw) || cls.includes(kw) || code.includes(kw);
-                });
-            }
-
-            renderDashboardTable(filtered);
-        }
-
         function renderDashboardTable(list) {
             const tbody = document.getElementById("dashTableBody");
             if (!list || list.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="11" style="text-align: center; color: var(--text-muted); padding: 28px; font-size: 15px;">🔍 Không tìm thấy bài thi nào phù hợp với bộ lọc hiện tại.</td></tr>`;
-                updateDashboardSummary(0, "0.0", "0.0", 0, 0, 0, 0);
+                tbody.innerHTML = `<tr><td colspan="11" style="text-align: center; color: var(--text-muted); padding: 24px;">Chưa có bài thi nào được nộp trong CSDL.</td></tr>`;
+                updateDashboardSummary(0, 0, 0, 0);
                 return;
             }
 
             let totalScore = 0;
             let maxScore = 0;
             let passCount = 0;
-            let totalViolations = 0;
-            let violationStudentCount = 0;
-            let totalRetries = 0;
 
             let html = "";
             list.forEach((sub, i) => {
@@ -8580,47 +7587,21 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
                 if (sc > maxScore) maxScore = sc;
                 if (sc >= 5.0) passCount++;
 
-                const tabCount = sub.tabSwitchCount || 0;
-                if (tabCount > 0) {
-                    totalViolations += tabCount;
-                    violationStudentCount++;
-                }
-
-                const retries = sub.retryCount || 1;
-                if (retries > 1) {
-                    totalRetries += (retries - 1);
-                }
                 const scoreClass = sc >= 8.0 ? "score-good" : sc >= 5.0 ? "score-mid" : "score-low";
-
-                // Badge Rời tab vi phạm
-                let tabBadgeHtml = '';
-                if (tabCount > 0) {
-                    tabBadgeHtml = `<span class="badge-cheat-danger">🚨 <b>${tabCount}</b> lần</span>`;
-                } else {
-                    tabBadgeHtml = `<span class="badge-cheat-safe">✅ 0 lần</span>`;
-                }
-
-                // Badge Số lần làm lại
-                let retryBadgeHtml = '';
-                if (retries > 1) {
-                    retryBadgeHtml = `<span class="badge-retry-tag">🔄 Lần <b>${retries}/3</b></span>`;
-                } else {
-                    retryBadgeHtml = `<span class="badge-first-tag">Lần 1</span>`;
-                }
 
                 html += `
                     <tr>
-                        <td style="font-weight: 700; color: var(--text-muted); text-align: center;">${i + 1}</td>
-                        <td style="font-size: 12.5px; color: #64748b; font-family: 'JetBrains Mono', monospace;">${sub.submittedAtStr || sub.createdAtIso?.slice(0, 16) || "—"}</td>
-                        <td style="font-weight: 800; color: #0f172a; font-size: 14px;">${sub.studentName || "—"}</td>
-                        <td style="text-align: center;"><span style="background: #f1f5f9; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 13px;">${sub.studentClass || "—"}</span></td>
-                        <td style="text-align: center;"><span style="font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #2563eb; background: #eff6ff; padding: 2px 6px; border-radius: 4px;">${sub.examCode || "—"}</span></td>
-                        <td style="text-align: center;"><span class="score-badge ${scoreClass}">${sc.toFixed(1)}</span></td>
-                        <td style="text-align: center;">${tabBadgeHtml}</td>
-                        <td style="text-align: center;">${retryBadgeHtml}</td>
-                        <td>${sub.p1Score !== undefined ? sub.p1Score.toFixed(1) + 'đ' : '—'} <span style="color:#64748b; font-size:12px;">(${sub.correctCount || 0}/12)</span></td>
-                        <td>${sub.p2Score !== undefined ? sub.p2Score.toFixed(1) + 'đ' : '—'} <span style="color:#64748b; font-size:12px;">(${sub.p2CorrectCount || 0}/8 ý)</span></td>
-                        <td style="font-size: 12.5px; color: #475569;">${sub.examSetName ? sub.examSetName.split('(')[0] : (sub.examSet || 'Đề 1')}</td>
+                        <td style="font-weight: 700; color: var(--text-muted);">${i + 1}</td>
+                        <td style="font-size: 12.5px; color: #64748b;">${sub.submittedAtStr || sub.createdAtIso?.slice(0, 16) || "—"}</td>
+                        <td style="font-weight: 800; color: #0f172a;">${sub.studentName || "—"}</td>
+                        <td><span style="background: #f1f5f9; padding: 2px 8px; border-radius: 6px; font-weight: 700;">${sub.studentClass || "—"}</span></td>
+                        <td>${sub.examSetName ? sub.examSetName.split('(')[0] : (sub.examSet || 'Đề 1')}</td>
+                        <td><span style="font-family: 'JetBrains Mono', monospace; font-weight: 700;">${sub.examCode || "—"}</span></td>
+                        <td><span class="score-badge ${scoreClass}">${sc.toFixed(1)}</span></td>
+                        <td>${sub.p1Score !== undefined ? sub.p1Score.toFixed(1) + 'đ' : '—'} (${sub.correctCount || 0}/12)</td>
+                        <td>${sub.p2Score !== undefined ? sub.p2Score.toFixed(1) + 'đ' : '—'} (${sub.p2CorrectCount || 0}/8 ý)</td>
+                        <td style="color: ${sub.tabSwitchCount > 0 ? '#b91c1c' : '#15803d'}; font-weight: 700;">${sub.tabSwitchCount ?? 0} lần</td>
+                        <td>Lần ${sub.retryCount || 1}</td>
                     </tr>
                 `;
             });
@@ -8629,23 +7610,14 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
 
             const avg = list.length ? (totalScore / list.length).toFixed(1) : "0.0";
             const passPct = list.length ? Math.round((passCount / list.length) * 100) : 0;
-            updateDashboardSummary(list.length, avg, maxScore.toFixed(1), passPct, totalViolations, violationStudentCount, totalRetries);
+            updateDashboardSummary(list.length, avg, maxScore.toFixed(1), `${passPct}%`);
         }
 
-        function updateDashboardSummary(total, avg, max, passPct, violationCount, violationStudentCount, retryCountTotal) {
+        function updateDashboardSummary(total, avg, max, passPct) {
             document.getElementById("dashTotalSubmissions").innerText = total;
             document.getElementById("dashAverageScore").innerText = avg;
             document.getElementById("dashHighestScore").innerText = max;
-            document.getElementById("dashPassRate").innerText = passPct + "%";
-            
-            const elVio = document.getElementById("dashViolationCount");
-            if (elVio) {
-                elVio.innerHTML = `${violationStudentCount} bài <span style="font-size:13px; font-weight:600; color:#b91c1c;">(${violationCount} lượt)</span>`;
-            }
-            const elRetry = document.getElementById("dashRetryCount");
-            if (elRetry) {
-                elRetry.innerHTML = `${retryCountTotal} lượt <span style="font-size:13px; font-weight:600; color:#4338ca;">(Lần 2, 3)</span>`;
-            }
+            document.getElementById("dashPassRate").innerText = passPct;
         }
 
         function filterDashboardTable() {
@@ -8671,7 +7643,7 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
             }
 
             let csv = "﻿"; // UTF-8 BOM để Excel hiển thị tiếng Việt không bị lỗi font
-            csv += "STT,Thời gian nộp,Họ và tên,Lớp,Mã đề,Tổng điểm,Số lần rời tab (Vi phạm),Số lần làm lại,Điểm Phần I,Điểm Phần II,Đúng Phần I,Đúng Phần II,Bộ đề,Đánh giá\n";
+            csv += "STT,Thời gian nộp,Họ và tên,Lớp,Bộ đề,Mã đề,Tổng điểm,Điểm Phần I,Điểm Phần II,Đúng Phần I,Đúng Phần II,Số lần rời tab,Lần thi,Đánh giá\n";
 
             allSubmissionsCache.forEach((sub, idx) => {
                 const name = `"${(sub.studentName || '').replace(/"/g, '""')}"`;
@@ -8688,7 +7660,7 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
                 const retry = sub.retryCount || 1;
                 const evalStr = `"${sub.evaluation || ''}"`;
 
-                csv += `${idx + 1},${time},${name},${cls},${code},${score},${tab},${retry},${p1},${p2},${c1},${c2},${examSet},${evalStr}\n`;
+                csv += `${idx + 1},${time},${name},${cls},${examSet},${code},${score},${p1},${p2},${c1},${c2},${tab},${retry},${evalStr}\n`;
             });
 
             const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
@@ -8702,37 +7674,5 @@ Tổng thời gian làm bài của bạn là 45 phút tính cộng dồn. Bạn 
             URL.revokeObjectURL(url);
         }
     </script>
-
-    <!-- MODAL PHÓNG TO HÌNH ẢNH (TRÁNH CHUYỂN TAB) -->
-    <div class="modal-overlay" id="imageLightboxModal" style="display: none; z-index: 10000; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(6px);" onclick="closeImageLightbox()">
-        <div style="position: relative; max-width: 90vw; max-height: 90vh; display: flex; flex-direction: column; align-items: center;">
-            <span style="position: absolute; top: -38px; right: 0; color: #fff; font-size: 28px; cursor: pointer; font-weight: bold;" onclick="closeImageLightbox()">&times; Đóng</span>
-            <img id="lightboxImg" src="" style="max-width: 90vw; max-height: 80vh; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); background: #fff;" onclick="event.stopPropagation()">
-        </div>
-    </div>
-
-    <!-- MODAL VI PHẠM CHUYỂN TAB (BẮT BUỘC LÀM LẠI TỪ ĐẦU) -->
-    <div class="modal-overlay" id="tabViolationModal" style="display: none; z-index: 10000; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px);">
-        <div class="modal-box" style="max-width: 500px; border-top: 6px solid #ef4444; padding: 32px 24px;">
-            <div style="font-size: 56px; margin-bottom: 12px; animation: bounce 1s infinite;">🚨</div>
-            <h3 class="modal-title" style="color: #dc2626; font-size: 22px; font-weight: 800; margin-bottom: 8px;">VI PHẠM QUY CHẾ THI!</h3>
-            <p style="font-size: 15px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
-                Hệ thống phát hiện bạn vừa <b>chuyển tab hoặc rời khỏi màn hình làm bài</b>.<br>
-                Theo quy định của Giáo viên, <b style="color: #dc2626;">toàn bộ bài làm hiện tại đã bị HỦY</b>.
-            </p>
-            <div style="background: #fef2f2; border: 1px dashed #f87171; border-radius: 12px; padding: 12px 16px; margin-bottom: 20px; font-size: 14px; color: #991b1b; text-align: left;">
-                <div style="margin-bottom: 4px;">👤 <b>Thí sinh:</b> <span id="txtViolationCandidate">...</span></div>
-                <div style="margin-bottom: 4px;">⚠️ <b>Hành vi:</b> Rời màn hình làm bài / Chuyển tab trình duyệt</div>
-                <div>🔢 <b>Số lần vi phạm:</b> <span id="txtViolationCount" style="font-weight: 700; color: #dc2626;">1</span> lần</div>
-            </div>
-            <p style="font-size: 14px; color: #64748b; margin-bottom: 24px; font-style: italic;">
-                Bạn bắt buộc phải bốc thăm <b>Mã đề mới</b> và làm lại từ đầu!
-            </p>
-            <button type="button" onclick="forceRestartExamDueToViolation()" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #dc2626, #b91c1c); color: #fff; font-size: 16px; font-weight: 700; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);">
-                🔄 BẮT BUỘC LÀM LẠI BÀI THI MỚI
-            </button>
-        </div>
-    </div>
-
 </body>
 </html>
